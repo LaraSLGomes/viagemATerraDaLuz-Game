@@ -1,0 +1,18 @@
+VIAGEM À TERRA DO SOL - Pacote de áudio (chiptune 8-bit, gerado por síntese)
+Formatos: .wav (original) e .ogg (leve, recomendado na Godot).
+
+musica/     tema_principal_loop (baião em chiptune, ~37s, loop), museu_ambiente_loop (lo-fi sóbrio, 24s, loop),
+            vitoria_jingle, game_over_jingle
+personagem/ pulo, pulo_duplo, aterrissagem, passo_1-3, correr_poeira, dano, espinho, morte, queda_abismo,
+            respawn, vida_recuperada, interagir, portal_quadro, retorno_museu, plataforma_movel
+itens/      pegar_item, soltar_item, usar_item, colecionavel_artefato, fragmento_secreto, curiosidade_desbloqueada,
+            diario_abrir/fechar, virar_pagina, porta_destravada, ala_museu_liberada, puzzle_resolvido,
+            puzzle_erro, puzzle_desfazer, alavanca, empurrar_bloco, item_invalido
+npcs/       fala_<npc>_1/2 + blip_<npc> (guia_museu, historiador, jangadeiro, iracema, sertanejo, caipora),
+            npc_saudacao, npc_alerta, npc_duvida, npc_risada, npc_missao_aceita/concluida,
+            criatura_* (rosnado, aviso, perseguindo, assobio_caipora, dano, derrotada)
+ui/         menu_navegar, menu_confirmar, menu_voltar, pausar, despausar, dialogo_avancar, dialogo_fim,
+            vida_baixa, remapear_botao
+
+Dicas Godot: nos .ogg/.wav de música ative Loop na aba Import. Para fala dos NPCs, toque blip_<npc> a cada
+letra/sílaba do texto (efeito "typewriter") com pitch_scale aleatório entre 0.9 e 1.1.
