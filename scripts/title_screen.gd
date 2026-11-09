@@ -14,7 +14,7 @@ func _process(delta):
 
 
 func _on_start_btn_pressed():
-	get_tree().change_scene_to_file("res://mundo_01.tscn")
+	get_tree().change_scene_to_file("res://cenas/lobby_scene.tscn")
 
 
 func _on_option_btn_pressed():
