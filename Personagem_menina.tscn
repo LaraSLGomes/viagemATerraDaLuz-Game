@@ -1,0 +1,116 @@
+[gd_scene load_steps=22 format=3 uid="uid://bswhkus2fyogo"]
+
+[ext_resource type="Texture2D" uid="uid://ctb67d3idf72f" path="res://Sprites_Godot_Personagens/feminina/walk/walk_00.png" id="1_tjnto"]
+[ext_resource type="Texture2D" uid="uid://4l3cyg0ly3r4" path="res://Sprites_Godot_Personagens/feminina/walk/walk_01.png" id="2_psjah"]
+[ext_resource type="Texture2D" uid="uid://chfmhlxbsu60e" path="res://Sprites_Godot_Personagens/feminina/walk/walk_02.png" id="3_ua55d"]
+[ext_resource type="Texture2D" uid="uid://dctc5qpwereap" path="res://Sprites_Godot_Personagens/feminina/walk/walk_03.png" id="4_7qqpm"]
+[ext_resource type="Texture2D" uid="uid://b7c6kvxaoibk" path="res://Sprites_Godot_Personagens/feminina/walk/walk_04.png" id="5_48v4l"]
+[ext_resource type="Texture2D" uid="uid://b834gupbpg0ji" path="res://Sprites_Godot_Personagens/feminina/walk/walk_05.png" id="6_ite2j"]
+[ext_resource type="Texture2D" uid="uid://cecb3h22x7xtr" path="res://Sprites_Godot_Personagens/feminina/walk/walk_06.png" id="7_ro88k"]
+[ext_resource type="Texture2D" uid="uid://cqa2rp4cjegka" path="res://Sprites_Godot_Personagens/feminina/walk/walk_07.png" id="8_m1gym"]
+[ext_resource type="Texture2D" uid="uid://csta8irt8vihr" path="res://Sprites_Godot_Personagens/feminina/idle/idle_00.png" id="9_su1x5"]
+[ext_resource type="Texture2D" uid="uid://dti7658d6uljp" path="res://Sprites_Godot_Personagens/feminina/idle/idle_01.png" id="10_5pwmi"]
+[ext_resource type="Texture2D" uid="uid://bljlr1ki5mm11" path="res://Sprites_Godot_Personagens/feminina/idle/idle_02.png" id="11_uv3hf"]
+[ext_resource type="Texture2D" uid="uid://blbfd4eaua4a0" path="res://Sprites_Godot_Personagens/feminina/idle/idle_03.png" id="12_j2xbf"]
+[ext_resource type="Texture2D" uid="uid://c0ddoydbcljfg" path="res://Sprites_Godot_Personagens/feminina/jump/jump_00.png" id="13_5sbk3"]
+[ext_resource type="Texture2D" uid="uid://djp20irhqya4w" path="res://Sprites_Godot_Personagens/feminina/jump/jump_01.png" id="14_8rtk5"]
+[ext_resource type="Texture2D" uid="uid://c3svbk4s3bymj" path="res://Sprites_Godot_Personagens/feminina/jump/jump_02.png" id="15_l3ex6"]
+[ext_resource type="Texture2D" uid="uid://cmo2n1so506nj" path="res://Sprites_Godot_Personagens/feminina/jump/jump_03.png" id="16_fq0pq"]
+[ext_resource type="Texture2D" uid="uid://djp2cu53fn7an" path="res://Sprites_Godot_Personagens/feminina/jump/jump_04.png" id="17_uixsa"]
+[ext_resource type="Texture2D" uid="uid://bc4qytc42lrmm" path="res://Sprites_Godot_Personagens/feminina/jump/jump_05.png" id="18_fbh74"]
+[ext_resource type="Texture2D" uid="uid://ywntip48u0oh" path="res://Sprites_Godot_Personagens/feminina/jump/jump_06.png" id="19_gpp2v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d04uo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tjnto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_psjah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ua55d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7qqpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_48v4l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ite2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ro88k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_m1gym")
+}],
+"loop": true,
+"name": &"personagem andando",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_su1x5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5pwmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_uv3hf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_j2xbf")
+}],
+"loop": true,
+"name": &"personagem parada",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_5sbk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_8rtk5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_l3ex6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_fq0pq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_uixsa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_fbh74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_gpp2v")
+}],
+"loop": false,
+"name": &"personagem pulando",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_phg41"]
+radius = 47.0
+height = 190.0
+
+[node name="PersonagemMenina" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+position = Vector2(-4, 10)
+scale = Vector2(0.921053, 0.675758)
+sprite_frames = SubResource("SpriteFrames_d04uo")
+animation = &"personagem pulando"
+frame = 6
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(1, 30)
+shape = SubResource("CapsuleShape2D_phg41")

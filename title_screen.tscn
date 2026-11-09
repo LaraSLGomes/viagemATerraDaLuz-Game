@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://bnarydysptlg0"]
+
+[ext_resource type="Script" uid="uid://dcdpulmh6om2t" path="res://scripts/title_screen.gd" id="1_ig5kc"]
+[ext_resource type="Texture2D" uid="uid://cg1c8lbs0ax43" path="res://assets/Title-screen.jpg" id="1_v6p8y"]
+[ext_resource type="Theme" uid="uid://cabckecteyv23" path="res://default_btn.tres" id="2_ak2if"]
+[ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://options_menu.tscn" id="4_05l2w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfnea"]
+
+[node name="TitleScreen" type="Control" unique_id=1980305993]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig5kc")
+
+[node name="bg" type="TextureRect" parent="." unique_id=224826294]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_v6p8y")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=722629892]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1677910824]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=359200724]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 8
+
+[node name="start_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=220836633]
+layout_mode = 2
+theme = ExtResource("2_ak2if")
+text = "CONTINUAR"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1031209670]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nfnea")
+
+[node name="newgame_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=46959815]
+layout_mode = 2
+theme = ExtResource("2_ak2if")
+text = "NOVO JOGO"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1765610486]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nfnea")
+
+[node name="option_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=848255595]
+layout_mode = 2
+theme = ExtResource("2_ak2if")
+text = "OPCOES"
+
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1458259946]
+layout_mode = 2
+theme_override_constants/separation = 6
+theme_override_styles/separator = SubResource("StyleBoxEmpty_nfnea")
+
+[node name="quit_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1120677943]
+layout_mode = 2
+theme = ExtResource("2_ak2if")
+text = "SAIR"
+
+[node name="options_menu" parent="." unique_id=181958098 instance=ExtResource("4_05l2w")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start_btn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/newgame_btn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/option_btn" to="." method="_on_option_btn_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit_btn" to="." method="_on_quit_btn_pressed"]
