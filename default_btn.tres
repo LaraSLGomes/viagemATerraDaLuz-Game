@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://cabckecteyv23"]
 
-[ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/RevMiniPixel.ttf" id="1_ngb7v"]
+[ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="1_ngb7v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qaqp"]
 

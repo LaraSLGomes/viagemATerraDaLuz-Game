@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://7gsoawqxef8f"]
+
+[ext_resource type="PackedScene" uid="uid://cjpmlv277bmsr" path="res://cenas/lobby_scene.tscn" id="2_clb16"]
+
+[node name="Main" type="Node2D" unique_id=635585267]
+
+[node name="lobby_scene" parent="." unique_id=1767293463 instance=ExtResource("2_clb16")]
