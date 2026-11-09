@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cg1c8lbs0ax43" path="res://assets/Title-screen.jpg" id="1_v6p8y"]
 [ext_resource type="Theme" uid="uid://cabckecteyv23" path="res://default_btn.tres" id="2_ak2if"]
 [ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://options_menu.tscn" id="4_05l2w"]
+[ext_resource type="AudioStream" uid="uid://sjlw4ts8se01" path="res://audios/musica/tema_principal_loop.ogg" id="4_hafda"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfnea"]
 
@@ -77,11 +78,19 @@ layout_mode = 2
 theme = ExtResource("2_ak2if")
 text = "SAIR"
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1225070043]
+position = Vector2(468, 554)
+stream = ExtResource("4_hafda")
+autoplay = true
+bus = &"musica"
+
 [node name="options_menu" parent="." unique_id=181958098 instance=ExtResource("4_05l2w")]
 visible = false
 layout_mode = 1
 
+[connection signal="focus_exited" from="." to="options_menu" method="_on_title_screen_focus_exited"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start_btn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/newgame_btn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/option_btn" to="." method="_on_option_btn_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit_btn" to="." method="_on_quit_btn_pressed"]
+[connection signal="exit_options_menu" from="options_menu" to="." method="_on_options_menu_exit_options_menu"]
