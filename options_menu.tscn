@@ -1,0 +1,187 @@
+[gd_scene format=3 uid="uid://ddt7ks0ldr3eb"]
+
+[ext_resource type="FontFile" path="res://assets/RevMiniPixel.ttf" id="1_lbr8e"]
+[ext_resource type="Script" path="res://options_menu.gd" id="1_t1lix"]
+[ext_resource type="Texture2D" uid="uid://bvxb0b08r0wiq" path="res://assets/museuFundo.jpg" id="2_ogda5"]
+[ext_resource type="Texture2D" uid="uid://cnwno4ucolho5" path="res://assets/Gemini_Generated_Image_blpx2iblpx2iblpx.jpg" id="3_vwtu1"]
+[ext_resource type="Script" uid="uid://cy38fob6b7rcl" path="res://musica.gd" id="4_ogda5"]
+[ext_resource type="Script" uid="uid://cig7kkq6l7c8l" path="res://tela_cheia.gd" id="5_6bffs"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_uqlmq"]
+color = Color(1, 1, 1, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hsasf"]
+color = Color(0.4686246, 0.27579662, 0.18167537, 1)
+thickness = 8
+
+[node name="options_menu" type="Control" unique_id=181958098]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t1lix")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1918368148]
+layout_mode = 1
+offset_left = -53.0
+offset_top = -12.000001
+offset_right = 2699.0
+offset_bottom = 1524.0
+scale = Vector2(0.445, 0.445)
+texture = ExtResource("2_ogda5")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=880932072]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 109.0
+offset_right = 528.0
+offset_bottom = 235.0
+texture = ExtResource("3_vwtu1")
+region_rect = Rect2(90.91997, 81.986755, 1044.4375, 752.15753)
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="." unique_id=1443947465]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 252.0
+offset_right = 531.0
+offset_bottom = 378.0
+texture = ExtResource("3_vwtu1")
+region_rect = Rect2(90.91997, 81.986755, 1044.4375, 752.15753)
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="." unique_id=2039769159]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 397.0
+offset_right = 532.0
+offset_bottom = 523.0
+texture = ExtResource("3_vwtu1")
+region_rect = Rect2(90.91997, 81.986755, 1044.4375, 752.15753)
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=344954033]
+layout_mode = 0
+offset_left = 621.0
+offset_top = 103.0
+offset_right = 1106.0
+offset_bottom = 582.0
+texture = ExtResource("3_vwtu1")
+region_rect = Rect2(90.91997, 81.986755, 1044.4375, 752.15753)
+
+[node name="Label" type="Label" parent="." unique_id=1657574659]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -7.0
+offset_right = 1151.0
+offset_bottom = 124.0
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 41
+text = "CONFIGURACOES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1863554324]
+layout_mode = 0
+offset_left = -279.0
+offset_top = 96.0
+offset_right = 873.0
+offset_bottom = 227.0
+theme_override_colors/font_color = Color(0.44, 0.29538664, 0.1408, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 32
+text = "MÚSICA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="." unique_id=2065937401]
+layout_mode = 0
+offset_left = -269.0
+offset_top = 236.0
+offset_right = 883.0
+offset_bottom = 367.0
+theme_override_colors/font_color = Color(0.4392157, 0.29411766, 0.14117648, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 32
+text = "EFEITOS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="." unique_id=1393117312]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 208.0
+offset_right = 1440.0
+offset_bottom = 415.0
+theme_override_colors/font_color = Color(0.4392157, 0.29411766, 0.14117648, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 32
+text = "EQUIPE
+
+LARA STEPHANNY
+ANA KAROLINA
+LIDIA ARAÚJO
+ANDRE LIMA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="back" type="Button" parent="." unique_id=1012024935]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 556.0
+offset_right = 397.0
+offset_bottom = 611.0
+theme_override_font_sizes/font_size = 30
+text = "SAIR"
+
+[node name="musica" type="HSlider" parent="." unique_id=1151170789]
+layout_mode = 0
+offset_left = 115.0
+offset_top = 156.0
+offset_right = 480.0
+offset_bottom = 231.0
+theme_override_styles/slider = SubResource("StyleBoxLine_uqlmq")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_hsasf")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_hsasf")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("4_ogda5")
+audio_bus_name = "musica"
+
+[node name="efeitos" type="HSlider" parent="." unique_id=1651599069]
+layout_mode = 0
+offset_left = 127.0
+offset_top = 288.0
+offset_right = 485.0
+offset_bottom = 381.0
+theme_override_styles/slider = SubResource("StyleBoxLine_uqlmq")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_hsasf")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_hsasf")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("4_ogda5")
+audio_bus_name = "efeitos"
+
+[node name="telaCheia" type="CheckButton" parent="." unique_id=16391952]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 135.0
+offset_top = 367.0
+offset_right = -663.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4392157, 0.29411766, 0.14117648, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 33
+text = "TELA CHEIA"
+script = ExtResource("5_6bffs")
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="musica" to="musica" method="_on_value_changed"]
+[connection signal="value_changed" from="efeitos" to="efeitos" method="_on_value_changed"]
+[connection signal="toggled" from="telaCheia" to="telaCheia" method="_on_toggled"]

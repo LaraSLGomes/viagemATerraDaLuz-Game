@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://blku3xs87re0g" path="res://cenas/menino_topdown.tscn" id="1_qge2h"]
 [ext_resource type="Texture2D" uid="uid://2pg0su262nrb" path="res://assets/tileset/Interiors_free/32x32/Room_Builder_free_32x32.png" id="2_l7mht"]
 [ext_resource type="Texture2D" uid="uid://ck804tb360q0u" path="res://assets/tileset/Interiors_free/16x16/Interiors_free_16x16.png" id="3_l7mht"]
+[ext_resource type="AudioStream" uid="uid://sjlw4ts8se01" path="res://audios/musica/tema_principal_loop.ogg" id="5_kx7r7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kx7r7"]
 texture = ExtResource("2_l7mht")
@@ -5651,3 +5652,9 @@ tile_set = SubResource("TileSet_c7ple")
 
 [node name="menino_topdown" parent="." unique_id=1916785082 instance=ExtResource("1_qge2h")]
 position = Vector2(610, 409)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=670515660]
+position = Vector2(468, 554)
+stream = ExtResource("5_kx7r7")
+autoplay = true
+bus = &"musica"
