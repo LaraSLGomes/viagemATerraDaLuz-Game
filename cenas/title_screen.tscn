@@ -1,14 +1,112 @@
 [gd_scene format=3 uid="uid://bnarydysptlg0"]
 
 [ext_resource type="Script" uid="uid://dcdpulmh6om2t" path="res://scripts/title_screen.gd" id="1_ig5kc"]
-[ext_resource type="Texture2D" uid="uid://cg1c8lbs0ax43" path="res://assets/Title-screen.jpg" id="1_v6p8y"]
-[ext_resource type="Theme" uid="uid://cabckecteyv23" path="res://default_btn.tres" id="2_ak2if"]
-[ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://options_menu.tscn" id="4_05l2w"]
-[ext_resource type="AudioStream" uid="uid://sjlw4ts8se01" path="res://audios/musica/tema_principal_loop.ogg" id="4_hafda"]
+[ext_resource type="VideoStream" uid="uid://dqsuam0s0abpx" path="res://assets/screens/title_background.ogv" id="1_video"]
+[ext_resource type="Theme" uid="uid://cabckecteyv23" path="res://default_btn.tres" id="2_theme"]
+[ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://cenas/options_menu.tscn" id="3_options"]
+[ext_resource type="AudioStream" uid="uid://sjlw4ts8se01" path="res://audios/musica/tema_principal_loop.ogg" id="4_music"]
+[ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="5_font"]
+[ext_resource type="Shader" uid="uid://d2q5gjutobex" path="res://scripts/title_glow.gdshader" id="6_glow"]
+[ext_resource type="Texture2D" uid="uid://hl4iuklxesr4" path="res://assets/screens/title_background_preview.png" id="7_preview"]
+[ext_resource type="Texture2D" uid="uid://b0jcjeaw8jiqs" path="res://assets/screens/menu_frame.svg" id="8_frame"]
+[ext_resource type="Texture2D" uid="uid://c1uxsulcusr1m" path="res://assets/screens/menu_buttons.svg" id="9_buttons"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nfnea"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_portal_glow"]
+shader = ExtResource("6_glow")
 
-[node name="TitleScreen" type="Control" unique_id=1980305993]
+[sub_resource type="AtlasTexture" id="AtlasTexture_primary_normal"]
+atlas = ExtResource("9_buttons")
+region = Rect2(0, 0, 360, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_primary_normal"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+texture = SubResource("AtlasTexture_primary_normal")
+texture_margin_left = 22.0
+texture_margin_top = 14.0
+texture_margin_right = 22.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_primary_pressed"]
+atlas = ExtResource("9_buttons")
+region = Rect2(0, 152, 360, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_primary_pressed"]
+content_margin_left = 10.0
+content_margin_top = 8.0
+content_margin_right = 10.0
+content_margin_bottom = 6.0
+texture = SubResource("AtlasTexture_primary_pressed")
+texture_margin_left = 22.0
+texture_margin_top = 14.0
+texture_margin_right = 22.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_primary_hover"]
+atlas = ExtResource("9_buttons")
+region = Rect2(0, 76, 360, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_primary_hover"]
+content_margin_left = 10.0
+content_margin_top = 6.0
+content_margin_right = 10.0
+content_margin_bottom = 8.0
+texture = SubResource("AtlasTexture_primary_hover")
+texture_margin_left = 22.0
+texture_margin_top = 14.0
+texture_margin_right = 22.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_secondary_normal"]
+atlas = ExtResource("9_buttons")
+region = Rect2(384, 0, 360, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_secondary_normal"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 7.0
+texture = SubResource("AtlasTexture_secondary_normal")
+texture_margin_left = 22.0
+texture_margin_top = 14.0
+texture_margin_right = 22.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_secondary_pressed"]
+atlas = ExtResource("9_buttons")
+region = Rect2(384, 152, 360, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_secondary_pressed"]
+content_margin_left = 10.0
+content_margin_top = 7.0
+content_margin_right = 10.0
+content_margin_bottom = 5.0
+texture = SubResource("AtlasTexture_secondary_pressed")
+texture_margin_left = 22.0
+texture_margin_top = 14.0
+texture_margin_right = 22.0
+texture_margin_bottom = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_secondary_hover"]
+atlas = ExtResource("9_buttons")
+region = Rect2(384, 76, 360, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_secondary_hover"]
+content_margin_left = 10.0
+content_margin_top = 5.0
+content_margin_right = 10.0
+content_margin_bottom = 7.0
+texture = SubResource("AtlasTexture_secondary_hover")
+texture_margin_left = 22.0
+texture_margin_top = 14.0
+texture_margin_right = 22.0
+texture_margin_bottom = 14.0
+
+[node name="TelaInicial" type="Control" unique_id=1980305993]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,80 +115,165 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ig5kc")
 
-[node name="bg" type="TextureRect" parent="." unique_id=224826294]
-layout_mode = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-texture = ExtResource("1_v6p8y")
-expand_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=722629892]
+[node name="Background" type="TextureRect" parent="." unique_id=224826294]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_bottom = 0
+texture = ExtResource("7_preview")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1677910824]
-layout_mode = 2
-size_flags_horizontal = 4
+[node name="VideoBackground" type="VideoStreamPlayer" parent="." unique_id=685190846]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+stream = ExtResource("1_video")
+volume_db = -80.0
+autoplay = true
+expand = true
+loop = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=359200724]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 8
+[node name="shade" type="ColorRect" parent="." unique_id=1906665127]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.025, 0.035, 0.055, 0.06)
 
-[node name="start_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=220836633]
-layout_mode = 2
-theme = ExtResource("2_ak2if")
-text = "CONTINUAR"
+[node name="PortalGlow" type="ColorRect" parent="." unique_id=1916743068]
+material = SubResource("ShaderMaterial_portal_glow")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1031209670]
-layout_mode = 2
+[node name="MenuContainer" type="Control" parent="." unique_id=1123980311]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -9.0
+offset_right = -18.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Moldura" type="TextureRect" parent="MenuContainer" unique_id=1462623215]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 410.0
+offset_top = 311.0
+offset_right = -378.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_frame")
+expand_mode = 1
+
+[node name="ConteudoMenu" type="VBoxContainer" parent="MenuContainer" unique_id=631245053]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.085
+anchor_right = 0.925
+anchor_bottom = 0.92
+offset_left = 358.6
+offset_top = 292.91998
+offset_right = -328.59998
+offset_bottom = -61.160034
 theme_override_constants/separation = 6
-theme_override_styles/separator = SubResource("StyleBoxEmpty_nfnea")
 
-[node name="newgame_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=46959815]
+[node name="LabelTitulo" type="Label" parent="MenuContainer/ConteudoMenu" unique_id=876789982]
+custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
-theme = ExtResource("2_ak2if")
-text = "NOVO JOGO"
+theme_override_colors/font_color = Color(0.53, 0.84, 0.8, 1)
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 12
+text = "CADERNO DE VIAGEM"
+horizontal_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1765610486]
+[node name="BotaoNovoJogo" type="Button" parent="MenuContainer/ConteudoMenu" unique_id=220836633]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_constants/separation = 6
-theme_override_styles/separator = SubResource("StyleBoxEmpty_nfnea")
+theme = ExtResource("2_theme")
+theme_override_colors/font_color = Color(1, 0.85, 0.53, 1)
+theme_override_colors/font_pressed_color = Color(0.9, 0.72, 0.42, 1)
+theme_override_colors/font_hover_color = Color(1, 0.95, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.09, 0.11, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBoxTexture_primary_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_primary_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_primary_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = ">  NOVO JOGO"
 
-[node name="option_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=848255595]
+[node name="BotaoConfiguracoes" type="Button" parent="MenuContainer/ConteudoMenu" unique_id=1796691476]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-theme = ExtResource("2_ak2if")
-text = "OPCOES"
+theme = ExtResource("2_theme")
+theme_override_colors/font_color = Color(0.94, 0.82, 0.58, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.67, 0.46, 1)
+theme_override_colors/font_hover_color = Color(0.62, 0.9, 0.83, 1)
+theme_override_colors/font_outline_color = Color(0.07, 0.09, 0.12, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxTexture_secondary_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_secondary_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_secondary_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "CONFIGURAÇÕES"
 
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1458259946]
+[node name="BotaoSair" type="Button" parent="MenuContainer/ConteudoMenu" unique_id=859886589]
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-theme_override_constants/separation = 6
-theme_override_styles/separator = SubResource("StyleBoxEmpty_nfnea")
-
-[node name="quit_btn" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1120677943]
-layout_mode = 2
-theme = ExtResource("2_ak2if")
+theme = ExtResource("2_theme")
+theme_override_colors/font_color = Color(0.94, 0.82, 0.58, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.67, 0.46, 1)
+theme_override_colors/font_hover_color = Color(0.62, 0.9, 0.83, 1)
+theme_override_colors/font_outline_color = Color(0.07, 0.09, 0.12, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxTexture_secondary_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_secondary_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_secondary_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "SAIR"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1225070043]
 position = Vector2(468, 554)
-stream = ExtResource("4_hafda")
+stream = ExtResource("4_music")
 autoplay = true
 bus = &"musica"
 
-[node name="options_menu" parent="." unique_id=181958098 instance=ExtResource("4_05l2w")]
+[node name="options_menu" parent="." unique_id=181958098 instance=ExtResource("3_options")]
 visible = false
 layout_mode = 1
 
-[connection signal="focus_exited" from="." to="options_menu" method="_on_title_screen_focus_exited"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/start_btn" to="." method="_on_start_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/newgame_btn" to="." method="_on_start_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/option_btn" to="." method="_on_option_btn_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/quit_btn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="MenuContainer/ConteudoMenu/BotaoNovoJogo" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MenuContainer/ConteudoMenu/BotaoConfiguracoes" to="." method="_on_option_btn_pressed"]
+[connection signal="pressed" from="MenuContainer/ConteudoMenu/BotaoSair" to="." method="_on_quit_btn_pressed"]
 [connection signal="exit_options_menu" from="options_menu" to="." method="_on_options_menu_exit_options_menu"]

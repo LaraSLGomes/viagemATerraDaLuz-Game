@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="744" height="216" viewBox="0 0 744 216">
+  <!-- Primary: normal -->
+  <path d="M12 2h336l10 10v40l-10 10H12L2 52V12z" fill="#0c1019" stroke="#0a0c12" stroke-width="4"/>
+  <path d="M14 5h332l8 8v37l-8 8H14l-8-8V13z" fill="#55402b" stroke="#e6b75f" stroke-width="3"/>
+  <path d="M20 11h320v40H20z" fill="#17202a" stroke="#c48e48" stroke-width="2"/>
+  <path d="M26 16h308M26 46h308" stroke="#f0d48c" stroke-opacity=".52" stroke-width="2"/>
+  <path d="M10 18h5v18h-5zm335-5h5v9h-5zm0 31h5v9h-5z" fill="#59c1c1"/>
+  <path d="M18 8h9v3h-9zm315 39h9v3h-9z" fill="#f5d487"/>
+
+  <!-- Primary: hover -->
+  <path d="M12 78h336l10 10v40l-10 10H12L2 128V88z" fill="#09131a" stroke="#090b10" stroke-width="4"/>
+  <path d="M14 81h332l8 8v37l-8 8H14l-8-8V89z" fill="#80572c" stroke="#f5d77f" stroke-width="3"/>
+  <path d="M20 87h320v40H20z" fill="#21403e" stroke="#61cdca" stroke-width="2"/>
+  <path d="M26 92h308M26 122h308" stroke="#fff0bf" stroke-opacity=".82" stroke-width="2"/>
+  <path d="M10 94h5v18h-5zm335-5h5v9h-5zm0 31h5v9h-5z" fill="#f4d779"/>
+  <path d="M18 84h9v3h-9zm315 39h9v3h-9z" fill="#f5d487"/>
+
+  <!-- Primary: pressed -->
+  <path d="M12 154h336l10 10v40l-10 10H12L2 204v-40z" fill="#080b10" stroke="#080a0d" stroke-width="4"/>
+  <path d="M14 157h332l8 8v37l-8 8H14l-8-8v-37z" fill="#322b25" stroke="#a77d46" stroke-width="3"/>
+  <path d="M20 163h320v40H20z" fill="#11171d" stroke="#8f7145" stroke-width="2"/>
+  <path d="M26 166h308" stroke="#5a4938" stroke-width="2"/>
+  <path d="M10 176h5v18h-5zm335-13h5v9h-5zm0 31h5v9h-5z" fill="#338a8e"/>
+
+  <!-- Secondary: normal -->
+  <path d="M396 2h336l10 10v40l-10 10H396l-10-10V12z" fill="#0c1019" stroke="#0a0c12" stroke-width="4"/>
+  <path d="M398 5h332l8 8v37l-8 8H398l-8-8V13z" fill="#251f1d" stroke="#987144" stroke-width="2"/>
+  <path d="M404 11h320v40H404z" fill="#111a23" stroke="#735b3c" stroke-width="1"/>
+  <path d="M410 16h308" stroke="#d6ad66" stroke-opacity=".48" stroke-width="2"/>
+  <path d="M394 18h5v18h-5zm335-5h5v9h-5zm0 31h5v9h-5z" fill="#a8814a"/>
+
+  <!-- Secondary: hover -->
+  <path d="M396 78h336l10 10v40l-10 10H396l-10-10V88z" fill="#090f16" stroke="#080b10" stroke-width="4"/>
+  <path d="M398 81h332l8 8v37l-8 8H398l-8-8V89z" fill="#423528" stroke="#dec277" stroke-width="2"/>
+  <path d="M404 87h320v40H404z" fill="#1b2d34" stroke="#60b9b8" stroke-width="2"/>
+  <path d="M410 92h308" stroke="#f0dca2" stroke-opacity=".72" stroke-width="2"/>
+  <path d="M394 94h5v18h-5zm335-5h5v9h-5zm0 31h5v9h-5z" fill="#62c7c2"/>
+
+  <!-- Secondary: pressed -->
+  <path d="M396 154h336l10 10v40l-10 10H396l-10-10v-40z" fill="#080b10" stroke="#080a0d" stroke-width="4"/>
+  <path d="M398 157h332l8 8v37l-8 8H398l-8-8v-37z" fill="#211d1b" stroke="#846843" stroke-width="2"/>
+  <path d="M404 163h320v40H404z" fill="#10151a" stroke="#594a36" stroke-width="1"/>
+  <path d="M410 166h308" stroke="#594a36" stroke-width="2"/>
+  <path d="M394 170h5v18h-5zm335-5h5v9h-5zm0 31h5v9h-5z" fill="#326e71"/>
+</svg>
