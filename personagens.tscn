@@ -1,0 +1,502 @@
+[gd_scene format=3 uid="uid://cy8k2xq04nljm"]
+
+[ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="1_font"]
+[ext_resource type="Script" path="res://scripts/personagens.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bvxb0b08r0wiq" path="res://assets/museuFundo.jpg" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://cnwno4ucolho5" path="res://assets/Gemini_Generated_Image_blpx2iblpx2iblpx.jpg" id="3_parchment"]
+[ext_resource type="Texture2D" uid="uid://d0m5s7s8vwnm2" path="res://assets/Personagens/masculino_2d/idle/idle_00.png" id="4_char_base"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_bg"]
+bg_color = Color(0.24, 0.15, 0.09, 0.6)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.55, 0.32, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.44, 0.28, 0.16, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.88, 0.72, 0.46, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.62, 0.4, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.92, 0.68, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.32, 0.2, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.55, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lineedit"]
+bg_color = Color(0.18, 0.12, 0.08, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.7, 0.45, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+
+[node name="Personagens" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="FundoAzulEscuro" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.08, 0.15, 0.96)
+
+[node name="PainelPergaminho" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -520.0
+offset_top = -305.0
+offset_right = 520.0
+offset_bottom = 305.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_parchment")
+patch_margin_left = 36
+patch_margin_top = 36
+patch_margin_right = 36
+patch_margin_bottom = 36
+
+[node name="ConteudoMargem" type="MarginContainer" parent="PainelPergaminho"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxPrincipal" type="VBoxContainer" parent="PainelPergaminho/ConteudoMargem"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Titulo" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.22, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0.95, 0.85, 0.65, 0.5)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 28
+text = "CRIAÇÃO DE PERSONAGEM"
+horizontal_alignment = 1
+
+[node name="Subtitulo" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.35, 0.2, 0.9)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+text = "Personalize o aventureiro que viajará pelas memórias da Terra da Luz"
+horizontal_alignment = 1
+
+[node name="Separador" type="HSeparator" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+
+[node name="HBoxColunas" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 28
+
+[node name="ColunaCustomizacao" type="VBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="CardNome" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardNome"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelNome" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardNome/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 16
+text = "NOME:"
+
+[node name="LineEditNome" type="LineEdit" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardNome/HBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit")
+text = "Bento"
+placeholder_text = "Digite o nome..."
+max_length = 16
+
+[node name="CardSexo" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardSexo"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelSexo" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardSexo/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 16
+text = "SEXO:"
+
+[node name="BtnSexoMasc" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardSexo/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "MENINO"
+
+[node name="BtnSexoFem" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardSexo/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "MENINA"
+
+[node name="CardCabeloEstilo" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCabeloEstilo"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelEstilo" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCabeloEstilo/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 15
+text = "CABELO:"
+
+[node name="BtnCabeloCurto" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCabeloEstilo/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "CURTO"
+
+[node name="BtnCabeloLongo" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCabeloEstilo/HBox"]
+custom_minimum_size = Vector2(120, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "LONGO"
+
+[node name="CardCorPele" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorPele"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelPele" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorPele/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 15
+text = "PELE:"
+
+[node name="BtnPrevPele" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorPele/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "<"
+
+[node name="PreviewCorPele" type="ColorRect" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorPele/HBox"]
+custom_minimum_size = Vector2(60, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.92, 0.75, 0.62, 1)
+
+[node name="BtnNextPele" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorPele/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = ">"
+
+[node name="CardCorCabelo" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorCabelo"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelCorCabelo" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorCabelo/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 15
+text = "COR CABELO:"
+
+[node name="BtnPrevCabelo" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorCabelo/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "<"
+
+[node name="PreviewCorCabelo" type="ColorRect" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorCabelo/HBox"]
+custom_minimum_size = Vector2(60, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.35, 0.22, 0.12, 1)
+
+[node name="BtnNextCabelo" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCorCabelo/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = ">"
+
+[node name="CardRoupa" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelRoupa" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 15
+text = "ROUPA:"
+
+[node name="BtnPrevRoupa" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "<"
+
+[node name="PreviewCorRoupa" type="ColorRect" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa/HBox"]
+custom_minimum_size = Vector2(60, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.24, 0.45, 0.75, 1)
+
+[node name="BtnNextRoupa" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = ">"
+
+[node name="CardSapato" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardSapato"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelSapato" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardSapato/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 15
+text = "SAPATO:"
+
+[node name="BtnPrevSapato" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardSapato/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "<"
+
+[node name="PreviewCorSapato" type="ColorRect" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardSapato/HBox"]
+custom_minimum_size = Vector2(60, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.25, 0.16, 0.1, 1)
+
+[node name="BtnNextSapato" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardSapato/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = ">"
+
+[node name="CardMochila" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardMochila"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelMochila" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardMochila/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 15
+text = "MOCHILA:"
+
+[node name="BtnPrevMochila" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardMochila/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "<"
+
+[node name="PreviewCorMochila" type="ColorRect" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardMochila/HBox"]
+custom_minimum_size = Vector2(60, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.65, 0.42, 0.22, 1)
+
+[node name="BtnNextMochila" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardMochila/HBox"]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = ">"
+
+[node name="ColunaVisualizacao" type="VBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas"]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="MolduraBoneco" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao"]
+custom_minimum_size = Vector2(260, 260)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="Center" type="CenterContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco"]
+layout_mode = 2
+
+[node name="SpritePreviewBase" type="TextureRect" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center"]
+custom_minimum_size = Vector2(160, 160)
+layout_mode = 2
+texture = ExtResource("4_char_base")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LabelResumoPersonagem" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.27, 0.14, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+text = "Bento • Menino • Cabelo Curto"
+horizontal_alignment = 1
+
+[node name="HBoxInferior" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BotaoVoltar" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxInferior"]
+custom_minimum_size = Vector2(180, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.85, 0.65, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "< VOLTAR"
+
+[node name="BotaoConcluido" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxInferior"]
+custom_minimum_size = Vector2(240, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.94, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "CONCLUÍDO >"

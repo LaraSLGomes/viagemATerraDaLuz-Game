@@ -1,7 +1,9 @@
 extends Control
 ## Controlador da tela inicial com animações de Game Feel (Tweens) e feedback sonoro.
 
+const CENA_PERSONAGENS: String = "res://cenas/personagens.tscn"
 const CENA_LOBBY: String = "res://cenas/lobby_scene.tscn"
+
 const SOM_NAVEGAR: AudioStream = preload("res://audios/ui/menu_navegar.ogg")
 const SOM_CONFIRMAR: AudioStream = preload("res://audios/ui/menu_confirmar.ogg")
 
@@ -56,7 +58,7 @@ func _on_start_btn_pressed() -> void:
 		tween.tween_property(menu_container, "modulate:a", 0.0, 0.32).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 		tween.tween_property(menu_container, "scale", Vector2(1.05, 1.05), 0.32).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "modulate", Color(1.3, 1.25, 1.1, 0.0), 0.42).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
-	tween.chain().tween_callback(_ir_para_lobby)
+	tween.chain().tween_callback(_ir_para_personagens)
 
 
 func _on_option_btn_pressed() -> void:
@@ -213,5 +215,10 @@ func _animar_botao_pressionado(botao: Button, pressionado: bool) -> void:
 	tween.tween_property(botao, "scale", escala_alvo, 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 
 
+func _ir_para_personagens() -> void:
+	get_tree().change_scene_to_file(CENA_PERSONAGENS)
+
+
 func _ir_para_lobby() -> void:
 	get_tree().change_scene_to_file(CENA_LOBBY)
+
