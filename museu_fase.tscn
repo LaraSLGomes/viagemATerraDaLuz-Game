@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://cenas/options_menu.tscn" id="5_options"]
 [ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="6_font"]
 [ext_resource type="Script" path="res://scripts/DialogoProfessora.gd" id="7_dialogo"]
-[ext_resource type="PackedScene" uid="uid://bswhkus2fyogo" path="res://cenas/Personagem_menina.tscn" id="8_professora"]
+[ext_resource type="PackedScene" uid="uid://c7m5p2q0w8k4y" path="res://cenas/ProfessoraNPC.tscn" id="8_professora"]
 
 
 
