@@ -36,7 +36,7 @@ var _tween_texto: Tween
 @onready var label_indicador: Label = $PainelDialogo/MarginContainer/VBox/HBox/LabelIndicador as Label
 
 @onready var painel_guia: Control = get_node_or_null("PainelGuiaComoJogar") as Control
-@onready var botao_fechar_guia: Button = get_node_or_null("PainelGuiaComoJogar/CenterContainer/CardGuia/VBox/BotaoFecharGuia") as Button
+@onready var botao_fechar_guia: Button = (find_child("BotaoFecharGuia", true, false) as Button) if has_node("PainelGuiaComoJogar") else null
 
 @onready var player_root: Node2D = get_node_or_null(caminho_jogador_root) as Node2D
 @onready var player: CharacterBody2D = get_node_or_null(caminho_jogador) as CharacterBody2D

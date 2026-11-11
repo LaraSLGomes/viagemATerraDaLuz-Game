@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="6_font"]
 [ext_resource type="Script" path="res://scripts/DialogoProfessora.gd" id="7_dialogo"]
 [ext_resource type="PackedScene" uid="uid://c7m5p2q0w8k4y" path="res://cenas/ProfessoraNPC.tscn" id="8_professora"]
+[ext_resource type="Texture2D" uid="uid://d2h3j4k5l6m7" path="res://assets/ui/manual_do_jogador.png" id="9_manual"]
 
 
 
@@ -392,131 +393,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CardGuia" type="PanelContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer"]
-custom_minimum_size = Vector2(560, 420)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_guia_card")
-
-[node name="Margin" type="MarginContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia"]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 26
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 26
-
-[node name="VBox" type="VBoxContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin"]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="LabelTituloGuia" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.88, 0.5, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 24
-text = "GUIA DE EXPLORAÇÃO"
-horizontal_alignment = 1
-
-[node name="Separador1" type="HSeparator" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox"]
+[node name="ContainerManual" type="Control" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer"]
+custom_minimum_size = Vector2(980, 650)
 layout_mode = 2
 
-[node name="VBoxControles" type="VBoxContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox"]
-layout_mode = 2
-theme_override_constants/separation = 12
+[node name="TexturaManual" type="TextureRect" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/ContainerManual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_manual")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="ItemAndar" type="HBoxContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles"]
-layout_mode = 2
-
-[node name="LabelTecla" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles/ItemAndar"]
-custom_minimum_size = Vector2(170, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.65, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 17
-text = "[ A ] [ D ] / ◀ ▶"
-
-[node name="LabelAcao" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles/ItemAndar"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.9, 0.85, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 16
-text = "Mover pelo museu"
-
-[node name="ItemPular" type="HBoxContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles"]
-layout_mode = 2
-
-[node name="LabelTecla" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles/ItemPular"]
-custom_minimum_size = Vector2(170, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.65, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 17
-text = "[ W ] / [ SETA CIMA ]"
-
-[node name="LabelAcao" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles/ItemPular"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.9, 0.85, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 16
-text = "Pular obstáculos"
-
-[node name="ItemInteragir" type="HBoxContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles"]
-layout_mode = 2
-
-[node name="LabelTecla" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles/ItemInteragir"]
-custom_minimum_size = Vector2(170, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.65, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 17
-text = "[ ESPAÇO ] / [ E ]"
-
-[node name="LabelAcao" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles/ItemInteragir"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.9, 0.85, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 16
-text = "Interagir com quadros e obras"
-
-[node name="ItemPausa" type="HBoxContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles"]
-layout_mode = 2
-
-[node name="LabelTecla" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles/ItemPausa"]
-custom_minimum_size = Vector2(170, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9, 0.65, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 17
-text = "[ ESC ]"
-
-[node name="LabelAcao" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox/VBoxControles/ItemPausa"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.92, 0.9, 0.85, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 16
-text = "Menu de Opções / Controles"
-
-[node name="Separador2" type="HSeparator" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox"]
-layout_mode = 2
-
-[node name="LabelObjetivo" type="Label" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.95, 0.8, 0.55, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 14
-text = "★ Explore o museu e aproxime-se do Quadro Mágico brilhante para iniciar a viagem!"
-autowrap_mode = 2
-
-[node name="BotaoFecharGuia" type="Button" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/CardGuia/Margin/VBox"]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.92, 0.75, 1)
-theme_override_colors/font_pressed_color = Color(0.85, 0.75, 0.55, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 0.95, 1)
-theme_override_fonts/font = ExtResource("6_font")
-theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxFlat_btn_guia")
-text = "COMEÇAR A EXPLORAR [ ENTER ]"
+[node name="BotaoFecharGuia" type="Button" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/ContainerManual"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.0
+offset_top = -80.0
+offset_right = 175.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_default_cursor_shape = 2
+flat = true
 
 
