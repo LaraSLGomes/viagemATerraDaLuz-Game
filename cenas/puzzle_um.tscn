@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://cjpmlv277bmsr"]
+[gd_scene format=4 uid="uid://cbjvuqht3jxqu"]
 
 [ext_resource type="Script" path="res://scripts/puzzle_um.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://d0aj8a3m5ryp3" path="res://assets/tileset/Interiors_free/32x32/Interiors_free_32x32.png" id="1_cnytk"]

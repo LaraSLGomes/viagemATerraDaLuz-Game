@@ -221,4 +221,3 @@ func _ir_para_personagens() -> void:
 
 func _ir_para_lobby() -> void:
 	get_tree().change_scene_to_file(CENA_LOBBY)
-

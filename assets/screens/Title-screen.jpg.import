@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cg1c8lbs0ax43"
-path="res://.godot/imported/Title-screen.jpg-7d07e32dafd5ea545620f715af4265ce.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://assets/screens/Title-screen.jpg"
-dest_files=["res://.godot/imported/Title-screen.jpg-7d07e32dafd5ea545620f715af4265ce.ctex"]
 
 [params]
 
