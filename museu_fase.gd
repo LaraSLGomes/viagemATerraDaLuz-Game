@@ -1,11 +1,19 @@
 extends Node2D
-## Controlador da Fase Introdutória: Museu do Ceará (Prólogo)
-## Rascunho inicial com iluminação, partículas do portal e suporte ao menu de opções / diálogo.
+## Controlador da ambientação do Museu (Museu da UNIFOR - Hub da História)
+## Gerencia a atmosfera solene do museu, interação com quadros-portais e HUD/Opções.
+
+const CENA_PUZZLE_UM: String = "res://cenas/puzzle_um.tscn"
+
+var _em_transicao: bool = false
 
 @onready var options_menu: Control = find_child("options_menu", true, false) as Control
 @onready var btn_config: Button = find_child("BotaoConfiguracoesHUD", true, false) as Button
-@onready var label_intro: Label = find_child("LabelIntro", true, false) as Label
 @onready var label_nome_player: Label = find_child("LabelNomePlayer", true, false) as Label
+@onready var label_dica_interacao: Label = find_child("LabelDicaInteracao", true, false) as Label
+@onready var player: CharacterBody2D = find_child("PlayerMuseu", true, false) as CharacterBody2D
+@onready var area_portal_quadro: Area2D = find_child("AreaPortalQuadro", true, false) as Area2D
+
+var _jogador_proximo_quadro: bool = false
 
 
 func _ready() -> void:
@@ -17,13 +25,20 @@ func _ready() -> void:
 		if not options_menu.exit_options_menu.is_connected(_fechar_configuracoes):
 			options_menu.exit_options_menu.connect(_fechar_configuracoes)
 
-	# Atualiza com os dados do personagem customizado vindos do Global
+	# Atualiza o nome do protagonista personalizado
 	if is_instance_valid(label_nome_player):
 		var nome_heroi: String = "Bento"
 		if Engine.has_singleton("Global") or has_node("/root/Global"):
 			var g: Node = get_node("/root/Global")
 			nome_heroi = str(g.nome_personagem)
 		label_nome_player.text = "Expedição: %s" % nome_heroi
+
+	if is_instance_valid(area_portal_quadro):
+		area_portal_quadro.body_entered.connect(_on_portal_body_entered)
+		area_portal_quadro.body_exited.connect(_on_portal_body_exited)
+
+	if is_instance_valid(label_dica_interacao):
+		label_dica_interacao.visible = false
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -34,6 +49,38 @@ func _unhandled_input(event: InputEvent) -> void:
 			else:
 				_abrir_configuracoes()
 			get_viewport().set_input_as_handled()
+			return
+
+	if _jogador_proximo_quadro and not _em_transicao:
+		if event.is_action_pressed("jump") or event.is_action_pressed("ui_accept"):
+			_entrar_no_quadro_portal()
+			get_viewport().set_input_as_handled()
+
+
+func _on_portal_body_entered(body: Node2D) -> void:
+	if body == player or body.is_in_group("player"):
+		_jogador_proximo_quadro = true
+		if is_instance_valid(label_dica_interacao):
+			label_dica_interacao.visible = true
+
+
+func _on_portal_body_exited(body: Node2D) -> void:
+	if body == player or body.is_in_group("player"):
+		_jogador_proximo_quadro = false
+		if is_instance_valid(label_dica_interacao):
+			label_dica_interacao.visible = false
+
+
+func _entrar_no_quadro_portal() -> void:
+	_em_transicao = true
+	var tween: Tween = create_tween().set_parallel(true)
+	var fade_overlay: ColorRect = find_child("FadeTransicao", true, false) as ColorRect
+	if is_instance_valid(fade_overlay):
+		fade_overlay.visible = true
+		tween.tween_property(fade_overlay, "modulate:a", 1.0, 0.5)
+	tween.chain().tween_callback(func() -> void:
+		get_tree().change_scene_to_file(CENA_PUZZLE_UM)
+	)
 
 
 func _abrir_configuracoes() -> void:
