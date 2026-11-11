@@ -5638,7 +5638,35 @@ texture = ExtResource("3_l7mht")
 sources/0 = SubResource("TileSetAtlasSource_8ol4u")
 sources/1 = SubResource("TileSetAtlasSource_3nd54")
 
+[sub_resource type="Environment" id="Environment_museu_glow"]
+background_mode = 3
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 1.2
+glow_strength = 1.08
+glow_bloom = 0.26
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_contrast = 1.08
+adjustment_saturation = 1.06
+
+[sub_resource type="Gradient" id="Gradient_poeira_museu"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(0.9, 0.95, 1, 0, 0.95, 0.95, 1, 0.45, 1, 0.92, 0.78, 0.35, 0.9, 0.95, 1, 0)
+script = null
+
+[sub_resource type="Gradient" id="Gradient_portal_quadro"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1.4, 1.05, 0.35, 0, 1.5, 1.15, 0.45, 0.9, 0.35, 1.35, 1.4, 0.85, 0.2, 1, 1.2, 0)
+script = null
+
 [node name="lobby_scene" type="Node2D" unique_id=1767293463]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1402918501]
+environment = SubResource("Environment_museu_glow")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1402918502]
+color = Color(0.88, 0.9, 0.96, 1)
 
 [node name="TileMapLayer_terrain" type="TileMapLayer" parent="." unique_id=1277618211]
 scale = Vector2(4, 4)
@@ -5649,6 +5677,40 @@ tile_set = SubResource("TileSet_nfnea")
 scale = Vector2(4, 4)
 tile_map_data = PackedByteArray("AAABAAEAAQAKACwAAAABAAIAAQAKAC0AAAABAAMAAQAKAC4AAAACAAEAAQALACwAAAACAAIAAQALAC0AAAACAAMAAQALAC4AAAARAAEAAQAKACwAAAARAAIAAQAKAC0AAAARAAMAAQAKAC4AAAASAAEAAQALACwAAAASAAIAAQALAC0AAAASAAMAAQALAC4AAAASAAQAAQAMAC0AAAASAAUAAQAMAC4AAAABAAQAAQAMAC0AAAABAAUAAQAMAC4AAAAHAAcAAQANAAwAAGAHAAYAAQAOAAwAAGAHAAUAAQAPAAwAAGAIAAcAAQANAA0AAGAIAAYAAQAOAA0AAGAIAAUAAQAPAA0AAGAJAAcAAQANAAwAAGAJAAYAAQAOAAwAAGAJAAUAAQAPAAwAAGAKAAcAAQANAA0AAGAKAAYAAQAOAA0AAGAKAAUAAQAPAA0AAGALAAcAAQANAAwAAGALAAYAAQAOAAwAAGALAAUAAQAPAAwAAGAMAAcAAQANAA0AAGAMAAYAAQAOAA0AAGAMAAUAAQAPAA0AAGAGAAUAAQANAA4AAFAGAAYAAQAOAA4AAFAGAAcAAQAPAA4AAFANAAUAAQANAAsAAFANAAYAAQAOAAsAAFANAAcAAQAPAAsAAFAOAAEAAQAIABQAAAAOAAIAAQAIABUAAAAPAAEAAQAJABQAAAAPAAIAAQAJABUAAAAKAAEAAQAAABgAAAAKAAIAAQAAABkAAAALAAEAAQABABgAAAALAAIAAQABABkAAAAHAAEAAQAAABYAAAAHAAIAAQAAABcAAAAIAAEAAQABABYAAAAIAAIAAQABABcAAAAEAAEAAQAIABYAAAAEAAIAAQAIABcAAAAFAAEAAQAJABYAAAAFAAIAAQAJABcAAAACAAUAAQAHAFAAAAACAAYAAQAHAFEAAAACAAcAAQAHAFEAAAADAAUAAQAIAFAAAAADAAYAAQAIAFEAAAADAAcAAQAIAFEAAAAEAAUAAQAJAFAAAAAEAAYAAQAJAFEAAAAEAAcAAQAJAFEAAAAFAAUAAQAKAFAAAAAFAAYAAQAKAFEAAAAFAAcAAQAKAFEAAAACAAgAAQAHAFEAAAADAAgAAQAIAFEAAAAEAAgAAQAJAFEAAAAFAAgAAQAKAFEAAAACAAkAAQAHAFIAAAADAAkAAQAIAFIAAAAEAAkAAQAJAFIAAAAFAAkAAQAKAFIAAAA=")
 tile_set = SubResource("TileSet_c7ple")
+
+[node name="ParticulasAmbienteMuseu" type="CPUParticles2D" parent="." unique_id=1402918503]
+position = Vector2(610, 380)
+amount = 45
+lifetime = 5.0
+preprocess = 2.0
+randomness = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(650, 420)
+direction = Vector2(0, -1)
+spread = 60.0
+gravity = Vector2(0, -4)
+initial_velocity_min = 4.0
+initial_velocity_max = 14.0
+scale_amount_min = 2.0
+scale_amount_max = 3.5
+color_ramp = SubResource("Gradient_poeira_museu")
+
+[node name="ParticulasPortalQuadro" type="CPUParticles2D" parent="." unique_id=1402918504]
+position = Vector2(610, 175)
+amount = 36
+lifetime = 2.8
+preprocess = 1.0
+randomness = 0.4
+emission_shape = 3
+emission_rect_extents = Vector2(220, 45)
+direction = Vector2(0, 1)
+spread = 45.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 10.0
+initial_velocity_max = 26.0
+scale_amount_min = 2.5
+scale_amount_max = 4.5
+color_ramp = SubResource("Gradient_portal_quadro")
 
 [node name="menino_topdown" parent="." unique_id=1916785082 instance=ExtResource("1_qge2h")]
 position = Vector2(610, 409)

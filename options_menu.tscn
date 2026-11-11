@@ -1,19 +1,61 @@
-[gd_scene format=3 uid="uid://ddt7ks0ldr3eb"]
+[gd_scene format=3 uid="uid://cgdmk0mjnhy40"]
 
-[ext_resource type="FontFile" path="res://assets/RevMiniPixel.ttf" id="1_lbr8e"]
-[ext_resource type="Script" path="res://options_menu.gd" id="1_t1lix"]
+[ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="1_lbr8e"]
+[ext_resource type="Script" uid="uid://cyqmmir5xqg0a" path="res://options_menu.gd" id="1_t1lix"]
 [ext_resource type="Texture2D" uid="uid://bvxb0b08r0wiq" path="res://assets/museuFundo.jpg" id="2_ogda5"]
 [ext_resource type="Texture2D" uid="uid://cnwno4ucolho5" path="res://assets/Gemini_Generated_Image_blpx2iblpx2iblpx.jpg" id="3_vwtu1"]
 [ext_resource type="Script" uid="uid://cy38fob6b7rcl" path="res://musica.gd" id="4_ogda5"]
 [ext_resource type="Script" uid="uid://cig7kkq6l7c8l" path="res://tela_cheia.gd" id="5_6bffs"]
+[ext_resource type="Theme" uid="uid://cabckecteyv23" path="res://default_btn.tres" id="6_theme"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_uqlmq"]
-color = Color(1, 1, 1, 1)
-thickness = 8
+color = Color(0.85, 0.72, 0.52, 1)
+thickness = 6
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_hsasf"]
-color = Color(0.4686246, 0.27579662, 0.18167537, 1)
+color = Color(0.48, 0.28, 0.16, 1)
 thickness = 8
+
+[sub_resource type="Gradient" id="Gradient_options_particles"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 0.9, 0.65, 0, 1.15, 0.95, 0.65, 0.55, 0.95, 0.8, 0.5, 0.45, 0.9, 0.75, 0.45, 0)
+script = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.44, 0.28, 0.16, 0.9)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.88, 0.72, 0.46, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.62, 0.4, 0.22, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.92, 0.68, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.32, 0.2, 0.12, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.72, 0.55, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="options_menu" type="Control" unique_id=181958098]
 layout_mode = 3
@@ -24,122 +66,177 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t1lix")
 
+[node name="CortinaFundoEscuro" type="ColorRect" parent="." unique_id=1918368149]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.04, 0.05, 0.08, 0.94)
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1918368148]
 layout_mode = 1
-offset_left = -53.0
-offset_top = -12.000001
-offset_right = 2699.0
-offset_bottom = 1524.0
-scale = Vector2(0.445, 0.445)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_ogda5")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="SombraVignette" type="ColorRect" parent="." unique_id=1918368150]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.02, 0.03, 0.05, 0.58)
+
+[node name="ParticulasCaderno" type="CPUParticles2D" parent="." unique_id=1402918401]
+position = Vector2(576, 324)
+amount = 32
+lifetime = 4.0
+preprocess = 1.5
+randomness = 0.35
+emission_shape = 3
+emission_rect_extents = Vector2(540, 300)
+direction = Vector2(0, -1)
+spread = 45.0
+gravity = Vector2(0, -8)
+initial_velocity_min = 8.0
+initial_velocity_max = 22.0
+scale_amount_min = 2.0
+scale_amount_max = 3.5
+color_ramp = SubResource("Gradient_options_particles")
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=880932072]
 layout_mode = 0
-offset_left = 72.0
-offset_top = 109.0
-offset_right = 528.0
-offset_bottom = 235.0
+offset_left = 68.0
+offset_top = 95.0
+offset_right = 538.0
+offset_bottom = 222.0
 texture = ExtResource("3_vwtu1")
 region_rect = Rect2(90.91997, 81.986755, 1044.4375, 752.15753)
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="." unique_id=1443947465]
 layout_mode = 0
-offset_left = 75.0
-offset_top = 252.0
-offset_right = 531.0
-offset_bottom = 378.0
+offset_left = 68.0
+offset_top = 236.0
+offset_right = 538.0
+offset_bottom = 363.0
 texture = ExtResource("3_vwtu1")
 region_rect = Rect2(90.91997, 81.986755, 1044.4375, 752.15753)
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28
 
 [node name="NinePatchRect4" type="NinePatchRect" parent="." unique_id=2039769159]
 layout_mode = 0
-offset_left = 76.0
-offset_top = 397.0
-offset_right = 532.0
-offset_bottom = 523.0
+offset_left = 68.0
+offset_top = 377.0
+offset_right = 538.0
+offset_bottom = 485.0
 texture = ExtResource("3_vwtu1")
 region_rect = Rect2(90.91997, 81.986755, 1044.4375, 752.15753)
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=344954033]
 layout_mode = 0
-offset_left = 621.0
-offset_top = 103.0
-offset_right = 1106.0
-offset_bottom = 582.0
+offset_left = 590.0
+offset_top = 95.0
+offset_right = 1084.0
+offset_bottom = 574.0
 texture = ExtResource("3_vwtu1")
 region_rect = Rect2(90.91997, 81.986755, 1044.4375, 752.15753)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
 
 [node name="Label" type="Label" parent="." unique_id=1657574659]
-layout_mode = 0
-offset_left = -1.0
-offset_top = -7.0
-offset_right = 1151.0
-offset_bottom = 124.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 18.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.72, 1)
+theme_override_colors/font_outline_color = Color(0.12, 0.08, 0.04, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("1_lbr8e")
-theme_override_font_sizes/font_size = 41
-text = "CONFIGURACOES"
+theme_override_font_sizes/font_size = 38
+text = "CONFIGURAÇÕES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label2" type="Label" parent="." unique_id=1863554324]
 layout_mode = 0
-offset_left = -279.0
-offset_top = 96.0
-offset_right = 873.0
-offset_bottom = 227.0
-theme_override_colors/font_color = Color(0.44, 0.29538664, 0.1408, 1)
+offset_left = 80.0
+offset_top = 108.0
+offset_right = 526.0
+offset_bottom = 152.0
+theme_override_colors/font_color = Color(0.44, 0.28, 0.14, 1)
 theme_override_fonts/font = ExtResource("1_lbr8e")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 26
 text = "MÚSICA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="." unique_id=2065937401]
 layout_mode = 0
-offset_left = -269.0
-offset_top = 236.0
-offset_right = 883.0
-offset_bottom = 367.0
-theme_override_colors/font_color = Color(0.4392157, 0.29411766, 0.14117648, 1)
+offset_left = 80.0
+offset_top = 249.0
+offset_right = 526.0
+offset_bottom = 293.0
+theme_override_colors/font_color = Color(0.44, 0.28, 0.14, 1)
 theme_override_fonts/font = ExtResource("1_lbr8e")
-theme_override_font_sizes/font_size = 32
-text = "EFEITOS"
+theme_override_font_sizes/font_size = 26
+text = "EFEITOS SONOROS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label4" type="Label" parent="." unique_id=1393117312]
 layout_mode = 0
-offset_left = 288.0
-offset_top = 208.0
-offset_right = 1440.0
-offset_bottom = 415.0
-theme_override_colors/font_color = Color(0.4392157, 0.29411766, 0.14117648, 1)
+offset_left = 620.0
+offset_top = 135.0
+offset_right = 1054.0
+offset_bottom = 545.0
+theme_override_colors/font_color = Color(0.42, 0.27, 0.14, 1)
 theme_override_fonts/font = ExtResource("1_lbr8e")
-theme_override_font_sizes/font_size = 32
-text = "EQUIPE
+theme_override_font_sizes/font_size = 26
+text = "DIÁRIO DE DESENVOLVIMENTO
+
+EQUIPE CRIATIVA:
 
 LARA STEPHANNY
 ANA KAROLINA
-LIDIA ARAÚJO
-ANDRE LIMA"
+LÍDIA ARAÚJO
+ANDRÉ LIMA
+
+VIAGEM À TERRA DA LUZ
+GODOT ENGINE 4.x"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="back" type="Button" parent="." unique_id=1012024935]
-layout_mode = 0
-offset_left = 221.0
-offset_top = 556.0
-offset_right = 397.0
-offset_bottom = 611.0
-theme_override_font_sizes/font_size = 30
-text = "SAIR"
-
 [node name="musica" type="HSlider" parent="." unique_id=1151170789]
 layout_mode = 0
-offset_left = 115.0
-offset_top = 156.0
-offset_right = 480.0
-offset_bottom = 231.0
+offset_left = 110.0
+offset_top = 152.0
+offset_right = 496.0
+offset_bottom = 205.0
 theme_override_styles/slider = SubResource("StyleBoxLine_uqlmq")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_hsasf")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_hsasf")
@@ -151,10 +248,10 @@ audio_bus_name = "musica"
 
 [node name="efeitos" type="HSlider" parent="." unique_id=1651599069]
 layout_mode = 0
-offset_left = 127.0
-offset_top = 288.0
-offset_right = 485.0
-offset_bottom = 381.0
+offset_left = 110.0
+offset_top = 293.0
+offset_right = 496.0
+offset_bottom = 346.0
 theme_override_styles/slider = SubResource("StyleBoxLine_uqlmq")
 theme_override_styles/grabber_area = SubResource("StyleBoxLine_hsasf")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_hsasf")
@@ -165,21 +262,35 @@ script = ExtResource("4_ogda5")
 audio_bus_name = "efeitos"
 
 [node name="telaCheia" type="CheckButton" parent="." unique_id=16391952]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 135.0
-offset_top = 367.0
-offset_right = -663.0
-offset_bottom = -89.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.4392157, 0.29411766, 0.14117648, 1)
+layout_mode = 0
+offset_left = 115.0
+offset_top = 398.0
+offset_right = 491.0
+offset_bottom = 464.0
+theme_override_colors/font_color = Color(0.44, 0.28, 0.14, 1)
+theme_override_colors/font_pressed_color = Color(0.26, 0.16, 0.08, 1)
+theme_override_colors/font_hover_color = Color(0.56, 0.36, 0.18, 1)
 theme_override_fonts/font = ExtResource("1_lbr8e")
-theme_override_font_sizes/font_size = 33
+theme_override_font_sizes/font_size = 28
 text = "TELA CHEIA"
+alignment = 1
 script = ExtResource("5_6bffs")
+
+[node name="back" type="Button" parent="." unique_id=1012024935]
+layout_mode = 0
+offset_left = 180.0
+offset_top = 505.0
+offset_right = 426.0
+offset_bottom = 566.0
+theme_override_colors/font_color = Color(1, 0.94, 0.82, 1)
+theme_override_colors/font_pressed_color = Color(0.88, 0.78, 0.65, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.92, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 26
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+text = "< VOLTAR"
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
 [connection signal="value_changed" from="musica" to="musica" method="_on_value_changed"]

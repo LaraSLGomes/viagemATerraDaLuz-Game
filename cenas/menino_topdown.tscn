@@ -298,11 +298,34 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfnea"]
 size = Vector2(13, 20)
 
+[sub_resource type="Gradient" id="Gradient_poeira_passos"]
+offsets = PackedFloat32Array(0, 0.4, 1)
+colors = PackedColorArray(0.95, 0.9, 0.8, 0.65, 0.85, 0.8, 0.7, 0.35, 0.75, 0.7, 0.65, 0)
+script = null
+
 [node name="menino_topdown" type="CharacterBody2D" unique_id=1916785082]
 scale = Vector2(4, 4)
 script = ExtResource("1_s1h2u")
 
+[node name="PoeiraPassos" type="CPUParticles2D" parent="." unique_id=1402918601]
+position = Vector2(0, 9)
+emitting = false
+amount = 14
+lifetime = 0.45
+randomness = 0.35
+emission_shape = 3
+emission_rect_extents = Vector2(4, 1.5)
+direction = Vector2(0, -1)
+spread = 65.0
+gravity = Vector2(0, -6)
+initial_velocity_min = 4.0
+initial_velocity_max = 12.0
+scale_amount_min = 2.0
+scale_amount_max = 3.5
+color_ramp = SubResource("Gradient_poeira_passos")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2005527438]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_c7ple")
 animation = &"idle_down"
 
@@ -310,6 +333,8 @@ animation = &"idle_down"
 zoom = Vector2(0.7, 0.7)
 limit_left = 0
 limit_top = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1542962911]
 position = Vector2(-0.5, -1)

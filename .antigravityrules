@@ -1,0 +1,120 @@
+# Regras do Projeto — Godot 4.x & GDScript (Tipagem Estática)
+
+Este arquivo define os padrões de código, arquitetura e boas práticas para desenvolvimento em **Godot 4.x** usando **GDScript** neste repositório. Todas as sugestões, refatorações e novos scripts devem seguir estritamente estas diretrizes.
+
+---
+
+## 1. Tipagem Estática Obrigatória
+
+Sempre utilize tipagem estática explícita ou inferida segura para garantir segurança em tempo de compilação, melhor autocompletar e maior performance na VM do GDScript.
+
+- **Variáveis e Propriedades**: Declare sempre o tipo explicitamente (`var vida: int = 100`) ou use inferência (`:=`) apenas quando o tipo no lado direito for literal ou imediatamente óbvio (`var direcao := Vector2.ZERO`).
+- **Evite `:=` com retornos `Variant`**: Funções como `get_node()`, `instantiate()` ou `JSON.parse_string()` retornam `Variant` ou tipos base genéricos. Nesses casos, especifique o tipo explicitamente e use `as` para *type casting* seguro:
+  ```gdscript
+  var inimigo: Inimigo = cena_inimigo.instantiate() as Inimigo
+  ```
+- **Assinaturas de Funções**: Todos os parâmetros e tipos de retorno de funções/métodos **devem** ser tipados. Use `-> void` quando a função não retornar valor:
+  ```gdscript
+  func aplicar_dano(quantidade: int, origem: Node2D = null) -> bool:
+      ...
+  ```
+- **Coleções Tipadas**: Sempre especifique o tipo dos elementos em `Array` (Godot 4.x) e `Dictionary` (Godot 4.4+):
+  ```gdscript
+  var inventario: Array[ItemData] = []
+  var pontuacoes: Dictionary[String, int] = {}
+  ```
+- **Sinais Tipados**: Declare parâmetros com seus respectivos tipos nos sinais:
+  ```gdscript
+  signal vida_alterada(vida_atual: int, vida_maxima: int)
+  signal item_coletado(item: ItemData)
+  ```
+- **Proibido Tipos Implícitos (`Variant`)**: Só utilize `Variant` explicitamente quando uma variável ou parâmetro genuinamente precisar aceitar múltiplos tipos incompatíveis.
+
+---
+
+## 2. Ordem de Declaração no Script (Style Guide Oficial)
+
+Todo arquivo `.gd` deve seguir exatamente esta ordem de organização:
+
+1. `@tool`, `@icon`, `@static_unload` (se aplicável)
+2. `class_name`
+3. `extends`
+4. Comentário de documentação da classe (`##`)
+5. Sinais (`signal`)
+6. Enumerações (`enum`)
+7. Constantes (`const`)
+8. Variáveis estáticas (`static var`)
+9. Variáveis `@export` (`@export_group`, `@export_category`, `@export`)
+10. Variáveis públicas regulares
+11. Variáveis privadas (prefixadas com `_`)
+12. Variáveis `@onready`
+13. Métodos virtuais embutidos da Godot:
+    - `_init()`
+    - `_enter_tree()`
+    - `_ready()`
+    - `_process(delta: float)`
+    - `_physics_process(delta: float)`
+    - `_input(event: InputEvent)` / `_unhandled_input(event: InputEvent)`
+14. Métodos públicos
+15. Métodos privados (prefixados com `_`)
+16. Subclasses internas (`class`)
+
+---
+
+## 3. Convenções de Nomenclatura (Naming Conventions)
+
+| Elemento | Convenção | Exemplo |
+| :--- | :--- | :--- |
+| Arquivos e Pastas (`.gd`, `.tscn`, `.tres`) | `snake_case` | `player_controller.gd`, `main_menu.tscn` |
+| Classes (`class_name`) e Nós na Scene Tree | `PascalCase` | `class_name PlayerController`, `AnimationPlayer` |
+| Funções, Métodos e Variáveis | `snake_case` | `velocidade_maxima`, `calcular_trajetoria()` |
+| Sinais (`signal`) | `snake_case` (verbo no passado) | `porta_aberta`, `combate_iniciado` |
+| Constantes (`const`) | `CONSTANT_CASE` | `GRAVIDADE_PADRAO`, `MAX_TENTATIVAS` |
+| Nomes de `enum` | `PascalCase` | `enum EstadoJogador { PARADO, CORRENDO, PULANDO }` |
+| Valores de `enum` | `CONSTANT_CASE` | `EstadoJogador.PARADO` |
+| Membros Privados / Internos | Prefixo `_` em `snake_case` | `_tempo_restante`, `_atualizar_hud()` |
+
+---
+
+## 4. Arquitetura de Cenas, Nós e Acoplamento
+
+- **Regra de Ouro ("Call Down, Signal Up")**:
+  - Nós pais podem chamar métodos diretamente em seus filhos conhecidos.
+  - Nós filhos **nunca** devem depender da estrutura de seus pais (`get_parent().metodo()`). Eles devem emitir sinais (`signal`) para notificar eventos ao ambiente externo.
+- **Referências a Nós**:
+  - Prefira `@export var meu_no: Node2D` para referências que podem mudar de lugar na hierarquia da cena.
+  - Para nós internos fixos da cena, utilize `@onready var sprite: Sprite2D = %Sprite2D` (Unique Scene Nodes com `%`) em vez de caminhos longos e frágeis (`$Container/SubContainer/Sprite2D`).
+- **Conexão de Sinais via Código**:
+  - Sempre conecte sinais usando a API de `Callable` tipada da Godot 4 (nunca use strings):
+    ```gdscript
+    botao_iniciar.pressed.connect(_on_botao_iniciar_pressed)
+    ```
+- **Composição sobre Herança**:
+  - Divida comportamentos complexos em nós componentes reutilizáveis (ex.: `HealthComponent`, `HitboxComponent`, `HurtboxComponent`) em vez de criar árvores profundas de herança.
+- **Uso de `Resource` Personalizados**:
+  - Use classes que herdam de `Resource` com `class_name` e propriedades `@export` para armazenar dados (atributos de personagens, itens, configurações de níveis) de forma tipada e editável no Inspector.
+
+---
+
+## 5. Boas Práticas de Performance e Ciclo de Vida
+
+- **Loops de Atualização (`_process` vs `_physics_process`)**:
+  - Use `_physics_process(delta: float) -> void` para movimentação física (`move_and_slide()`, forças, colisões, raycasts).
+  - Use `_process(delta: float) -> void` para lógica visual, câmeras suaves ou UI que precisam rodar a cada frame renderizado.
+  - Desative o processamento (`set_process(false)` / `set_physics_process(false)`) quando um nó não precisar atualizar continuamente, preferindo lógica orientada a eventos (`signal`, `Timer`, `Tween`).
+- **Preload vs Load**:
+  - Use `const CENA := preload("res://...")` para recursos pequenos e frequentemente instanciados já conhecidos em tempo de compilação.
+  - Use `ResourceLoader.load_threaded_request()` para cenas pesadas carregadas dinamicamente durante o jogo.
+- **Animações via Código**:
+  - Prefira `create_tween()` vinculado ao nó para interpolações procedurais simples em vez de criar `Tween` soltos ou gerenciar timers manuais no `_process`.
+- **Limpeza Segura**:
+  - Utilize `queue_free()` para remover nós da árvore com segurança ao final do frame; nunca use `free()` diretamente durante callbacks de física ou sinais.
+  - Antes de acessar referências externas que podem ter sido destruídas, valide com `is_instance_valid(no)`.
+
+---
+
+## 6. Formatação e Documentação
+
+- **Indentação**: Use **Tabs** (padrão do editor da Godot) para indentação.
+- **Linhas em Branco**: Use **duas linhas em branco** para separar funções e classes internas; use **uma linha em branco** dentro de funções para separar blocos lógicos.
+- **Comentários de Documentação**: Use `##` imediatamente acima de `class_name`, funções públicas, sinais e variáveis `@export` para gerar documentação integrada no Inspector e no sistema de ajuda da Godot.

@@ -1,72 +1,194 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1152" height="648" viewBox="0 0 1152 648">
   <defs>
     <linearGradient id="wall" x2="0" y2="1">
-      <stop stop-color="#17243a"/>
-      <stop offset="1" stop-color="#090f20"/>
+      <stop stop-color="#182338"/>
+      <stop offset="1" stop-color="#0a0f1d"/>
     </linearGradient>
     <linearGradient id="floor" x2="0" y2="1">
-      <stop stop-color="#46342f"/>
-      <stop offset="1" stop-color="#171b2a"/>
+      <stop stop-color="#3e2a22"/>
+      <stop offset="1" stop-color="#151824"/>
     </linearGradient>
-    <linearGradient id="painting" x2="0" y2="1">
-      <stop stop-color="#f78b45"/>
-      <stop offset=".48" stop-color="#efb95c"/>
-      <stop offset=".5" stop-color="#398f9b"/>
-      <stop offset="1" stop-color="#164c67"/>
+    
+    <!-- Quadro 1: Jangadas do Dragão do Mar (Fortaleza 1884) -->
+    <linearGradient id="sky_jangada" x2="0" y2="1">
+      <stop stop-color="#ff9e54"/>
+      <stop offset="0.45" stop-color="#ffd369"/>
+      <stop offset="0.7" stop-color="#70c1b3"/>
+      <stop offset="1" stop-color="#247ba0"/>
     </linearGradient>
+
+    <!-- Quadro 2: Chapada do Araripe & Lampião (Cariri 1924-1926) -->
+    <linearGradient id="sky_cangaco" x2="0" y2="1">
+      <stop stop-color="#ea5455"/>
+      <stop offset="0.4" stop-color="#feb692"/>
+      <stop offset="0.75" stop-color="#a2673f"/>
+      <stop offset="1" stop-color="#583d28"/>
+    </linearGradient>
+
+    <!-- Quadro 3: Segredo do Patu & Iracema (Senador Pompeu 1932) -->
+    <linearGradient id="sky_patu" x2="0" y2="1">
+      <stop stop-color="#3a6073"/>
+      <stop offset="0.5" stop-color="#a2b9bc"/>
+      <stop offset="0.8" stop-color="#cbb69d"/>
+      <stop offset="1" stop-color="#635343"/>
+    </linearGradient>
+
+    <!-- Portal Místico Central -->
     <linearGradient id="portal" x2="0" y2="1">
-      <stop stop-color="#fff3b0" stop-opacity=".95"/>
-      <stop offset=".55" stop-color="#ffbd59" stop-opacity=".85"/>
-      <stop offset="1" stop-color="#ff783c" stop-opacity=".7"/>
+      <stop stop-color="#fff8db" stop-opacity="0.98"/>
+      <stop offset="0.55" stop-color="#ffc048" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#ff6b35" stop-opacity="0.75"/>
     </linearGradient>
-    <radialGradient id="aura">
-      <stop stop-color="#ffd878" stop-opacity=".46"/>
+    <radialGradient id="aura_center">
+      <stop stop-color="#ffd878" stop-opacity="0.55"/>
+      <stop offset="0.6" stop-color="#ff9b45" stop-opacity="0.2"/>
       <stop offset="1" stop-color="#ff9b45" stop-opacity="0"/>
     </radialGradient>
     <pattern id="grain" width="32" height="32" patternUnits="userSpaceOnUse">
-      <path d="M0 7h2M19 23h2M8 30h1M28 4h1" stroke="#f9d59a" stroke-opacity=".12" stroke-width="2"/>
+      <path d="M0 7h2M19 23h2M8 30h1M28 4h1" stroke="#f9d59a" stroke-opacity="0.1" stroke-width="2"/>
     </pattern>
   </defs>
 
-  <!-- Quiet museum interior -->
+  <!-- Museu: Parede e Piso -->
   <rect width="1152" height="648" fill="url(#wall)"/>
-  <path d="M0 0h1152v64H0z" fill="#26334a" opacity=".55"/>
-  <path d="M0 448h1152v200H0z" fill="url(#floor)"/>
-  <path d="M0 448h1152" stroke="#a77a56" stroke-opacity=".45" stroke-width="3"/>
-  <path d="M0 480l480 168M1152 480L672 648" stroke="#b98659" stroke-opacity=".09" stroke-width="3"/>
-  <path d="M145 0v448M1000 0v448" stroke="#bfd1dc" stroke-opacity=".06" stroke-width="2"/>
+  <path d="M0 0h1152v56H0z" fill="#1e293b" opacity="0.6"/>
+  <path d="M0 436h1152v212H0z" fill="url(#floor)"/>
+  <path d="M0 436h1152" stroke="#8b5e34" stroke-opacity="0.4" stroke-width="3"/>
+  <path d="M0 472l420 176M1152 472l-420 176" stroke="#b98659" stroke-opacity="0.08" stroke-width="2"/>
 
-  <!-- Framed landscape opens onto the coast of Ceará -->
-  <rect x="550" y="82" width="548" height="398" rx="8" fill="#070d1a" opacity=".65"/>
-  <rect x="566" y="68" width="548" height="398" rx="7" fill="#64452f"/>
-  <rect x="577" y="79" width="526" height="376" fill="#e7b772"/>
-  <rect x="590" y="92" width="500" height="350" fill="url(#painting)"/>
-  <circle cx="952" cy="188" r="105" fill="url(#aura)"/>
-  <circle cx="952" cy="188" r="35" fill="#ffe5a0"/>
-  <path d="M590 270l76-39 67 34 80-61 78 55 70-37 129 60v53H590z" fill="#8a5e42" opacity=".88"/>
-  <path d="M590 301l102-26 70 31 90-24 74 25 74-35 90 24v50H590z" fill="#5a7054"/>
-  <path d="M590 322l92-12 79 27 88-18 80 22 78-16 93 13v105H590z" fill="#238096"/>
-  <path d="M590 364q110-18 205 0t195 0 100 0v78H590z" fill="#28647a"/>
-  <path d="M604 389h40m23 14h67m32-20h45m78 31h54m57-26h39m30 20h53" stroke="#98d3c4" stroke-opacity=".52" stroke-width="3"/>
+  <!-- Colunas da Galeria -->
+  <path d="M480 0v436M800 0v436M1120 0v436" stroke="#2d3748" stroke-opacity="0.4" stroke-width="4"/>
 
-  <!-- Pixel-art palms and mandacaru silhouettes -->
-  <path d="M721 347v-78m2 8-45-42m45 42 39-55m-39 55 59-27m-59 27-64-12" stroke="#263f38" stroke-width="9" stroke-linecap="square"/>
-  <path d="M723 270l-54-57 45 24-15-42 29 52 27-48-8 53 48-20-47 38" fill="#315a43" stroke="#1c3b36" stroke-width="4"/>
-  <path d="M1033 385v-47q0-14 12-14t12 14v17q0-11 10-11t10 12v29m-44-18q-13-3-15 9t15 13" fill="none" stroke="#315a43" stroke-width="9" stroke-linecap="square"/>
-  <path d="M1063 422h27" stroke="#eec178" stroke-opacity=".75" stroke-width="4"/>
+  <!-- Iluminação Direcional (Spots da Galeria) -->
+  <polygon points="510,0 670,0 720,280 460,280" fill="#ffd89a" opacity="0.05"/>
+  <polygon points="830,0 990,0 1040,280 780,280" fill="#ffd89a" opacity="0.05"/>
 
-  <!-- Portal of light, framed like a painting becoming a doorway -->
-  <ellipse cx="827" cy="498" rx="186" ry="92" fill="url(#aura)"/>
-  <path d="M748 447v-90a79 79 0 0 1 158 0v90" fill="none" stroke="#f4a14e" stroke-opacity=".52" stroke-width="18"/>
-  <path d="M761 447v-90a66 66 0 0 1 132 0v90z" fill="url(#portal)" stroke="#ffe6a0" stroke-width="4"/>
-  <path d="M777 447v-90a50 50 0 0 1 100 0v90z" fill="#fff5cc" opacity=".42"/>
-  <path d="M698 462h260" stroke="#ffbd65" stroke-opacity=".68" stroke-width="4"/>
-  <path d="M713 476l-45 21m306-21 45 21m-260 0-25 18m214-18 25 18" stroke="#ffc66d" stroke-opacity=".55" stroke-width="3"/>
-  <path d="M827 485v62m-94-48 43 39m145-39-43 39" stroke="#e3aa68" stroke-opacity=".19" stroke-width="3"/>
+  <!-- ========================================== -->
+  <!-- QUADRO 1 (Centro-Esquerda, x=470, y=70, w=300, h=195) -->
+  <!-- Título: FASE 1 - DRAGÃO DO MAR (FORTALEZA, 1884) -->
+  <!-- ========================================== -->
+  <g id="quadro_dragao_do_mar">
+    <!-- Sombra e Moldura Dourada -->
+    <rect x="466" y="72" width="308" height="203" rx="6" fill="#050811" opacity="0.7"/>
+    <rect x="468" y="68" width="304" height="199" rx="5" fill="#6d4c2b" stroke="#c99a58" stroke-width="3"/>
+    <rect x="474" y="74" width="292" height="187" fill="#e8c89b"/>
+    <!-- Tela da Pintura -->
+    <g clip-path="url(#clip_q1)">
+      <clipPath id="clip_q1">
+        <rect x="478" y="78" width="284" height="179" rx="2"/>
+      </clipPath>
+      <rect x="478" y="78" width="284" height="179" fill="url(#sky_jangada)"/>
+      <!-- Sol Poente no Mar Verde de Fortaleza -->
+      <circle cx="670" cy="125" r="26" fill="#fff2b2" opacity="0.9"/>
+      <circle cx="670" cy="125" r="42" fill="#ffd166" opacity="0.3"/>
+      <!-- Mar e Ondas -->
+      <path d="M478 178 Q540 168 620 178 T762 174 v85 H478 Z" fill="#118ab2"/>
+      <path d="M478 198 Q550 188 640 198 T762 192 v65 H478 Z" fill="#073b4c"/>
+      <path d="M488 205 h45 M560 215 h60 M660 208 h40" stroke="#a8dadc" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+      <!-- Silhueta da Jangada da Abolição (Vela Triangular Branca/Parda) -->
+      <polygon points="550,118 550,188 596,186" fill="#fefae0" stroke="#d4a373" stroke-width="1.5"/>
+      <polygon points="548,128 548,188 518,186" fill="#faedcd" opacity="0.9"/>
+      <line x1="549" y1="112" x2="549" y2="192" stroke="#582f0e" stroke-width="2.5"/>
+      <rect x="510" y="186" width="92" height="8" rx="2" fill="#7f4f24"/>
+      <!-- Silhueta do Jangadeiro (Chico da Matilde / Dragão do Mar) com Remo -->
+      <ellipse cx="558" cy="176" rx="4" ry="5" fill="#2b1810"/>
+      <path d="M554 181 L562 181 L565 190 L552 190 Z" fill="#2b1810"/>
+      <line x1="565" y1="178" x2="574" y2="196" stroke="#2b1810" stroke-width="2"/>
+      <text x="484" y="250" fill="#fff8e7" font-size="9" font-family="sans-serif" font-weight="bold" letter-spacing="1">1884 • DRAGÃO DO MAR</text>
+    </g>
+    <!-- Plaqueta de Museu -->
+    <rect x="545" y="271" width="150" height="14" rx="2" fill="#c99a58" stroke="#4a3018" stroke-width="1"/>
+    <text x="620" y="281" fill="#2b1810" font-size="8" font-family="serif" font-weight="bold" text-anchor="middle">I. PORTO DA LIBERDADE</text>
+  </g>
 
-  <!-- Gallery spotlights and atmospheric pixel grain -->
-  <path d="M285 0h180l174 448H220z" fill="#7c8eab" opacity=".035"/>
-  <path d="M710 0h210l-55 95H755z" fill="#ffd89a" opacity=".13"/>
+  <!-- ========================================== -->
+  <!-- QUADRO 2 (Centro-Direita, x=800, y=70, w=300, h=195) -->
+  <!-- Título: FASE 2 - LAMPIÃO & CHAPADA DO ARARIPE (1926) -->
+  <!-- ========================================== -->
+  <g id="quadro_lampiao_araripe">
+    <!-- Sombra e Moldura Dourada -->
+    <rect x="796" y="72" width="308" height="203" rx="6" fill="#050811" opacity="0.7"/>
+    <rect x="798" y="68" width="304" height="199" rx="5" fill="#6d4c2b" stroke="#c99a58" stroke-width="3"/>
+    <rect x="804" y="74" width="292" height="187" fill="#e8c89b"/>
+    <!-- Tela da Pintura -->
+    <g clip-path="url(#clip_q2)">
+      <clipPath id="clip_q2">
+        <rect x="808" y="78" width="284" height="179" rx="2"/>
+      </clipPath>
+      <rect x="808" y="78" width="284" height="179" fill="url(#sky_cangaco)"/>
+      <!-- Chapada do Araripe (Platô / Relevo Típico do Sertão) -->
+      <polygon points="808,160 840,145 920,145 960,158 1020,150 1092,165 1092,260 808,260" fill="#6f4528"/>
+      <polygon points="808,180 880,172 950,178 1030,170 1092,185 1092,260 808,260" fill="#422818"/>
+      <!-- Sol Ardente do Sertão -->
+      <circle cx="860" cy="115" r="20" fill="#ffdda1" opacity="0.85"/>
+      <!-- Mandacarus / Cactos Típicos -->
+      <path d="M835 195 v-25 q0-6 6-6 t6 6 v10 q0-5 5-5 t5 6 v14" fill="none" stroke="#2d4a22" stroke-width="4" stroke-linecap="square"/>
+      <path d="M880 202 v-32 q0-7 7-7 t7 7 v12 q0-6 6-6 t6 6 v18" fill="none" stroke="#243d1b" stroke-width="4.5" stroke-linecap="square"/>
+      <!-- Silhueta de Chapéu de Cangaceiro com Estrela de Oito Pontas -->
+      <g transform="translate(1000, 168) scale(0.65)">
+        <!-- Aba Curvada do Chapéu de Couro -->
+        <path d="M-45 0 C-45 -22 45 -22 45 0 C25 6 -25 6 -45 0 Z" fill="#d4a373" stroke="#5c3d1e" stroke-width="3"/>
+        <path d="M-28 -4 C-28 -28 28 -28 28 -4 Z" fill="#a67c52"/>
+        <!-- Estrela de Ouro Típica de Lampião -->
+        <polygon points="0,-16 3,-8 11,-8 5,-3 8,6 0,1 -8,6 -5,-3 -11,-8 -3,-8" fill="#ffd166" stroke="#b5832a" stroke-width="1"/>
+        <!-- Lenço e Clavinote cruzado -->
+        <line x1="-35" y1="20" x2="35" y2="-15" stroke="#2b1810" stroke-width="4"/>
+      </g>
+      <text x="814" y="250" fill="#ffe8d6" font-size="9" font-family="sans-serif" font-weight="bold" letter-spacing="1">1926 • CHAPADA DO ARARIPE</text>
+    </g>
+    <!-- Plaqueta de Museu -->
+    <rect x="875" y="271" width="150" height="14" rx="2" fill="#c99a58" stroke="#4a3018" stroke-width="1"/>
+    <text x="950" y="281" fill="#2b1810" font-size="8" font-family="serif" font-weight="bold" text-anchor="middle">II. O REI DO CANGAÇO</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- QUADRO 3 (Inferior Central, x=470, y=308, w=300, h=120) -->
+  <!-- Título: FASE 3 - CASARÕES DO PATU & SECA (1932) -->
+  <!-- ========================================== -->
+  <g id="quadro_patu_seca">
+    <rect x="466" y="309" width="308" height="122" rx="5" fill="#050811" opacity="0.7"/>
+    <rect x="468" y="306" width="304" height="118" rx="4" fill="#6d4c2b" stroke="#c99a58" stroke-width="2.5"/>
+    <rect x="474" y="311" width="292" height="108" fill="#dfc49c"/>
+    <g clip-path="url(#clip_q3)">
+      <clipPath id="clip_q3">
+        <rect x="478" y="314" width="284" height="102" rx="2"/>
+      </clipPath>
+      <rect x="478" y="314" width="284" height="102" fill="url(#sky_patu)"/>
+      <!-- Relevo Monolítico / Pedra da Galinha Choca / Quixadá ao Fundo -->
+      <path d="M680 375 C700 330 730 330 745 350 C755 335 770 338 780 375 Z" fill="#524636" opacity="0.7"/>
+      <!-- Casarão de Pedra do Patu (Senador Pompeu) -->
+      <polygon points="510,362 555,342 600,362 600,410 510,410" fill="#786b59" stroke="#40352c" stroke-width="1.5"/>
+      <polygon points="510,362 555,342 600,362" fill="#9c4a36"/>
+      <!-- Janelas em Arco Típicas dos Casarões Históricos de Pedra -->
+      <rect x="525" y="374" width="12" height="18" rx="4" fill="#221d18"/>
+      <rect x="548" y="374" width="12" height="18" rx="4" fill="#221d18"/>
+      <rect x="572" y="374" width="12" height="18" rx="4" fill="#221d18"/>
+      <!-- Trilhos da Estrada de Ferro Baturité (Caminho da Memória) -->
+      <path d="M478 412 L640 395 M478 416 L640 398" stroke="#382f27" stroke-width="1.5"/>
+      <line x1="490" y1="410" x2="492" y2="417" stroke="#615243" stroke-width="2"/>
+      <line x1="515" y1="406" x2="517" y2="413" stroke="#615243" stroke-width="2"/>
+      <line x1="545" y1="402" x2="547" y2="409" stroke="#615243" stroke-width="2"/>
+      <text x="484" y="330" fill="#fff2df" font-size="8.5" font-family="sans-serif" font-weight="bold" letter-spacing="0.8">1932 • CASARÕES DO PATU</text>
+    </g>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- PORTAL MÍSTICO CENTRAL / FENDA TEMPORAL -->
+  <!-- (A 'Terra da Luz' que se abre no museu) -->
+  <!-- ========================================== -->
+  <g id="portal_da_luz">
+    <ellipse cx="950" cy="465" rx="165" ry="82" fill="url(#aura_center)"/>
+    <!-- Arco do Portal em Pedra entalhada -->
+    <path d="M880 435 v-95 a70 70 0 0 1 140 0 v95" fill="none" stroke="#c99a58" stroke-width="14" stroke-linecap="round"/>
+    <path d="M890 435 v-95 a60 60 0 0 1 120 0 v95 z" fill="url(#portal)" stroke="#fff4cf" stroke-width="3"/>
+    <path d="M904 435 v-95 a46 46 0 0 1 92 0 v95 z" fill="#ffffff" opacity="0.45"/>
+    <!-- Brilho no chão da galeria emanando do portal -->
+    <path d="M835 448 h230" stroke="#ffca3a" stroke-opacity="0.75" stroke-width="4"/>
+    <path d="M855 460 l-35 18 M1045 460 l35 18" stroke="#ff923c" stroke-opacity="0.6" stroke-width="3"/>
+    <path d="M950 468 v52 M885 480 l38 32 M1015 480 l-38 32" stroke="#ffeaa7" stroke-opacity="0.35" stroke-width="2.5"/>
+  </g>
+
+  <!-- Textura e Granulação de Pintura / Museu Histórico -->
   <rect width="1152" height="648" fill="url(#grain)"/>
-  <rect width="1152" height="648" fill="#07101e" opacity=".12"/>
+  <rect width="1152" height="648" fill="#050b14" opacity="0.1"/>
 </svg>

@@ -8,11 +8,28 @@
 [ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="5_font"]
 [ext_resource type="Shader" uid="uid://d2q5gjutobex" path="res://scripts/title_glow.gdshader" id="6_glow"]
 [ext_resource type="Texture2D" uid="uid://hl4iuklxesr4" path="res://assets/screens/title_background_preview.png" id="7_preview"]
-[ext_resource type="Texture2D" uid="uid://b0jcjeaw8jiqs" path="res://assets/screens/menu_frame.svg" id="8_frame"]
+[ext_resource type="Texture2D" uid="uid://cnwno4ucolho5" path="res://assets/Gemini_Generated_Image_blpx2iblpx2iblpx.jpg" id="8_frame"]
 [ext_resource type="Texture2D" uid="uid://c1uxsulcusr1m" path="res://assets/screens/menu_buttons.svg" id="9_buttons"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_portal_glow"]
 shader = ExtResource("6_glow")
+
+[sub_resource type="Environment" id="Environment_title_glow"]
+background_mode = 3
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 1.15
+glow_strength = 1.05
+glow_bloom = 0.28
+glow_blend_mode = 1
+adjustment_enabled = true
+adjustment_contrast = 1.06
+adjustment_saturation = 1.12
+
+[sub_resource type="Gradient" id="Gradient_portal_particles"]
+offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
+colors = PackedColorArray(1, 0.85, 0.4, 0, 1.3, 0.95, 0.45, 0.85, 0.35, 1.2, 1.25, 0.75, 0.2, 0.9, 1, 0)
+script = null
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_primary_normal"]
 atlas = ExtResource("9_buttons")
@@ -162,6 +179,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1402918201]
+environment = SubResource("Environment_title_glow")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1402918202]
+color = Color(0.96, 0.95, 0.98, 1)
+
+[node name="ParticulasPortal" type="CPUParticles2D" parent="." unique_id=1402918203]
+position = Vector2(576, 360)
+amount = 48
+lifetime = 4.5
+preprocess = 2.0
+randomness = 0.4
+emission_shape = 3
+emission_rect_extents = Vector2(520, 300)
+direction = Vector2(0, -1)
+spread = 35.0
+gravity = Vector2(0, -12)
+initial_velocity_min = 10.0
+initial_velocity_max = 32.0
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+damping_min = 2.0
+damping_max = 6.0
+scale_amount_min = 2.0
+scale_amount_max = 4.5
+color_ramp = SubResource("Gradient_portal_particles")
+
 [node name="MenuContainer" type="Control" parent="." unique_id=1123980311]
 layout_mode = 1
 anchors_preset = 15
@@ -174,21 +218,25 @@ offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Moldura" type="TextureRect" parent="MenuContainer" unique_id=1462623215]
+[node name="Moldura" type="NinePatchRect" parent="MenuContainer" unique_id=1462623215]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 410.0
-offset_top = 311.0
-offset_right = -378.0
-offset_bottom = -83.0
+offset_left = 378.0
+offset_top = 300.0
+offset_right = -352.0
+offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("8_frame")
-expand_mode = 1
+region_rect = Rect2(90.91997, 81.986755, 1044.4375, 752.15753)
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28
 
 [node name="ConteudoMenu" type="VBoxContainer" parent="MenuContainer" unique_id=631245053]
 layout_mode = 1
@@ -197,19 +245,19 @@ anchor_left = 0.075
 anchor_top = 0.085
 anchor_right = 0.925
 anchor_bottom = 0.92
-offset_left = 358.6
-offset_top = 292.91998
-offset_right = -328.59998
-offset_bottom = -61.160034
-theme_override_constants/separation = 6
+offset_left = 370.0
+offset_top = 310.0
+offset_right = -342.0
+offset_bottom = -72.0
+theme_override_constants/separation = 8
 
 [node name="LabelTitulo" type="Label" parent="MenuContainer/ConteudoMenu" unique_id=876789982]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.53, 0.84, 0.8, 1)
+theme_override_colors/font_color = Color(0.42, 0.27, 0.14, 1)
 theme_override_fonts/font = ExtResource("5_font")
-theme_override_font_sizes/font_size = 12
-text = "CADERNO DE VIAGEM"
+theme_override_font_sizes/font_size = 16
+text = "~ CADERNO DE VIAGEM ~"
 horizontal_alignment = 1
 
 [node name="BotaoNovoJogo" type="Button" parent="MenuContainer/ConteudoMenu" unique_id=220836633]
