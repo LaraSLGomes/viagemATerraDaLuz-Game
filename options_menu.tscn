@@ -57,6 +57,50 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_key_normal"]
+bg_color = Color(0.35, 0.22, 0.12, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.62, 0.38, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_key_hover"]
+bg_color = Color(0.55, 0.36, 0.18, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.88, 0.62, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tab_active"]
+bg_color = Color(0.52, 0.32, 0.16, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.88, 0.6, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tab_inactive"]
+bg_color = Color(0.28, 0.18, 0.1, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.6, 0.45, 0.28, 0.8)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+
 [node name="options_menu" type="Control" unique_id=181958098]
 layout_mode = 3
 anchors_preset = 15
@@ -208,15 +252,46 @@ text = "EFEITOS SONOROS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Label4" type="Label" parent="." unique_id=1393117312]
+[node name="AbaDiario" type="Button" parent="." unique_id=1393117320]
 layout_mode = 0
 offset_left = 620.0
-offset_top = 135.0
+offset_top = 110.0
+offset_right = 825.0
+offset_bottom = 146.0
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_tab_active")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tab_active")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tab_active")
+text = "DIÁRIO"
+
+[node name="AbaControles" type="Button" parent="." unique_id=1393117321]
+layout_mode = 0
+offset_left = 835.0
+offset_top = 110.0
+offset_right = 1054.0
+offset_bottom = 146.0
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_tab_inactive")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tab_active")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tab_active")
+text = "CONTROLES"
+
+[node name="PainelDiario" type="Control" parent="." unique_id=1393117322]
+layout_mode = 0
+offset_left = 620.0
+offset_top = 155.0
 offset_right = 1054.0
 offset_bottom = 545.0
+
+[node name="LabelDiario" type="Label" parent="PainelDiario" unique_id=1393117312]
+layout_mode = 0
+offset_right = 434.0
+offset_bottom = 390.0
 theme_override_colors/font_color = Color(0.42, 0.27, 0.14, 1)
 theme_override_fonts/font = ExtResource("1_lbr8e")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 24
 text = "DIÁRIO DE DESENVOLVIMENTO
 
 EQUIPE CRIATIVA:
@@ -230,6 +305,150 @@ VIAGEM À TERRA DA LUZ
 GODOT ENGINE 4.x"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PainelControles" type="Control" parent="." unique_id=1393117323]
+visible = false
+layout_mode = 0
+offset_left = 620.0
+offset_top = 155.0
+offset_right = 1054.0
+offset_bottom = 545.0
+
+[node name="LabelDica" type="Label" parent="PainelControles" unique_id=1393117324]
+layout_mode = 0
+offset_top = 5.0
+offset_right = 434.0
+offset_bottom = 35.0
+theme_override_colors/font_color = Color(0.55, 0.35, 0.18, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 18
+text = "Clique no botão e pressione a nova tecla:"
+horizontal_alignment = 1
+
+[node name="ListaControles" type="VBoxContainer" parent="PainelControles" unique_id=1393117325]
+layout_mode = 0
+offset_top = 42.0
+offset_right = 434.0
+offset_bottom = 315.0
+theme_override_constants/separation = 10
+
+[node name="LinhaEsquerda" type="HBoxContainer" parent="PainelControles/ListaControles" unique_id=1393117326]
+layout_mode = 2
+
+[node name="LabelAcao" type="Label" parent="PainelControles/ListaControles/LinhaEsquerda" unique_id=1393117327]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+text = "ESQUERDA:"
+
+[node name="BtnKey_left" type="Button" parent="PainelControles/ListaControles/LinhaEsquerda" unique_id=1393117328]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_key_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_key_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "A / Left"
+
+[node name="LinhaDireita" type="HBoxContainer" parent="PainelControles/ListaControles" unique_id=1393117329]
+layout_mode = 2
+
+[node name="LabelAcao" type="Label" parent="PainelControles/ListaControles/LinhaDireita" unique_id=1393117330]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+text = "DIREITA:"
+
+[node name="BtnKey_right" type="Button" parent="PainelControles/ListaControles/LinhaDireita" unique_id=1393117331]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_key_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_key_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "D / Right"
+
+[node name="LinhaCima" type="HBoxContainer" parent="PainelControles/ListaControles" unique_id=1393117332]
+layout_mode = 2
+
+[node name="LabelAcao" type="Label" parent="PainelControles/ListaControles/LinhaCima" unique_id=1393117333]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+text = "CIMA:"
+
+[node name="BtnKey_up" type="Button" parent="PainelControles/ListaControles/LinhaCima" unique_id=1393117334]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_key_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_key_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "W / Up"
+
+[node name="LinhaBaixo" type="HBoxContainer" parent="PainelControles/ListaControles" unique_id=1393117335]
+layout_mode = 2
+
+[node name="LabelAcao" type="Label" parent="PainelControles/ListaControles/LinhaBaixo" unique_id=1393117336]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+text = "BAIXO:"
+
+[node name="BtnKey_down" type="Button" parent="PainelControles/ListaControles/LinhaBaixo" unique_id=1393117337]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_key_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_key_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "S / Down"
+
+[node name="LinhaPulo" type="HBoxContainer" parent="PainelControles/ListaControles" unique_id=1393117338]
+layout_mode = 2
+
+[node name="LabelAcao" type="Label" parent="PainelControles/ListaControles/LinhaPulo" unique_id=1393117339]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.22, 0.1, 1)
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+text = "PULAR/AÇÃO:"
+
+[node name="BtnKey_jump" type="Button" parent="PainelControles/ListaControles/LinhaPulo" unique_id=1393117340]
+custom_minimum_size = Vector2(250, 42)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxFlat_key_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_key_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "Space"
+
+[node name="BtnRestaurarPadrao" type="Button" parent="PainelControles" unique_id=1393117341]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 328.0
+offset_right = 374.0
+offset_bottom = 372.0
+theme_override_fonts/font = ExtResource("1_lbr8e")
+theme_override_font_sizes/font_size = 19
+theme_override_styles/normal = SubResource("StyleBoxFlat_key_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_key_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "RESTAURAR PADRÃO"
 
 [node name="musica" type="HSlider" parent="." unique_id=1151170789]
 layout_mode = 0
