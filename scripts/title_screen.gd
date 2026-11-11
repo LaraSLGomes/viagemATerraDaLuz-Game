@@ -16,6 +16,7 @@ var _player_sfx: AudioStreamPlayer
 var _tweens_botoes: Dictionary[Button, Tween] = {}
 
 @onready var options_menu: Control = get_node_or_null("options_menu") as Control
+@onready var jogos_salvos_menu: Control = get_node_or_null("jogos_salvos") as Control
 @onready var menu_container: Control = (
 	get_node_or_null("MenuContainer") as Control
 	if has_node("MenuContainer")
@@ -23,6 +24,7 @@ var _tweens_botoes: Dictionary[Button, Tween] = {}
 )
 @onready var background: VideoStreamPlayer = get_node_or_null("VideoBackground") as VideoStreamPlayer
 @onready var start_button: Button = find_child("BotaoNovoJogo", true, false) as Button
+@onready var saved_games_button: Button = find_child("BotaoJogosSalvos", true, false) as Button
 
 
 func _ready() -> void:
@@ -31,15 +33,16 @@ func _ready() -> void:
 
 	_configurar_audio_ui()
 
-	if is_instance_valid(background) and background.stream != null and background.stream.file != "":
-		# Mantém a arte histórica da galeria visível por padrão
-		pass
+	if is_instance_valid(background) and background.stream != null:
+		background.visible = true
+		background.play()
 
 	_configurar_botoes_game_feel()
 	_animar_entrada_menu()
 
 	if is_instance_valid(start_button):
 		start_button.grab_focus()
+
 
 
 func _on_start_btn_pressed() -> void:
@@ -73,11 +76,45 @@ func _on_option_btn_pressed() -> void:
 		tween_entrada.tween_property(options_menu, "scale", Vector2.ONE, 0.24).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 
+func _on_saved_games_btn_pressed() -> void:
+	_tocar_sfx(SOM_CONFIRMAR)
+	if is_instance_valid(menu_container):
+		var tween_saida: Tween = create_tween()
+		tween_saida.tween_property(menu_container, "modulate:a", 0.0, 0.15)
+		tween_saida.tween_callback(func() -> void: menu_container.visible = false)
+
+	if is_instance_valid(jogos_salvos_menu):
+		jogos_salvos_menu.visible = true
+		jogos_salvos_menu.modulate.a = 0.0
+		jogos_salvos_menu.scale = Vector2(0.96, 0.96)
+		jogos_salvos_menu.pivot_offset = jogos_salvos_menu.size * 0.5
+		var tween_entrada: Tween = create_tween().set_parallel(true)
+		tween_entrada.tween_property(jogos_salvos_menu, "modulate:a", 1.0, 0.22).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween_entrada.tween_property(jogos_salvos_menu, "scale", Vector2.ONE, 0.24).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+
+func _on_jogos_salvos_fechar() -> void:
+	if is_instance_valid(jogos_salvos_menu):
+		var tween_fechar: Tween = create_tween()
+		tween_fechar.tween_property(jogos_salvos_menu, "modulate:a", 0.0, 0.16)
+		tween_fechar.tween_callback(func() -> void: jogos_salvos_menu.visible = false)
+
+	if is_instance_valid(menu_container):
+		menu_container.visible = true
+		menu_container.modulate.a = 0.0
+		var tween_abrir: Tween = create_tween()
+		tween_abrir.tween_property(menu_container, "modulate:a", 1.0, 0.22).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+
+	if is_instance_valid(saved_games_button):
+		saved_games_button.grab_focus()
+
+
 func _on_quit_btn_pressed() -> void:
 	if _em_transicao:
 		return
 	_em_transicao = true
 	_tocar_sfx(SOM_CONFIRMAR)
+
 	var tween: Tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.25).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.tween_callback(func() -> void: get_tree().quit())

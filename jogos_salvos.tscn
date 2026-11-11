@@ -1,0 +1,365 @@
+[gd_scene format=3 uid="uid://bkv84q2p82aem"]
+
+[ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="1_font"]
+[ext_resource type="Script" uid="uid://dmk87r3a63wlo" path="res://scripts/jogos_salvos.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bvxb0b08r0wiq" path="res://assets/museuFundo.jpg" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://cnwno4ucolho5" path="res://assets/Gemini_Generated_Image_blpx2iblpx2iblpx.jpg" id="3_parchment"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot_bg"]
+bg_color = Color(0.24, 0.15, 0.09, 0.55)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.55, 0.32, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+content_margin_left = 16.0
+content_margin_top = 10.0
+content_margin_right = 16.0
+content_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.44, 0.28, 0.16, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.88, 0.72, 0.46, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.62, 0.4, 0.22, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.92, 0.68, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.32, 0.2, 0.12, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.55, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_disabled"]
+bg_color = Color(0.25, 0.18, 0.14, 0.4)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.38, 0.3, 0.3)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_delete"]
+bg_color = Color(0.48, 0.15, 0.12, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.4, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_delete_hover"]
+bg_color = Color(0.68, 0.2, 0.16, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.6, 0.5, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="JogosSalvos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="CortinaFundoEscuro" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.03, 0.05, 0.92)
+
+[node name="PainelPergaminho" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -320.0
+offset_right = 460.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_parchment")
+patch_margin_left = 40
+patch_margin_top = 40
+patch_margin_right = 40
+patch_margin_bottom = 40
+
+[node name="ConteudoMargem" type="MarginContainer" parent="PainelPergaminho"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxPrincipal" type="VBoxContainer" parent="PainelPergaminho/ConteudoMargem"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Titulo" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.38, 0.22, 0.1, 1)
+theme_override_colors/font_shadow_color = Color(0.95, 0.85, 0.65, 0.5)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 28
+text = "ARQUIVOS HISTÓRICOS (JOGOS SALVOS)"
+horizontal_alignment = 1
+
+[node name="Subtitulo" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5, 0.35, 0.2, 0.9)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+text = "Selecione um registro para retomar sua expedição pela Terra da Luz"
+horizontal_alignment = 1
+
+[node name="Separador" type="HSeparator" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+
+[node name="SlotsContainer" type="VBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+
+[node name="Slot_1" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_1"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="InfoVBox" type="VBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_1/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="LabelNomeSlot" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_1/HBox/InfoVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 18
+text = "SLOT 1: Bento"
+
+[node name="LabelDetalhesSlot" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_1/HBox/InfoVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 0.9)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 13
+text = "Fase 1: Jangadas e Liberdade • 1884\nÚltimo Acesso: 11/11/2026 14:30  |  Tempo: 00h 42m"
+
+[node name="BotoesAcao" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_1/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="BotaoCarregar" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_1/HBox/BotoesAcao"]
+custom_minimum_size = Vector2(120, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
+text = "CARREGAR"
+
+[node name="BotaoExcluir" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_1/HBox/BotoesAcao"]
+custom_minimum_size = Vector2(90, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.8, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_delete")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_delete_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
+text = "EXCLUIR"
+
+[node name="Slot_2" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="InfoVBox" type="VBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_2/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="LabelNomeSlot" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_2/HBox/InfoVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 18
+text = "SLOT 2: Maria Flor"
+
+[node name="LabelDetalhesSlot" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_2/HBox/InfoVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.75, 0.9)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 13
+text = "Prólogo: Museu do Ceará • Presente\nÚltimo Acesso: 10/11/2026 18:15  |  Tempo: 00h 15m"
+
+[node name="BotoesAcao" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_2/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="BotaoCarregar" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_2/HBox/BotoesAcao"]
+custom_minimum_size = Vector2(120, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
+text = "CARREGAR"
+
+[node name="BotaoExcluir" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_2/HBox/BotoesAcao"]
+custom_minimum_size = Vector2(90, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.8, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_delete")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_delete_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
+text = "EXCLUIR"
+
+[node name="Slot_3" type="PanelContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_bg")
+
+[node name="HBox" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_3"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="InfoVBox" type="VBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_3/HBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="LabelNomeSlot" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_3/HBox/InfoVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.65, 0.6, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 18
+text = "SLOT 3: [ VAZIO ]"
+
+[node name="LabelDetalhesSlot" type="Label" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_3/HBox/InfoVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.6, 0.55, 0.8)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 13
+text = "Nenhum progresso gravado neste pergaminho.\nSelecione Novo Jogo na tela principal."
+
+[node name="BotoesAcao" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_3/HBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="BotaoCarregar" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_3/HBox/BotoesAcao"]
+custom_minimum_size = Vector2(120, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
+disabled = true
+text = "CARREGAR"
+
+[node name="BotaoExcluir" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/SlotsContainer/Slot_3/HBox/BotoesAcao"]
+custom_minimum_size = Vector2(90, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.8, 0.8, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_delete")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_delete_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_btn_disabled")
+disabled = true
+text = "EXCLUIR"
+
+[node name="HBoxInferior" type="HBoxContainer" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal"]
+layout_mode = 2
+alignment = 1
+
+[node name="BotaoVoltar" type="Button" parent="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxInferior"]
+custom_minimum_size = Vector2(200, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.85, 0.65, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "< VOLTAR"
+
+[connection signal="pressed" from="PainelPergaminho/ConteudoMargem/VBoxPrincipal/HBoxInferior/BotaoVoltar" to="." method="_on_botao_voltar_pressed"]

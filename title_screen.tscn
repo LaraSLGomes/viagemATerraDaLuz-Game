@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://hl4iuklxesr4" path="res://assets/screens/title_background_preview.png" id="7_preview"]
 [ext_resource type="Texture2D" uid="uid://cnwno4ucolho5" path="res://assets/Gemini_Generated_Image_blpx2iblpx2iblpx.jpg" id="8_frame"]
 [ext_resource type="Texture2D" uid="uid://c1uxsulcusr1m" path="res://assets/screens/menu_buttons.svg" id="9_buttons"]
+[ext_resource type="PackedScene" uid="uid://bkv84q2p82aem" path="res://cenas/jogos_salvos.tscn" id="10_saves"]
+
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_portal_glow"]
 shader = ExtResource("6_glow")
@@ -218,9 +220,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 378.0
-offset_top = 300.0
+offset_top = 264.0
 offset_right = -352.0
-offset_bottom = -72.0
+offset_bottom = -54.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -239,22 +241,22 @@ anchor_top = 0.085
 anchor_right = 0.925
 anchor_bottom = 0.92
 offset_left = 370.0
-offset_top = 310.0
+offset_top = 274.0
 offset_right = -342.0
-offset_bottom = -72.0
-theme_override_constants/separation = 8
+offset_bottom = -54.0
+theme_override_constants/separation = 7
 
 [node name="LabelTitulo" type="Label" parent="MenuContainer/ConteudoMenu" unique_id=876789982]
-custom_minimum_size = Vector2(0, 24)
+custom_minimum_size = Vector2(0, 22)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.42, 0.27, 0.14, 1)
 theme_override_fonts/font = ExtResource("5_font")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 15
 text = "~ CADERNO DE VIAGEM ~"
 horizontal_alignment = 1
 
 [node name="BotaoNovoJogo" type="Button" parent="MenuContainer/ConteudoMenu" unique_id=220836633]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme = ExtResource("2_theme")
 theme_override_colors/font_color = Color(1, 0.85, 0.53, 1)
@@ -263,15 +265,32 @@ theme_override_colors/font_hover_color = Color(1, 0.95, 0.72, 1)
 theme_override_colors/font_outline_color = Color(0.08, 0.09, 0.11, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("5_font")
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxTexture_primary_normal")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_primary_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_primary_hover")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = ">  NOVO JOGO"
 
+[node name="BotaoJogosSalvos" type="Button" parent="MenuContainer/ConteudoMenu" unique_id=1498327112]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme = ExtResource("2_theme")
+theme_override_colors/font_color = Color(0.94, 0.82, 0.58, 1)
+theme_override_colors/font_pressed_color = Color(0.78, 0.67, 0.46, 1)
+theme_override_colors/font_hover_color = Color(0.62, 0.9, 0.83, 1)
+theme_override_colors/font_outline_color = Color(0.07, 0.09, 0.12, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("5_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxTexture_secondary_normal")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_secondary_pressed")
+theme_override_styles/hover = SubResource("StyleBoxTexture_secondary_hover")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+text = "JOGOS SALVOS"
+
 [node name="BotaoConfiguracoes" type="Button" parent="MenuContainer/ConteudoMenu" unique_id=1796691476]
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme = ExtResource("2_theme")
 theme_override_colors/font_color = Color(0.94, 0.82, 0.58, 1)
@@ -288,7 +307,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 text = "CONFIGURAÇÕES"
 
 [node name="BotaoSair" type="Button" parent="MenuContainer/ConteudoMenu" unique_id=859886589]
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme = ExtResource("2_theme")
 theme_override_colors/font_color = Color(0.94, 0.82, 0.58, 1)
@@ -297,7 +316,7 @@ theme_override_colors/font_hover_color = Color(0.62, 0.9, 0.83, 1)
 theme_override_colors/font_outline_color = Color(0.07, 0.09, 0.12, 1)
 theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("5_font")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxTexture_secondary_normal")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_secondary_pressed")
 theme_override_styles/hover = SubResource("StyleBoxTexture_secondary_hover")
@@ -314,7 +333,14 @@ bus = &"musica"
 visible = false
 layout_mode = 1
 
+[node name="jogos_salvos" parent="." unique_id=748291034 instance=ExtResource("10_saves")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="MenuContainer/ConteudoMenu/BotaoNovoJogo" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="MenuContainer/ConteudoMenu/BotaoJogosSalvos" to="." method="_on_saved_games_btn_pressed"]
 [connection signal="pressed" from="MenuContainer/ConteudoMenu/BotaoConfiguracoes" to="." method="_on_option_btn_pressed"]
 [connection signal="pressed" from="MenuContainer/ConteudoMenu/BotaoSair" to="." method="_on_quit_btn_pressed"]
 [connection signal="exit_options_menu" from="options_menu" to="." method="_on_options_menu_exit_options_menu"]
+[connection signal="fechar_jogos_salvos" from="jogos_salvos" to="." method="_on_jogos_salvos_fechar"]
+
