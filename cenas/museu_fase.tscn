@@ -1,17 +1,14 @@
 [gd_scene format=3 uid="uid://df7a0k3m5p8q2"]
 
-[ext_resource type="Script" path="res://scripts/museu_fase.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://m4ra5rkkd3tt" path="res://scripts/museu_fase.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://bvxb0b08r0wiq" path="res://assets/museuFundo.jpg" id="2_bg_museu"]
 [ext_resource type="AudioStream" uid="uid://sjlw4ts8se01" path="res://audios/musica/tema_principal_loop.ogg" id="3_music"]
 [ext_resource type="PackedScene" uid="uid://digetqgrny5b8" path="res://cenas/Personagem_menino.tscn" id="4_player_menino"]
-[ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://cenas/options_menu.tscn" id="5_options"]
+[ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://options_menu.tscn" id="5_options"]
 [ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="6_font"]
-[ext_resource type="Script" path="res://scripts/DialogoProfessora.gd" id="7_dialogo"]
+[ext_resource type="Script" uid="uid://beumkl1jrtpmh" path="res://scripts/DialogoProfessora.gd" id="7_dialogo"]
 [ext_resource type="PackedScene" uid="uid://c7m5p2q0w8k4y" path="res://cenas/ProfessoraNPC.tscn" id="8_professora"]
-[ext_resource type="Texture2D" uid="uid://d2h3j4k5l6m7" path="res://assets/ui/manual_do_jogador.png" id="9_manual"]
-
-
-
+[ext_resource type="Texture2D" uid="uid://bkcv3cy3bwqcv" path="res://assets/manual.jpg" id="9_2pyqi"]
 
 [sub_resource type="Environment" id="Environment_museu_real"]
 background_mode = 3
@@ -20,20 +17,17 @@ glow_enabled = true
 glow_intensity = 0.8
 glow_strength = 0.95
 glow_bloom = 0.15
-glow_blend_mode = 1
 adjustment_enabled = true
 adjustment_contrast = 1.05
 adjustment_saturation = 1.05
 
-[sub_resource type="Gradient" id="Gradient_poeira_sala"]
-offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
-colors = PackedColorArray(0.9, 0.95, 1, 0, 0.95, 0.92, 0.82, 0.4, 1, 0.9, 0.7, 0.3, 0.9, 0.95, 1, 0)
-script = null
-
 [sub_resource type="Gradient" id="Gradient_portal_luz"]
 offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
 colors = PackedColorArray(1.4, 1.1, 0.4, 0, 1.5, 1.25, 0.55, 0.85, 0.4, 1.4, 1.5, 0.75, 0.2, 1, 1.3, 0)
-script = null
+
+[sub_resource type="Gradient" id="Gradient_poeira_sala"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(0.9, 0.95, 1, 0, 0.95, 0.92, 0.82, 0.4, 1, 0.9, 0.7, 0.3, 0.9, 0.95, 1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_chao"]
 size = Vector2(2850, 60)
@@ -45,6 +39,10 @@ size = Vector2(60, 900)
 size = Vector2(180, 240)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_bg"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
 bg_color = Color(0.18, 0.12, 0.08, 0.85)
 border_width_left = 2
 border_width_top = 2
@@ -55,12 +53,12 @@ corner_radius_top_left = 6
 corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
-content_margin_left = 12.0
-content_margin_top = 6.0
-content_margin_right = 12.0
-content_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dica_bg"]
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
 bg_color = Color(0.12, 0.08, 0.05, 0.9)
 border_width_left = 2
 border_width_top = 2
@@ -71,12 +69,12 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-content_margin_left = 16.0
-content_margin_top = 8.0
-content_margin_right = 16.0
-content_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogo_bg"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
 bg_color = Color(0.12, 0.08, 0.05, 0.95)
 border_width_left = 3
 border_width_top = 3
@@ -87,66 +85,30 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-content_margin_left = 20.0
-content_margin_top = 16.0
-content_margin_right = 20.0
-content_margin_bottom = 16.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_guia_card"]
-bg_color = Color(0.12, 0.08, 0.06, 0.95)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.92, 0.78, 0.45, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-shadow_color = Color(0, 0, 0, 0.6)
-shadow_size = 14
-shadow_offset = Vector2(0, 8)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_guia"]
-bg_color = Color(0.24, 0.16, 0.1, 0.9)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.9, 0.75, 0.45, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-content_margin_left = 20.0
-content_margin_top = 8.0
-content_margin_right = 20.0
-content_margin_bottom = 8.0
-
-
-[node name="MuseuFase" type="Node2D"]
+[node name="MuseuFase" type="Node2D" unique_id=1006936044]
 script = ExtResource("1_script")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1021075739]
 environment = SubResource("Environment_museu_real")
 
-[node name="IluminacaoMuseu" type="CanvasModulate" parent="."]
+[node name="IluminacaoMuseu" type="CanvasModulate" parent="." unique_id=1095295558]
 color = Color(0.85, 0.88, 0.95, 1)
 
-[node name="FundoMuseu" type="Sprite2D" parent="."]
+[node name="FundoMuseu" type="Sprite2D" parent="." unique_id=1910569166]
 texture_filter = 1
 position = Vector2(1376, 384)
-scale = Vector2(1.0, 0.5)
+scale = Vector2(1, 0.5)
 texture = ExtResource("2_bg_museu")
 
-[node name="LuzQuadroPortal" type="PointLight2D" parent="."]
-position = Vector2(1720, 360)
+[node name="LuzQuadroPortal" type="PointLight2D" parent="." unique_id=2052924393]
+position = Vector2(2117, 494)
 color = Color(1, 0.85, 0.5, 1)
 energy = 1.6
 texture_scale = 1.8
 
-[node name="ParticulasQuadroPortal" type="CPUParticles2D" parent="."]
-position = Vector2(1720, 380)
+[node name="ParticulasQuadroPortal" type="CPUParticles2D" parent="." unique_id=365553537]
+position = Vector2(2187, 398)
 amount = 45
 lifetime = 2.4
 preprocess = 1.0
@@ -162,7 +124,7 @@ scale_amount_min = 2.5
 scale_amount_max = 5.0
 color_ramp = SubResource("Gradient_portal_luz")
 
-[node name="PoeiraMuseu" type="CPUParticles2D" parent="."]
+[node name="PoeiraMuseu" type="CPUParticles2D" parent="." unique_id=871287415]
 position = Vector2(1376, 350)
 amount = 55
 lifetime = 6.0
@@ -179,76 +141,67 @@ scale_amount_min = 2.0
 scale_amount_max = 3.5
 color_ramp = SubResource("Gradient_poeira_sala")
 
-[node name="ChaoColisao" type="StaticBody2D" parent="."]
+[node name="ChaoColisao" type="StaticBody2D" parent="." unique_id=1396557981]
 position = Vector2(1376, 590)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaoColisao"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaoColisao" unique_id=697652069]
 shape = SubResource("RectangleShape2D_chao")
 
-[node name="ParedeEsquerda" type="StaticBody2D" parent="."]
+[node name="ParedeEsquerda" type="StaticBody2D" parent="." unique_id=397674048]
 position = Vector2(-20, 300)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeEsquerda"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeEsquerda" unique_id=1495615734]
 shape = SubResource("RectangleShape2D_parede")
 
-[node name="ParedeDireita" type="StaticBody2D" parent="."]
+[node name="ParedeDireita" type="StaticBody2D" parent="." unique_id=808935280]
 position = Vector2(2760, 300)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeDireita"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParedeDireita" unique_id=560451379]
 shape = SubResource("RectangleShape2D_parede")
 
-[node name="AreaPortalQuadro" type="Area2D" parent="."]
-position = Vector2(1720, 460)
+[node name="AreaPortalQuadro" type="Area2D" parent="." unique_id=2019084470]
+position = Vector2(1716, 456)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPortalQuadro"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPortalQuadro" unique_id=501203144]
+position = Vector2(460, -42)
 shape = SubResource("RectangleShape2D_portal_area")
 
-[node name="PlayerMuseu" parent="." instance=ExtResource("4_player_menino")]
+[node name="PlayerMuseu" parent="." unique_id=1715880864 instance=ExtResource("4_player_menino")]
 position = Vector2(380, 520)
 
-[node name="Camera2D" type="Camera2D" parent="PlayerMuseu/CharacterBody2D"]
-position = Vector2(0, -80)
-zoom = Vector2(1.1, 1.1)
-limit_left = 0
-limit_top = 0
-limit_right = 2750
-limit_bottom = 720
-position_smoothing_enabled = true
-position_smoothing_speed = 7.0
-
-[node name="MusicaMuseu" type="AudioStreamPlayer2D" parent="."]
+[node name="MusicaMuseu" type="AudioStreamPlayer2D" parent="." unique_id=2020998885]
 position = Vector2(1376, 384)
 stream = ExtResource("3_music")
 autoplay = true
 bus = &"musica"
 
-[node name="CanvasLayerHUD" type="CanvasLayer" parent="."]
+[node name="CanvasLayerHUD" type="CanvasLayer" parent="." unique_id=522563268]
 
-[node name="CardIntroFase" type="PanelContainer" parent="CanvasLayerHUD"]
+[node name="CardIntroFase" type="PanelContainer" parent="CanvasLayerHUD" unique_id=1775702096]
 offset_left = 24.0
 offset_top = 18.0
 offset_right = 380.0
 offset_bottom = 80.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hud_bg")
 
-[node name="VBox" type="VBoxContainer" parent="CanvasLayerHUD/CardIntroFase"]
+[node name="VBox" type="VBoxContainer" parent="CanvasLayerHUD/CardIntroFase" unique_id=881630542]
 layout_mode = 2
 
-[node name="LabelFase" type="Label" parent="CanvasLayerHUD/CardIntroFase/VBox"]
+[node name="LabelFase" type="Label" parent="CanvasLayerHUD/CardIntroFase/VBox" unique_id=489261399]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.9, 0.65, 1)
 theme_override_fonts/font = ExtResource("6_font")
 theme_override_font_sizes/font_size = 15
 text = "PRÓLOGO: MUSEU DA UNIFOR"
 
-[node name="LabelNomePlayer" type="Label" parent="CanvasLayerHUD/CardIntroFase/VBox"]
+[node name="LabelNomePlayer" type="Label" parent="CanvasLayerHUD/CardIntroFase/VBox" unique_id=1209144364]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85, 0.8, 0.72, 1)
 theme_override_fonts/font = ExtResource("6_font")
 theme_override_font_sizes/font_size = 13
 text = "Expedição: Bento"
 
-[node name="BotaoConfiguracoesHUD" type="Button" parent="CanvasLayerHUD"]
+[node name="BotaoConfiguracoesHUD" type="Button" parent="CanvasLayerHUD" unique_id=670732643]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -265,7 +218,7 @@ theme_override_font_sizes/font_size = 15
 theme_override_styles/normal = SubResource("StyleBoxFlat_hud_bg")
 text = "CONFIGURAÇÕES"
 
-[node name="ContainerDica" type="CenterContainer" parent="CanvasLayerHUD"]
+[node name="ContainerDica" type="CenterContainer" parent="CanvasLayerHUD" unique_id=572637690]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -275,7 +228,7 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
 
-[node name="LabelDicaInteracao" type="Label" parent="CanvasLayerHUD/ContainerDica"]
+[node name="LabelDicaInteracao" type="Label" parent="CanvasLayerHUD/ContainerDica" unique_id=1066313064]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.95, 0.75, 1)
@@ -287,7 +240,7 @@ theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_dica_bg")
 text = "Pressione [ ESPAÇO ] para interagir e tocar no Quadro Mágico"
 
-[node name="FadeTransicao" type="ColorRect" parent="CanvasLayerHUD"]
+[node name="FadeTransicao" type="ColorRect" parent="CanvasLayerHUD" unique_id=1523681814]
 visible = false
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -298,22 +251,17 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.04, 0.03, 0.05, 1)
 
-[node name="options_menu" parent="CanvasLayerHUD" instance=ExtResource("5_options")]
+[node name="options_menu" parent="CanvasLayerHUD" unique_id=500623810 instance=ExtResource("5_options")]
 visible = false
 
-[node name="ProfessoraNPC" parent="." instance=ExtResource("8_professora")]
+[node name="ProfessoraNPC" parent="." unique_id=1285533386 instance=ExtResource("8_professora")]
 position = Vector2(880, 520)
 
-[node name="CanvasLayerDialogo" type="CanvasLayer" parent="."]
+[node name="CanvasLayerDialogo" type="CanvasLayer" parent="." unique_id=1326629978]
 layer = 5
 script = ExtResource("7_dialogo")
-caminho_jogador_root = NodePath("../PlayerMuseu")
-caminho_jogador = NodePath("../PlayerMuseu/CharacterBody2D")
-caminho_professora_root = NodePath("../ProfessoraNPC")
-caminho_professora = NodePath("../ProfessoraNPC/CharacterBody2D/AnimatedSprite2D")
-posicao_professora_quadro = Vector2(980, 520)
 
-[node name="PainelDialogo" type="PanelContainer" parent="CanvasLayerDialogo"]
+[node name="PainelDialogo" type="PanelContainer" parent="CanvasLayerDialogo" unique_id=1512518883]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -326,18 +274,18 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dialogo_bg")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayerDialogo/PainelDialogo"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayerDialogo/PainelDialogo" unique_id=1321857198]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 6
 
-[node name="VBox" type="VBoxContainer" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer"]
+[node name="VBox" type="VBoxContainer" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer" unique_id=680514318]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="LabelNomeProfessora" type="Label" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox"]
+[node name="LabelNomeProfessora" type="Label" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox" unique_id=2123314160]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.85, 0.45, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
@@ -347,36 +295,36 @@ theme_override_fonts/font = ExtResource("6_font")
 theme_override_font_sizes/font_size = 18
 text = "Professora Sofia"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox" unique_id=410880679]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.96, 0.94, 0.88, 1)
 theme_override_fonts/normal_font = ExtResource("6_font")
 theme_override_font_sizes/normal_font_size = 17
-fit_content = false
 scroll_active = false
 autowrap_mode = 2
 
-[node name="HBox" type="HBoxContainer" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox"]
+[node name="HBox" type="HBoxContainer" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox" unique_id=1247898476]
 layout_mode = 2
 alignment = 2
 
-[node name="LabelIndicador" type="Label" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox/HBox"]
+[node name="LabelIndicador" type="Label" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox/HBox" unique_id=1213849447]
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.82, 0.4, 1)
 theme_override_fonts/font = ExtResource("6_font")
 theme_override_font_sizes/font_size = 14
 text = "[ Enter / Espaço / Clique ] ▶"
 
-[node name="PainelGuiaComoJogar" type="Control" parent="CanvasLayerDialogo"]
+[node name="PainelGuiaComoJogar" type="Control" parent="CanvasLayerDialogo" unique_id=19309407]
 visible = false
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BackdropEscuro" type="ColorRect" parent="CanvasLayerDialogo/PainelGuiaComoJogar"]
+[node name="BackdropEscuro" type="ColorRect" parent="CanvasLayerDialogo/PainelGuiaComoJogar" unique_id=200041564]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -385,7 +333,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.65)
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayerDialogo/PainelGuiaComoJogar" unique_id=184794718]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -393,22 +341,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ContainerManual" type="Control" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer"]
+[node name="ContainerManual" type="Control" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer" unique_id=2067202816]
 custom_minimum_size = Vector2(980, 650)
 layout_mode = 2
 
-[node name="TexturaManual" type="TextureRect" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/ContainerManual"]
+[node name="TexturaManual" type="TextureRect" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/ContainerManual" unique_id=703596972]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("9_manual")
+texture = ExtResource("9_2pyqi")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="BotaoFecharGuia" type="Button" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/ContainerManual"]
+[node name="BotaoFecharGuia" type="Button" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/ContainerManual" unique_id=626870663]
+visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -423,5 +372,3 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_default_cursor_shape = 2
 flat = true
-
-
