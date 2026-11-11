@@ -35,13 +35,13 @@ height = 200.0
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
-position = Vector2(0, -100)
-scale = Vector2(0.52, 0.52)
+position = Vector2(0, -145)
+scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_professora")
 animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, -100)
+position = Vector2(0, -145)
 shape = SubResource("CapsuleShape2D_professora")
