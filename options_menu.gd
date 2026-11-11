@@ -2,10 +2,12 @@ extends Control
 ## Controlador do menu de opções com remapeamento de controles, áudio e tela cheia.
 
 signal exit_options_menu
+signal ir_menu_principal
 
 const SOM_NAVEGAR: AudioStream = preload("res://audios/ui/menu_navegar.ogg")
 const SOM_VOLTAR: AudioStream = preload("res://audios/ui/menu_voltar.ogg")
 const SOM_CONFIRMAR: AudioStream = preload("res://audios/ui/menu_confirmar.ogg")
+const CENA_TITLE_SCREEN: String = "res://cenas/title_screen.tscn"
 
 const ESCALA_NORMAL: Vector2 = Vector2.ONE
 const ESCALA_HOVER: Vector2 = Vector2(1.04, 1.04)
@@ -24,7 +26,8 @@ var _tweens_controles: Dictionary[Control, Tween] = {}
 var _acao_aguardando_tecla: String = ""
 var _botao_aguardando: Button = null
 
-@onready var botao_voltar: Button = get_node_or_null("back") as Button
+@onready var botao_voltar: Button = find_child("back", true, false) as Button
+@onready var botao_menu_principal: Button = find_child("btnMenuPrincipal", true, false) as Button
 @onready var check_tela_cheia: CheckButton = get_node_or_null("telaCheia") as CheckButton
 @onready var slider_musica: HSlider = get_node_or_null("musica") as HSlider
 @onready var slider_efeitos: HSlider = get_node_or_null("efeitos") as HSlider
@@ -49,6 +52,7 @@ func _ready() -> void:
 	add_child(_player_sfx)
 
 	_configurar_interacao_controle(botao_voltar)
+	_configurar_interacao_controle(botao_menu_principal)
 	_configurar_interacao_controle(check_tela_cheia)
 	_configurar_interacao_controle(slider_musica)
 	_configurar_interacao_controle(slider_efeitos)
@@ -56,6 +60,7 @@ func _ready() -> void:
 	_configurar_abas()
 	_configurar_botoes_teclas()
 	_atualizar_rotulos_teclas()
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -205,8 +210,22 @@ func _on_back_pressed() -> void:
 	exit_options_menu.emit()
 
 
+func _on_menu_principal_pressed() -> void:
+	_tocar_sfx(SOM_CONFIRMAR)
+	ir_menu_principal.emit()
+	# Se a cena atual for o lobby/jogo, transiciona diretamente para a tela inicial
+	var cena_atual: Node = get_tree().current_scene
+	if is_instance_valid(cena_atual) and cena_atual.name != "TelaInicial":
+		var tween: Tween = create_tween()
+		tween.tween_property(self, "modulate:a", 0.0, 0.2)
+		tween.tween_callback(func() -> void:
+			get_tree().change_scene_to_file(CENA_TITLE_SCREEN)
+		)
+
+
 func _on_title_screen_focus_exited() -> void:
 	pass
+
 
 
 func _configurar_interacao_controle(controle: Control) -> void:

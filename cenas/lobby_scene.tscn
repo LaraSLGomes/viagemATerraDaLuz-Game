@@ -1,10 +1,14 @@
 [gd_scene format=4 uid="uid://cjpmlv277bmsr"]
 
+[ext_resource type="Script" path="res://scripts/lobby_scene.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://d0aj8a3m5ryp3" path="res://assets/tileset/Interiors_free/32x32/Interiors_free_32x32.png" id="1_cnytk"]
 [ext_resource type="PackedScene" uid="uid://blku3xs87re0g" path="res://cenas/menino_topdown.tscn" id="1_qge2h"]
 [ext_resource type="Texture2D" uid="uid://2pg0su262nrb" path="res://assets/tileset/Interiors_free/32x32/Room_Builder_free_32x32.png" id="2_l7mht"]
 [ext_resource type="Texture2D" uid="uid://ck804tb360q0u" path="res://assets/tileset/Interiors_free/16x16/Interiors_free_16x16.png" id="3_l7mht"]
+[ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://cenas/options_menu.tscn" id="4_options"]
 [ext_resource type="AudioStream" uid="uid://sjlw4ts8se01" path="res://audios/musica/tema_principal_loop.ogg" id="5_kx7r7"]
+[ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="6_font"]
+
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kx7r7"]
 texture = ExtResource("2_l7mht")
@@ -5660,7 +5664,47 @@ offsets = PackedFloat32Array(0, 0.25, 0.75, 1)
 colors = PackedColorArray(1.4, 1.05, 0.35, 0, 1.5, 1.15, 0.45, 0.9, 0.35, 1.35, 1.4, 0.85, 0.2, 1, 1.2, 0)
 script = null
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_btn_normal"]
+
+bg_color = Color(0.18, 0.12, 0.08, 0.85)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85, 0.7, 0.45, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_btn_hover"]
+bg_color = Color(0.35, 0.22, 0.14, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.9, 0.65, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud_btn_pressed"]
+bg_color = Color(0.12, 0.08, 0.05, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.65, 0.5, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+
 [node name="lobby_scene" type="Node2D" unique_id=1767293463]
+script = ExtResource("1_script")
+
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1402918501]
 environment = SubResource("Environment_museu_glow")
@@ -5720,3 +5764,28 @@ position = Vector2(468, 554)
 stream = ExtResource("5_kx7r7")
 autoplay = true
 bus = &"musica"
+
+[node name="CanvasLayerHUD" type="CanvasLayer" parent="."]
+
+[node name="BotaoConfiguracoesHUD" type="Button" parent="CanvasLayerHUD"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -170.0
+offset_top = 18.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.9, 0.72, 1)
+theme_override_colors/font_pressed_color = Color(0.85, 0.72, 0.55, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 0.9, 1)
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_hud_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hud_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hud_btn_pressed")
+text = "CONFIGURAÇÕES"
+
+[node name="options_menu" parent="CanvasLayerHUD" instance=ExtResource("4_options")]
+visible = false
+
