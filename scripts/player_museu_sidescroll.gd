@@ -5,6 +5,8 @@ const SPEED: float = 340.0
 const JUMP_VELOCITY: float = -520.0
 const GRAVIDADE: float = 1200.0
 
+var bloqueado: bool = false
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D as AnimatedSprite2D
 @onready var poeira_passos: CPUParticles2D = get_node_or_null("PoeiraPassos") as CPUParticles2D
 
@@ -18,9 +20,16 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# Gravidade
+	# Gravidade contínua
 	if not is_on_floor():
 		velocity.y += GRAVIDADE * delta
+
+	# Se estiver bloqueado (durante diálogo da professora), cancela input
+	if bloqueado:
+		velocity.x = 0.0
+		move_and_slide()
+		_atualizar_animacao()
+		return
 
 	# Pulo
 	if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -37,6 +46,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	_atualizar_animacao()
+
 
 
 func _atualizar_animacao() -> void:

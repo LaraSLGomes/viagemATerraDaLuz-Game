@@ -6,6 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://digetqgrny5b8" path="res://cenas/Personagem_menino.tscn" id="4_player_menino"]
 [ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://cenas/options_menu.tscn" id="5_options"]
 [ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="6_font"]
+[ext_resource type="Script" path="res://scripts/DialogoProfessora.gd" id="7_dialogo"]
+[ext_resource type="PackedScene" uid="uid://bswhkus2fyogo" path="res://cenas/Personagem_menina.tscn" id="8_professora"]
+
+
+
 
 [sub_resource type="Environment" id="Environment_museu_real"]
 background_mode = 3
@@ -69,6 +74,23 @@ content_margin_left = 16.0
 content_margin_top = 8.0
 content_margin_right = 16.0
 content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogo_bg"]
+bg_color = Color(0.12, 0.08, 0.05, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.9, 0.75, 0.45, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
+
 
 [node name="MuseuFase" type="Node2D"]
 script = ExtResource("1_script")
@@ -246,3 +268,68 @@ color = Color(0.04, 0.03, 0.05, 1)
 
 [node name="options_menu" parent="CanvasLayerHUD" instance=ExtResource("5_options")]
 visible = false
+
+[node name="ProfessoraNPC" parent="." instance=ExtResource("8_professora")]
+position = Vector2(580, 520)
+
+[node name="CanvasLayerDialogo" type="CanvasLayer" parent="."]
+layer = 5
+script = ExtResource("7_dialogo")
+caminho_jogador = NodePath("../PlayerMuseu/CharacterBody2D")
+caminho_professora = NodePath("../ProfessoraNPC/CharacterBody2D/AnimatedSprite2D")
+
+[node name="PainelDialogo" type="PanelContainer" parent="CanvasLayerDialogo"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = -180.0
+offset_right = -60.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dialogo_bg")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayerDialogo/PainelDialogo"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LabelNomeProfessora" type="Label" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.45, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 18
+text = "Professora Sofia"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.96, 0.94, 0.88, 1)
+theme_override_fonts/normal_font = ExtResource("6_font")
+theme_override_font_sizes/normal_font_size = 17
+fit_content = false
+scroll_active = false
+autowrap_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox"]
+layout_mode = 2
+alignment = 2
+
+[node name="LabelIndicador" type="Label" parent="CanvasLayerDialogo/PainelDialogo/MarginContainer/VBox/HBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.82, 0.4, 1)
+theme_override_fonts/font = ExtResource("6_font")
+theme_override_font_sizes/font_size = 14
+text = "[ Enter / Espaço / Clique ] ▶"
+
