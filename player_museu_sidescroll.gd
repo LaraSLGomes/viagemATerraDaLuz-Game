@@ -13,7 +13,7 @@ var bloqueado: bool = false
 
 func _ready() -> void:
 	add_to_group("player")
-	# Ajusta animação e sprite de acordo com a seleção de sexo no Global
+	# Ajusta animação e sprite de acordo com a seleção de sexo e cores no Global
 	if Engine.has_singleton("Global") or has_node("/root/Global"):
 		var g: Node = get_node("/root/Global")
 		if is_instance_valid(animated_sprite):
@@ -27,8 +27,13 @@ func _ready() -> void:
 						animated_sprite.scale = spr_menina.scale
 						animated_sprite.position = spr_menina.position
 					inst_menina.queue_free()
-			if "cor_pele" in g:
-				animated_sprite.modulate = g.cor_pele.lerp(Color.WHITE, 0.4)
+			# Aplica tintura personalizada refletindo a customização
+			var cor_base_pele: Color = g.cor_pele if "cor_pele" in g else Color.WHITE
+			var cor_base_roupa: Color = g.cor_roupa if "cor_roupa" in g else Color.WHITE
+			var tom_final: Color = cor_base_pele.lerp(cor_base_roupa, 0.25).lerp(Color.WHITE, 0.35)
+			animated_sprite.modulate = tom_final
+		if animated_sprite.sprite_frames.has_animation("personagem parado"):
+			animated_sprite.play("personagem parado")
 
 
 func _physics_process(delta: float) -> void:

@@ -25,12 +25,34 @@ func _ready() -> void:
 		if not options_menu.exit_options_menu.is_connected(_fechar_configuracoes):
 			options_menu.exit_options_menu.connect(_fechar_configuracoes)
 
+	# Instancia o personagem escolhido (Menino ou Menina)
+	var sexo_escolhido: String = "masculino"
+	var nome_heroi: String = "Bento"
+	if Engine.has_singleton("Global") or has_node("/root/Global"):
+		var g: Node = get_node("/root/Global")
+		sexo_escolhido = str(g.sexo)
+		nome_heroi = str(g.nome_personagem)
+
+	# Se for menina e o PlayerMuseu atual for o menino padrão, substitui pela cena feminina
+	var player_existente: Node2D = get_node_or_null("PlayerMuseu") as Node2D
+	if sexo_escolhido == "feminina":
+		var pos_inicial: Vector2 = player_existente.position if is_instance_valid(player_existente) else Vector2(380, 520)
+		var cena_fem: PackedScene = load("res://cenas/Personagem_menina.tscn")
+		if cena_fem:
+			if is_instance_valid(player_existente):
+				player_existente.name = "PlayerMuseuAntigo"
+				player_existente.queue_free()
+			var novo_player: Node2D = cena_fem.instantiate() as Node2D
+			novo_player.name = "PlayerMuseu"
+			novo_player.position = pos_inicial
+			add_child(novo_player)
+			player = novo_player.find_child("CharacterBody2D", true, false) as CharacterBody2D
+
+	if not is_instance_valid(player):
+		player = find_child("CharacterBody2D", true, false) as CharacterBody2D
+
 	# Atualiza o nome do protagonista personalizado
 	if is_instance_valid(label_nome_player):
-		var nome_heroi: String = "Bento"
-		if Engine.has_singleton("Global") or has_node("/root/Global"):
-			var g: Node = get_node("/root/Global")
-			nome_heroi = str(g.nome_personagem)
 		label_nome_player.text = "Expedição: %s" % nome_heroi
 
 	if is_instance_valid(area_portal_quadro):

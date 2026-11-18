@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bvxb0b08r0wiq" path="res://assets/museuFundo.jpg" id="2_bg_museu"]
 [ext_resource type="AudioStream" uid="uid://sjlw4ts8se01" path="res://audios/musica/tema_principal_loop.ogg" id="3_music"]
 [ext_resource type="PackedScene" uid="uid://digetqgrny5b8" path="res://cenas/Personagem_menino.tscn" id="4_player_menino"]
+[ext_resource type="PackedScene" uid="uid://bswhkus2fyogo" path="res://cenas/Personagem_menina.tscn" id="4_player_menina"]
 [ext_resource type="PackedScene" uid="uid://cgdmk0mjnhy40" path="res://options_menu.tscn" id="5_options"]
 [ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="6_font"]
 [ext_resource type="Script" uid="uid://beumkl1jrtpmh" path="res://scripts/DialogoProfessora.gd" id="7_dialogo"]

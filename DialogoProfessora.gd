@@ -172,6 +172,9 @@ func _ao_concluir_fade_out_inicial() -> void:
 		tween_prof.tween_property(professora_root, "modulate:a", 1.0, 0.5)
 
 	# 3. Coloca o personagem na tela com fade-in
+	if not is_instance_valid(player_root) or not player_root.is_inside_tree():
+		player_root = get_parent().find_child("PlayerMuseu", true, false) as Node2D
+
 	if is_instance_valid(player_root):
 		player_root.visible = true
 		var tween_player: Tween = create_tween()
@@ -217,6 +220,12 @@ func _on_fechar_guia_pressed() -> void:
 
 
 func _definir_bloqueio_jogador(bloquear: bool) -> void:
+	if not is_instance_valid(player) or not player.is_inside_tree():
+		var p_root: Node2D = get_parent().find_child("PlayerMuseu", true, false) as Node2D
+		if is_instance_valid(p_root):
+			player = p_root.find_child("CharacterBody2D", true, false) as CharacterBody2D
+			if not is_instance_valid(player) and p_root is CharacterBody2D:
+				player = p_root as CharacterBody2D
 	if is_instance_valid(player):
 		player.set("bloqueado", bloquear)
 
