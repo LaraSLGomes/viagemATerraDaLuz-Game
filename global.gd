@@ -8,7 +8,9 @@ var estilo_cabelo: String = "curto" # "curto" ou "longo"
 
 var cor_pele: Color = Color(0.92, 0.76, 0.62, 1.0)
 var cor_cabelo: Color = Color(0.22, 0.14, 0.08, 1.0)
-var cor_roupa: Color = Color(0.24, 0.45, 0.72, 1.0)
+var cor_roupa: Color = Color(0.24, 0.45, 0.72, 1.0) # Blusa (retrocompatibilidade)
+var cor_blusa: Color = Color(0.24, 0.45, 0.72, 1.0)
+var cor_calca: Color = Color(0.2, 0.35, 0.55, 1.0)
 var cor_sapato: Color = Color(0.28, 0.2, 0.15, 1.0)
 var cor_mochila: Color = Color(0.68, 0.42, 0.2, 1.0)
 

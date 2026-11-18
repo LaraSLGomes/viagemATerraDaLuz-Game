@@ -318,36 +318,72 @@ theme_override_fonts/font = ExtResource("1_font")
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 text = ">"
 
-[node name="CardRoupa" type="PanelContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao" unique_id=928629160]
+[node name="CardBlusa" type="PanelContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao" unique_id=928629160]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
 
-[node name="HBox" type="HBoxContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa" unique_id=835803416]
+[node name="HBox" type="HBoxContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardBlusa" unique_id=835803416]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="LabelRoupa" type="Label" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa/HBox" unique_id=675308352]
+[node name="LabelBlusa" type="Label" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardBlusa/HBox" unique_id=675308352]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
 theme_override_fonts/font = ExtResource("1_font")
 theme_override_font_sizes/font_size = 15
-text = "ROUPA:"
+text = "BLUSA:"
 
-[node name="BtnPrevRoupa" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa/HBox" unique_id=1261992234]
+[node name="BtnPrevBlusa" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardBlusa/HBox" unique_id=1261992234]
 custom_minimum_size = Vector2(40, 34)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_font")
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
 text = "<"
 
-[node name="PreviewCorRoupa" type="ColorRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa/HBox" unique_id=862912355]
+[node name="PreviewCorBlusa" type="ColorRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardBlusa/HBox" unique_id=862912355]
 custom_minimum_size = Vector2(60, 34)
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.24, 0.45, 0.75, 1)
 
-[node name="BtnNextRoupa" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardRoupa/HBox" unique_id=525228977]
+[node name="BtnNextBlusa" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardBlusa/HBox" unique_id=525228977]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = ">"
+
+[node name="CardCalca" type="PanelContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao" unique_id=928629161]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
+
+[node name="HBox" type="HBoxContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCalca" unique_id=835803417]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelCalca" type="Label" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCalca/HBox" unique_id=675308353]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_font_sizes/font_size = 14
+text = "CALÇA/SHORT:"
+
+[node name="BtnPrevCalca" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCalca/HBox" unique_id=1261992235]
+custom_minimum_size = Vector2(40, 34)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+text = "<"
+
+[node name="PreviewCorCalca" type="ColorRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCalca/HBox" unique_id=862912356]
+custom_minimum_size = Vector2(60, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.2, 0.35, 0.55, 1)
+
+[node name="BtnNextCalca" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCalca/HBox" unique_id=525228978]
 custom_minimum_size = Vector2(40, 34)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_font")
@@ -459,7 +495,13 @@ layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SpritePreviewRoupa" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158140]
+[node name="SpritePreviewCalca" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158142]
+custom_minimum_size = Vector2(160, 260)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpritePreviewBlusa" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158140]
 custom_minimum_size = Vector2(160, 260)
 layout_mode = 2
 expand_mode = 1
