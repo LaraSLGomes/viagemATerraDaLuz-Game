@@ -60,6 +60,13 @@ func _ready() -> void:
 	if not is_instance_valid(professora_sprite):
 		if is_instance_valid(professora_root):
 			professora_sprite = professora_root.find_child("AnimatedSprite2D", true, false) as AnimatedSprite2D
+			var col: CollisionShape2D = professora_root.find_child("CollisionShape2D", true, false) as CollisionShape2D
+			if is_instance_valid(col):
+				col.disabled = true
+			var cb: CharacterBody2D = professora_root.find_child("CharacterBody2D", true, false) as CharacterBody2D
+			if is_instance_valid(cb):
+				cb.collision_layer = 0
+				cb.collision_mask = 0
 
 	# 1. Bloqueia o jogador
 	_definir_bloqueio_jogador(true)
