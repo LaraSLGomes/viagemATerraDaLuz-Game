@@ -46,6 +46,21 @@ var _tween_texto: Tween
 
 
 func _ready() -> void:
+	# Busca resiliente do jogador e da professora caso os nós mudem
+	if not is_instance_valid(player_root):
+		player_root = get_parent().find_child("PlayerMuseu", true, false) as Node2D
+	if not is_instance_valid(player):
+		if is_instance_valid(player_root):
+			player = player_root.find_child("CharacterBody2D", true, false) as CharacterBody2D
+			if not is_instance_valid(player) and player_root is CharacterBody2D:
+				player = player_root as CharacterBody2D
+
+	if not is_instance_valid(professora_root):
+		professora_root = get_parent().find_child("ProfessoraNPC", true, false) as Node2D
+	if not is_instance_valid(professora_sprite):
+		if is_instance_valid(professora_root):
+			professora_sprite = professora_root.find_child("AnimatedSprite2D", true, false) as AnimatedSprite2D
+
 	# 1. Bloqueia o jogador
 	_definir_bloqueio_jogador(true)
 

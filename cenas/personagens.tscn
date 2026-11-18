@@ -441,10 +441,34 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
 [node name="Center" type="CenterContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco" unique_id=649305870]
 layout_mode = 2
 
+[node name="SpritePreviewMochila" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158137]
+custom_minimum_size = Vector2(160, 260)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
 [node name="SpritePreviewBase" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158138]
-custom_minimum_size = Vector2(160, 160)
+custom_minimum_size = Vector2(160, 260)
 layout_mode = 2
 texture = ExtResource("4_char_base")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpritePreviewSapato" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158139]
+custom_minimum_size = Vector2(160, 260)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpritePreviewRoupa" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158140]
+custom_minimum_size = Vector2(160, 260)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SpritePreviewCabelo" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158141]
+custom_minimum_size = Vector2(160, 260)
+layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 

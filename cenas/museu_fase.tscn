@@ -357,7 +357,6 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="BotaoFecharGuia" type="Button" parent="CanvasLayerDialogo/PainelGuiaComoJogar/CenterContainer/ContainerManual" unique_id=626870663]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
