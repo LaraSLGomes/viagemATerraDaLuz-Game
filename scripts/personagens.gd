@@ -392,7 +392,7 @@ func _on_concluido_pressed() -> void:
 func _on_voltar_pressed() -> void:
 	_tocar_sfx(SOM_VOLTAR)
 	var tween: Tween = create_tween().set_parallel(true)
-	tween.tween_property(self, "modulate:a", 0.25)
+	tween.tween_property(self, "modulate:a", 0.0, 0.25)
 	tween.chain().tween_callback(func() -> void:
 		get_tree().change_scene_to_file(CENA_TITLE_SCREEN)
 	)
