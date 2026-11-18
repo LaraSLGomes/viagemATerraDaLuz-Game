@@ -27,7 +27,6 @@ const PALETA_CABELO: Array[Color] = [
 ]
 
 const PALETA_ROUPA: Array[Color] = [
-	Color(0.95, 0.95, 0.95), # Farda Escolar Oficial
 	Color(0.24, 0.45, 0.75), # Azul
 	Color(0.88, 0.72, 0.28), # Amarelo
 	Color(0.82, 0.32, 0.25), # Vermelho
@@ -249,18 +248,13 @@ func _atualizar_interface() -> void:
 
 	# 4. Camada Roupa
 	if is_instance_valid(sprite_preview_roupa):
-		var p_roupa: String = ""
-		if _idx_roupa == 0:
-			# Farda escolar clássica
-			p_roupa = "res://assets/Personagens/customizacao/CANVAS_180x360/roupas/farda_feminina.png" if _sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/roupas/farda_masculina.png"
-		else:
-			var cores_camisetas: Array[String] = [
-				"camiseta_azul.png", "camiseta_amarela.png", "camiseta_vermelha.png",
-				"camiseta_verde.png", "camiseta_branca.png", "camiseta_cinza.png",
-				"camiseta_preta.png", "camiseta_rosa.png"
-			]
-			var nome_cam: String = cores_camisetas[(_idx_roupa - 1) % cores_camisetas.size()]
-			p_roupa = "res://assets/Personagens/customizacao/CANVAS_180x360/roupas/" + nome_cam
+		var cores_camisetas: Array[String] = [
+			"camiseta_azul.png", "camiseta_amarela.png", "camiseta_vermelha.png",
+			"camiseta_verde.png", "camiseta_branca.png", "camiseta_cinza.png",
+			"camiseta_preta.png", "camiseta_rosa.png"
+		]
+		var nome_cam: String = cores_camisetas[_idx_roupa % cores_camisetas.size()]
+		var p_roupa: String = "res://assets/Personagens/customizacao/CANVAS_180x360/roupas/" + nome_cam
 		if ResourceLoader.exists(p_roupa):
 			sprite_preview_roupa.texture = load(p_roupa)
 

@@ -45,8 +45,16 @@ func _ready() -> void:
 			var novo_player: Node2D = cena_fem.instantiate() as Node2D
 			novo_player.name = "PlayerMuseu"
 			novo_player.position = pos_inicial
+			novo_player.visible = false
+			novo_player.modulate.a = 0.0
 			add_child(novo_player)
 			player = novo_player.find_child("CharacterBody2D", true, false) as CharacterBody2D
+			var dialogo_node: Node = find_child("CanvasLayerDialogo", true, false)
+			if is_instance_valid(dialogo_node):
+				dialogo_node.set("player_root", novo_player)
+				dialogo_node.set("player", player)
+				if dialogo_node.has_method("_definir_bloqueio_jogador"):
+					dialogo_node.call("_definir_bloqueio_jogador", true)
 
 	if not is_instance_valid(player):
 		player = find_child("CharacterBody2D", true, false) as CharacterBody2D

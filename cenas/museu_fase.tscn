@@ -168,6 +168,8 @@ position = Vector2(460, -42)
 shape = SubResource("RectangleShape2D_portal_area")
 
 [node name="PlayerMuseu" parent="." unique_id=1715880864 instance=ExtResource("4_player_menino")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(380, 520)
 
 [node name="MusicaMuseu" type="AudioStreamPlayer2D" parent="." unique_id=2020998885]

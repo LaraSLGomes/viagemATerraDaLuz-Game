@@ -450,7 +450,6 @@ stretch_mode = 5
 [node name="SpritePreviewBase" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158138]
 custom_minimum_size = Vector2(160, 260)
 layout_mode = 2
-texture = ExtResource("4_char_base")
 expand_mode = 1
 stretch_mode = 5
 
