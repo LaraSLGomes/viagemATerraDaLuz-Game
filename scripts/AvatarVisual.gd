@@ -10,35 +10,15 @@ class_name AvatarVisual
 @onready var spr_sapato: Sprite2D = $Sapato as Sprite2D
 @onready var spr_blusa: Sprite2D = $Blusa as Sprite2D
 @onready var spr_cabelo_frente: Sprite2D = $CabeloFrente as Sprite2D
+@onready var anim_player: AnimationPlayer = get_node_or_null("AnimationPlayer") as AnimationPlayer
 
-var anim_walking: bool = false
-var _anim_time: float = 0.0
-var _base_y: float = 0.0
+var _olhando_esquerda: bool = false
+var _andando: bool = false
 
 
 func _ready() -> void:
-	_base_y = position.y
 	carregar_do_global()
-
-
-func _process(delta: float) -> void:
-	if anim_walking:
-		_anim_time += delta * 12.0
-		# Suave balanço natural ao caminhar
-		position.y = _base_y + sin(_anim_time) * 3.0
-		rotation = sin(_anim_time * 0.5) * 0.04
-	else:
-		_anim_time = 0.0
-		position.y = _base_y
-		rotation = 0.0
-
-
-func definir_animacao_andando(andando: bool) -> void:
-	anim_walking = andando
-
-
-func definir_espelhamento(olhando_esquerda: bool) -> void:
-	scale.x = -abs(scale.x) if olhando_esquerda else abs(scale.x)
+	tocar_animacao("idle")
 
 
 func carregar_do_global() -> void:
@@ -46,8 +26,11 @@ func carregar_do_global() -> void:
 		return
 	var g: Node = get_node("/root/Global")
 	
+	var tem_calca: bool = ("idx_calca" in g and g.idx_calca >= 0) or ("textura_calca" in g and str(g.textura_calca) != "")
+	var sexo_atual: String = g.sexo if "sexo" in g else "masculino"
+	
 	var config: Dictionary = {
-		"sexo": g.sexo if "sexo" in g else "masculino",
+		"sexo": sexo_atual,
 		"estilo_cabelo": g.estilo_cabelo if "estilo_cabelo" in g else "curto",
 		"cor_pele": g.cor_pele if "cor_pele" in g else Color(0.92, 0.76, 0.62),
 		"cor_cabelo": g.cor_cabelo if "cor_cabelo" in g else Color(0.22, 0.14, 0.08),
@@ -60,33 +43,39 @@ func carregar_do_global() -> void:
 		"textura_blusa": g.textura_blusa if "textura_blusa" in g else "",
 		"textura_calca": g.textura_calca if "textura_calca" in g else "",
 		"textura_sapato": g.textura_sapato if "textura_sapato" in g else "",
-		"textura_mochila": g.textura_mochila if "textura_mochila" in g else ""
+		"textura_mochila": g.textura_mochila if "textura_mochila" in g else "",
+		"tem_calca": tem_calca
 	}
 	aplicar_configuracao(config)
 
 
 func aplicar_configuracao(c: Dictionary) -> void:
-	# 1. Mochila
+	# 1. Mochila (z=0, atrás de tudo)
 	_atualizar_camada(spr_mochila, c.get("textura_mochila", ""), Color.WHITE)
 	
-	# 2. Corpo Base / Pele
-	var tex_corpo: String = c.get("textura_corpo", "")
-	if tex_corpo == "" or not ResourceLoader.exists(tex_corpo):
-		var sexo: String = c.get("sexo", "masculino")
+	# 2. Corpo Base / Pele (z=2)
+	# Se estiver de calça/bermuda comprida, usa a textura mascarada que elimina qualquer vazamento atrás das pernas
+	var tem_calca: bool = c.get("tem_calca", false)
+	var sexo: String = c.get("sexo", "masculino")
+	var tex_corpo: String = ""
+	if tem_calca:
+		tex_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino_calca.png" if sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino_calca.png"
+	else:
 		tex_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino.png" if sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino.png"
+	
 	var cor_pele: Color = c.get("cor_pele", Color(0.92, 0.76, 0.62))
 	_atualizar_camada(spr_corpo, tex_corpo, cor_pele.lerp(Color.WHITE, 0.35))
 	
-	# 3. Calça / Short
+	# 3. Calça / Short (z=3)
 	_atualizar_camada(spr_calca, c.get("textura_calca", ""), Color.WHITE)
 	
-	# 4. Sapato
+	# 4. Sapato (z=4)
 	_atualizar_camada(spr_sapato, c.get("textura_sapato", ""), Color.WHITE)
 	
-	# 5. Blusa
+	# 5. Blusa (z=5)
 	_atualizar_camada(spr_blusa, c.get("textura_blusa", ""), Color.WHITE)
 	
-	# 6. Cabelo
+	# 6. Cabelo (z=6)
 	var tex_cabelo: String = c.get("textura_cabelo", "")
 	if tex_cabelo == "" or not ResourceLoader.exists(tex_cabelo):
 		var estilo: String = c.get("estilo_cabelo", "curto")
@@ -105,3 +94,24 @@ func _atualizar_camada(sprite: Sprite2D, path: String, cor_modulate: Color) -> v
 	else:
 		sprite.texture = null
 		sprite.visible = false
+
+
+func tocar_animacao(nome: String) -> void:
+	if is_instance_valid(anim_player) and anim_player.has_animation(nome):
+		if anim_player.current_animation != nome:
+			anim_player.play(nome)
+
+
+func definir_animacao_andando(andando: bool) -> void:
+	if _andando == andando:
+		return
+	_andando = andando
+	if _andando:
+		tocar_animacao("walk")
+	else:
+		tocar_animacao("idle")
+
+
+func definir_espelhamento(olhando_esquerda: bool) -> void:
+	_olhando_esquerda = olhando_esquerda
+	scale.x = -abs(scale.x) if olhando_esquerda else abs(scale.x)

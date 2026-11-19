@@ -310,9 +310,11 @@ func _atualizar_interface() -> void:
 
 	# 2. Camada Corpo Base
 	if is_instance_valid(sprite_preview_base):
-		var p_corpo: String = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino.png"
-		if _sexo == "feminina":
-			p_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino.png"
+		var p_corpo: String = ""
+		if _idx_calca >= 0:
+			p_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino_calca.png" if _sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino_calca.png"
+		else:
+			p_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino.png" if _sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino.png"
 		if ResourceLoader.exists(p_corpo):
 			sprite_preview_base.texture = load(p_corpo)
 		sprite_preview_base.modulate = PALETA_PELE[_idx_pele].lerp(Color.WHITE, 0.35)
