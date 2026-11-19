@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://cavatarvisual123"]
+
+[ext_resource type="Script" path="res://scripts/AvatarVisual.gd" id="1_avatar"]
+
+[node name="AvatarVisual" type="Node2D"]
+script = ExtResource("1_avatar")
+
+[node name="Mochila" type="Sprite2D" parent="."]
+z_index = 0
+texture_filter = 1
+
+[node name="CabeloTras" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+
+[node name="Corpo" type="Sprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+
+[node name="Calca" type="Sprite2D" parent="."]
+z_index = 3
+texture_filter = 1
+
+[node name="Sapato" type="Sprite2D" parent="."]
+z_index = 4
+texture_filter = 1
+
+[node name="Blusa" type="Sprite2D" parent="."]
+z_index = 5
+texture_filter = 1
+
+[node name="CabeloFrente" type="Sprite2D" parent="."]
+z_index = 6
+texture_filter = 1

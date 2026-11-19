@@ -37,6 +37,17 @@ const PALETA_BLUSA: Array[Color] = [
 	Color(0.88, 0.45, 0.60)  # Rosa
 ]
 
+const LISTA_BLUSAS: Array[String] = [
+	"res://assets/Personagens/customizacao/CANVAS_180x360/roupas/camiseta_azul.png",
+	"res://assets/Personagens/customizacao/CANVAS_180x360/roupas/camiseta_amarela.png",
+	"res://assets/Personagens/customizacao/CANVAS_180x360/roupas/camiseta_vermelha.png",
+	"res://assets/Personagens/customizacao/CANVAS_180x360/roupas/camiseta_verde.png",
+	"res://assets/Personagens/customizacao/CANVAS_180x360/roupas/camiseta_branca.png",
+	"res://assets/Personagens/customizacao/CANVAS_180x360/roupas/camiseta_cinza.png",
+	"res://assets/Personagens/customizacao/CANVAS_180x360/roupas/camiseta_preta.png",
+	"res://assets/Personagens/customizacao/CANVAS_180x360/roupas/camiseta_rosa.png"
+]
+
 const PALETA_CALCA: Array[Color] = [
 	Color(0.20, 0.35, 0.55), # Jeans Azul
 	Color(0.15, 0.20, 0.35), # Azul Marinho
@@ -81,17 +92,6 @@ const PALETA_SAPATO: Array[Color] = [
 	Color(0.50, 0.25, 0.60)  # Roxo
 ]
 
-const PALETA_MOCHILA: Array[Color] = [
-	Color(0.20, 0.32, 0.65), # Azul Marinho
-	Color(0.35, 0.60, 0.85), # Azul Claro
-	Color(0.25, 0.25, 0.26), # Grafite
-	Color(0.85, 0.85, 0.85), # Branca
-	Color(0.88, 0.72, 0.25), # Amarela
-	Color(0.82, 0.30, 0.25), # Vermelha
-	Color(0.32, 0.60, 0.38), # Verde
-	Color(0.85, 0.45, 0.60)  # Rosa
-]
-
 const LISTA_SAPATOS: Array[String] = [
 	"res://assets/Personagens/customizacao/CANVAS_180x360/sapatos/tenis_preto.png",
 	"res://assets/Personagens/customizacao/CANVAS_180x360/sapatos/tenis_branco.png",
@@ -102,6 +102,17 @@ const LISTA_SAPATOS: Array[String] = [
 	"res://assets/Personagens/customizacao/CANVAS_180x360/sapatos/tenis_verde.png",
 	"res://assets/Personagens/customizacao/CANVAS_180x360/sapatos/tenis_rosa.png",
 	"res://assets/Personagens/customizacao/CANVAS_180x360/sapatos/tenis_roxo.png"
+]
+
+const PALETA_MOCHILA: Array[Color] = [
+	Color(0.20, 0.32, 0.65), # Azul Marinho
+	Color(0.35, 0.60, 0.85), # Azul Claro
+	Color(0.25, 0.25, 0.26), # Grafite
+	Color(0.85, 0.85, 0.85), # Branca
+	Color(0.88, 0.72, 0.25), # Amarela
+	Color(0.82, 0.30, 0.25), # Vermelha
+	Color(0.32, 0.60, 0.38), # Verde
+	Color(0.85, 0.45, 0.60)  # Rosa
 ]
 
 const LISTA_MOCHILAS: Array[String] = [
@@ -135,7 +146,7 @@ var _player_sfx: AudioStreamPlayer
 # Indicadores de cor
 @onready var color_rect_pele: ColorRect = find_child("PreviewCorPele", true, false) as ColorRect
 @onready var color_rect_cabelo: ColorRect = find_child("PreviewCorCabelo", true, false) as ColorRect
-@onready var color_rect_blusa: ColorRect = (find_child("PreviewCorBlusa", true, false) as ColorRect) if has_node("PreviewCorBlusa") or find_child("PreviewCorBlusa", true, false) != null else find_child("PreviewCorRoupa", true, false) as ColorRect
+@onready var color_rect_blusa: ColorRect = (find_child("PreviewCorBlusa", true, false) as ColorRect) if find_child("PreviewCorBlusa", true, false) != null else find_child("PreviewCorRoupa", true, false) as ColorRect
 @onready var color_rect_calca: ColorRect = find_child("PreviewCorCalca", true, false) as ColorRect
 @onready var color_rect_sapato: ColorRect = find_child("PreviewCorSapato", true, false) as ColorRect
 @onready var color_rect_mochila: ColorRect = find_child("PreviewCorMochila", true, false) as ColorRect
@@ -143,8 +154,8 @@ var _player_sfx: AudioStreamPlayer
 # Preview do boneco em camadas
 @onready var sprite_preview_mochila: TextureRect = find_child("SpritePreviewMochila", true, false) as TextureRect
 @onready var sprite_preview_base: TextureRect = find_child("SpritePreviewBase", true, false) as TextureRect
-@onready var sprite_preview_sapato: TextureRect = find_child("SpritePreviewSapato", true, false) as TextureRect
 @onready var sprite_preview_calca: TextureRect = find_child("SpritePreviewCalca", true, false) as TextureRect
+@onready var sprite_preview_sapato: TextureRect = find_child("SpritePreviewSapato", true, false) as TextureRect
 @onready var sprite_preview_blusa: TextureRect = (find_child("SpritePreviewBlusa", true, false) as TextureRect) if find_child("SpritePreviewBlusa", true, false) != null else find_child("SpritePreviewRoupa", true, false) as TextureRect
 @onready var sprite_preview_cabelo: TextureRect = find_child("SpritePreviewCabelo", true, false) as TextureRect
 @onready var label_resumo_personagem: Label = find_child("LabelResumoPersonagem", true, false) as Label
@@ -158,6 +169,11 @@ func _ready() -> void:
 	_player_sfx = AudioStreamPlayer.new()
 	_player_sfx.bus = &"efeitos" if AudioServer.get_bus_index("efeitos") != -1 else &"Master"
 	add_child(_player_sfx)
+
+	if is_instance_valid(line_edit_nome):
+		line_edit_nome.text_changed.connect(func(_novo_texto: String) -> void:
+			_atualizar_resumo()
+		)
 
 	_configurar_seletores()
 	_atualizar_interface()
@@ -203,18 +219,17 @@ func _configurar_seletores() -> void:
 	_vincular_seletor("Cabelo", PALETA_CABELO.size(), func(delta: int) -> void:
 		_idx_cabelo_cor = posmod(_idx_cabelo_cor + delta, PALETA_CABELO.size())
 	)
-	# Suporta tanto o nome novo "Blusa" quanto retrocompatibilidade com "Roupa"
-	_vincular_seletor("Blusa", PALETA_BLUSA.size(), func(delta: int) -> void:
+	_vincular_seletor("Blusa", LISTA_BLUSAS.size(), func(delta: int) -> void:
 		if _idx_blusa == -1:
-			_idx_blusa = 0 if delta > 0 else (PALETA_BLUSA.size() - 1)
+			_idx_blusa = 0 if delta > 0 else (LISTA_BLUSAS.size() - 1)
 		else:
-			_idx_blusa = posmod(_idx_blusa + delta, PALETA_BLUSA.size())
+			_idx_blusa = posmod(_idx_blusa + delta, LISTA_BLUSAS.size())
 	)
-	_vincular_seletor("Roupa", PALETA_BLUSA.size(), func(delta: int) -> void:
+	_vincular_seletor("Roupa", LISTA_BLUSAS.size(), func(delta: int) -> void:
 		if _idx_blusa == -1:
-			_idx_blusa = 0 if delta > 0 else (PALETA_BLUSA.size() - 1)
+			_idx_blusa = 0 if delta > 0 else (LISTA_BLUSAS.size() - 1)
 		else:
-			_idx_blusa = posmod(_idx_blusa + delta, PALETA_BLUSA.size())
+			_idx_blusa = posmod(_idx_blusa + delta, LISTA_BLUSAS.size())
 	)
 	_vincular_seletor("Calca", LISTA_CALCAS.size(), func(delta: int) -> void:
 		if _idx_calca == -1:
@@ -222,11 +237,11 @@ func _configurar_seletores() -> void:
 		else:
 			_idx_calca = posmod(_idx_calca + delta, LISTA_CALCAS.size())
 	)
-	_vincular_seletor("Sapato", PALETA_SAPATO.size(), func(delta: int) -> void:
-		_idx_sapato = posmod(_idx_sapato + delta, PALETA_SAPATO.size())
+	_vincular_seletor("Sapato", LISTA_SAPATOS.size(), func(delta: int) -> void:
+		_idx_sapato = posmod(_idx_sapato + delta, LISTA_SAPATOS.size())
 	)
-	_vincular_seletor("Mochila", PALETA_MOCHILA.size(), func(delta: int) -> void:
-		_idx_mochila = posmod(_idx_mochila + delta, PALETA_MOCHILA.size())
+	_vincular_seletor("Mochila", LISTA_MOCHILAS.size(), func(delta: int) -> void:
+		_idx_mochila = posmod(_idx_mochila + delta, LISTA_MOCHILAS.size())
 	)
 
 	if is_instance_valid(btn_concluido):
@@ -253,7 +268,7 @@ func _vincular_seletor(categoria: String, _max_items: int, callback: Callable) -
 
 
 func _atualizar_interface() -> void:
-	# Atualiza Cores de Pré-visualização nos botões
+	# Atualiza Cores de Pré-visualização nos cartões de seleção
 	if is_instance_valid(color_rect_pele):
 		color_rect_pele.color = PALETA_PELE[_idx_pele]
 	if is_instance_valid(color_rect_cabelo):
@@ -272,9 +287,9 @@ func _atualizar_interface() -> void:
 			color_rect_calca.color = Color(0.35, 0.35, 0.35, 0.5)
 
 	if is_instance_valid(color_rect_sapato):
-		color_rect_sapato.color = PALETA_SAPATO[_idx_sapato]
+		color_rect_sapato.color = PALETA_SAPATO[_idx_sapato % PALETA_SAPATO.size()]
 	if is_instance_valid(color_rect_mochila):
-		color_rect_mochila.color = PALETA_MOCHILA[_idx_mochila]
+		color_rect_mochila.color = PALETA_MOCHILA[_idx_mochila % PALETA_MOCHILA.size()]
 
 	# Atualiza Destaque dos Botões de Seleção
 	if is_instance_valid(btn_sexo_masc):
@@ -287,7 +302,7 @@ func _atualizar_interface() -> void:
 	if is_instance_valid(btn_cabelo_longo):
 		btn_cabelo_longo.modulate = Color(1.2, 1.15, 0.8) if _estilo_cabelo == "longo" else Color(0.7, 0.7, 0.7)
 
-	# 1. Camada Mochila
+	# 1. Camada Mochila (Z=0, atrás de tudo)
 	if is_instance_valid(sprite_preview_mochila):
 		var p_mochila: String = LISTA_MOCHILAS[_idx_mochila % LISTA_MOCHILAS.size()]
 		if ResourceLoader.exists(p_mochila):
@@ -302,13 +317,7 @@ func _atualizar_interface() -> void:
 			sprite_preview_base.texture = load(p_corpo)
 		sprite_preview_base.modulate = PALETA_PELE[_idx_pele].lerp(Color.WHITE, 0.35)
 
-	# 3. Camada Sapato
-	if is_instance_valid(sprite_preview_sapato):
-		var p_sapato: String = LISTA_SAPATOS[_idx_sapato % LISTA_SAPATOS.size()]
-		if ResourceLoader.exists(p_sapato):
-			sprite_preview_sapato.texture = load(p_sapato)
-
-	# 4. Camada Calça / Short (aparece apenas quando o jogador navega nas opções)
+	# 3. Camada Calça / Short (aparece apenas quando selecionado)
 	if is_instance_valid(sprite_preview_calca):
 		if _idx_calca >= 0:
 			var p_calca: String = LISTA_CALCAS[_idx_calca % LISTA_CALCAS.size()]
@@ -321,16 +330,17 @@ func _atualizar_interface() -> void:
 			sprite_preview_calca.visible = false
 			sprite_preview_calca.texture = null
 
-	# 5. Camada Blusa (aparece apenas quando o jogador navega nas opções)
+	# 4. Camada Sapato (visível por cima da calça e pés)
+	if is_instance_valid(sprite_preview_sapato):
+		var p_sapato: String = LISTA_SAPATOS[_idx_sapato % LISTA_SAPATOS.size()]
+		if ResourceLoader.exists(p_sapato):
+			sprite_preview_sapato.texture = load(p_sapato)
+			sprite_preview_sapato.visible = true
+
+	# 5. Camada Blusa (aparece apenas quando selecionado)
 	if is_instance_valid(sprite_preview_blusa):
 		if _idx_blusa >= 0:
-			var cores_camisetas: Array[String] = [
-				"camiseta_azul.png", "camiseta_amarela.png", "camiseta_vermelha.png",
-				"camiseta_verde.png", "camiseta_branca.png", "camiseta_cinza.png",
-				"camiseta_preta.png", "camiseta_rosa.png"
-			]
-			var nome_cam: String = cores_camisetas[_idx_blusa % cores_camisetas.size()]
-			var p_blusa: String = "res://assets/Personagens/customizacao/CANVAS_180x360/roupas/" + nome_cam
+			var p_blusa: String = LISTA_BLUSAS[_idx_blusa % LISTA_BLUSAS.size()]
 			if ResourceLoader.exists(p_blusa):
 				sprite_preview_blusa.texture = load(p_blusa)
 				sprite_preview_blusa.visible = true
@@ -348,7 +358,10 @@ func _atualizar_interface() -> void:
 			sprite_preview_cabelo.texture = load(p_cabelo)
 		sprite_preview_cabelo.modulate = PALETA_CABELO[_idx_cabelo_cor]
 
-	# Resumo do Personagem
+	_atualizar_resumo()
+
+
+func _atualizar_resumo() -> void:
 	if is_instance_valid(label_resumo_personagem):
 		var nome_txt: String = line_edit_nome.text.strip_edges() if is_instance_valid(line_edit_nome) and line_edit_nome.text.strip_edges() != "" else "Bento"
 		label_resumo_personagem.text = "%s  •  %s  •  Cabelo %s" % [
@@ -366,6 +379,14 @@ func _salvar_no_global() -> void:
 	g.nome_personagem = nome_final
 	g.sexo = _sexo
 	g.estilo_cabelo = _estilo_cabelo
+	
+	g.idx_pele = _idx_pele
+	g.idx_cabelo_cor = _idx_cabelo_cor
+	g.idx_blusa = _idx_blusa
+	g.idx_calca = _idx_calca
+	g.idx_sapato = _idx_sapato
+	g.idx_mochila = _idx_mochila
+
 	g.cor_pele = PALETA_PELE[_idx_pele]
 	g.cor_cabelo = PALETA_CABELO[_idx_cabelo_cor]
 
@@ -374,8 +395,18 @@ func _salvar_no_global() -> void:
 	g.cor_blusa = cor_blusa_final
 	g.cor_calca = cor_calca_final
 	g.cor_roupa = cor_blusa_final # Compatibilidade com telas antigas
-	g.cor_sapato = PALETA_SAPATO[_idx_sapato]
-	g.cor_mochila = PALETA_MOCHILA[_idx_mochila]
+	g.cor_sapato = PALETA_SAPATO[_idx_sapato % PALETA_SAPATO.size()]
+	g.cor_mochila = PALETA_MOCHILA[_idx_mochila % PALETA_MOCHILA.size()]
+
+	# Texturas selecionadas
+	g.textura_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino.png" if _sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino.png"
+	var nome_cab: String = "curto_desfiado.png" if _estilo_cabelo == "curto" else "liso_longo.png"
+	g.textura_cabelo = "res://assets/Personagens/customizacao/CANVAS_180x360/cabelos/" + nome_cab
+	g.textura_blusa = LISTA_BLUSAS[_idx_blusa % LISTA_BLUSAS.size()] if _idx_blusa >= 0 else ""
+	g.textura_calca = LISTA_CALCAS[_idx_calca % LISTA_CALCAS.size()] if _idx_calca >= 0 else ""
+	g.textura_sapato = LISTA_SAPATOS[_idx_sapato % LISTA_SAPATOS.size()]
+	g.textura_mochila = LISTA_MOCHILAS[_idx_mochila % LISTA_MOCHILAS.size()]
+
 	g.fase_atual = "museu_introducao"
 
 

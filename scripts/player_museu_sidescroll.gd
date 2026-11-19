@@ -7,33 +7,33 @@ const GRAVIDADE: float = 1200.0
 
 var bloqueado: bool = false
 
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D as AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
 @onready var poeira_passos: CPUParticles2D = get_node_or_null("PoeiraPassos") as CPUParticles2D
+var avatar_visual: AvatarVisual = null
 
 
 func _ready() -> void:
 	add_to_group("player")
-	# Ajusta animação e sprite de acordo com a seleção de sexo e cores no Global
-	if Engine.has_singleton("Global") or has_node("/root/Global"):
-		var g: Node = get_node("/root/Global")
+	
+	# Instancia o AvatarVisual modular e customizado
+	var cena_avatar: PackedScene = load("res://cenas/AvatarVisual.tscn")
+	if cena_avatar:
+		avatar_visual = cena_avatar.instantiate() as AvatarVisual
+		# Escala proporcional para encaixar na colisão do Player (180x360 -> ~180px de altura)
+		avatar_visual.scale = Vector2(0.56, 0.56)
+		# Centraliza na cápsula de colisão
+		avatar_visual.position = Vector2(0, 5)
+		add_child(avatar_visual)
+		avatar_visual.carregar_do_global()
+		
+		# Se instanciou com sucesso, oculta o AnimatedSprite2D legado
 		if is_instance_valid(animated_sprite):
-			if "sexo" in g and str(g.sexo) == "feminina":
-				var cena_menina: PackedScene = load("res://cenas/Personagem_menina.tscn")
-				if cena_menina:
-					var inst_menina: Node = cena_menina.instantiate()
-					var spr_menina: AnimatedSprite2D = inst_menina.find_child("AnimatedSprite2D", true, false) as AnimatedSprite2D
-					if is_instance_valid(spr_menina) and is_instance_valid(spr_menina.sprite_frames):
-						animated_sprite.sprite_frames = spr_menina.sprite_frames
-						animated_sprite.scale = spr_menina.scale
-						animated_sprite.position = spr_menina.position
-					inst_menina.queue_free()
-			# Aplica tintura personalizada refletindo a customização
-			var cor_base_pele: Color = g.cor_pele if "cor_pele" in g else Color.WHITE
-			var cor_base_roupa: Color = g.cor_roupa if "cor_roupa" in g else Color.WHITE
-			var tom_final: Color = cor_base_pele.lerp(cor_base_roupa, 0.25).lerp(Color.WHITE, 0.35)
-			animated_sprite.modulate = tom_final
-		if animated_sprite.sprite_frames.has_animation("personagem parado"):
-			animated_sprite.play("personagem parado")
+			animated_sprite.visible = false
+	else:
+		# Fallback legado caso não encontre a cena
+		if is_instance_valid(animated_sprite):
+			if animated_sprite.sprite_frames.has_animation("personagem parado"):
+				animated_sprite.play("personagem parado")
 
 
 func _physics_process(delta: float) -> void:
@@ -56,7 +56,9 @@ func _physics_process(delta: float) -> void:
 	var direction: float = Input.get_axis("left", "right")
 	if direction != 0.0:
 		velocity.x = direction * SPEED
-		if is_instance_valid(animated_sprite):
+		if is_instance_valid(avatar_visual):
+			avatar_visual.definir_espelhamento(direction < 0.0)
+		elif is_instance_valid(animated_sprite):
 			animated_sprite.flip_h = direction < 0.0
 	else:
 		velocity.x = move_toward(velocity.x, 0.0, SPEED * 0.2)
@@ -65,15 +67,22 @@ func _physics_process(delta: float) -> void:
 	_atualizar_animacao()
 
 
-
 func _atualizar_animacao() -> void:
+	var em_movimento: bool = abs(velocity.x) > 10.0 and is_on_floor()
+	
+	if is_instance_valid(avatar_visual):
+		avatar_visual.definir_animacao_andando(em_movimento)
+		if is_instance_valid(poeira_passos):
+			poeira_passos.emitting = em_movimento
+		return
+
 	if not is_instance_valid(animated_sprite):
 		return
 
 	if not is_on_floor():
 		if animated_sprite.sprite_frames.has_animation("personagem pulando"):
 			animated_sprite.play("personagem pulando")
-	elif abs(velocity.x) > 10.0:
+	elif em_movimento:
 		if animated_sprite.sprite_frames.has_animation("personagem andando"):
 			animated_sprite.play("personagem andando")
 		if is_instance_valid(poeira_passos):

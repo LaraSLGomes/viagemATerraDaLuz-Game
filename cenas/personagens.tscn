@@ -489,13 +489,13 @@ layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SpritePreviewSapato" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158139]
+[node name="SpritePreviewCalca" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158142]
 custom_minimum_size = Vector2(160, 260)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
 
-[node name="SpritePreviewCalca" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158142]
+[node name="SpritePreviewSapato" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158139]
 custom_minimum_size = Vector2(160, 260)
 layout_mode = 2
 expand_mode = 1
