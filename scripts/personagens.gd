@@ -128,8 +128,8 @@ const LISTA_MOCHILAS: Array[String] = [
 
 var _idx_pele: int = 1
 var _idx_cabelo_cor: int = 1
-var _idx_blusa: int = -1 # Começa sem blusa (-1) para ver opções ao navegar
-var _idx_calca: int = -1 # Começa sem calça/short (-1) para ver opções ao navegar
+var _idx_blusa: int = 0 # Inicial padrão selecionada (não começa pelado)
+var _idx_calca: int = 0 # Inicial padrão selecionada (não começa pelado)
 var _idx_sapato: int = 0
 var _idx_mochila: int = 0
 var _estilo_cabelo: String = "curto" # "curto" ou "longo"

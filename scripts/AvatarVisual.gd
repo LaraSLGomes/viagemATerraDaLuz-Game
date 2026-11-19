@@ -1,19 +1,24 @@
 extends Node2D
 class_name AvatarVisual
-## Componente visual unificado do avatar do jogador (180x360).
-## Usado tanto no Preview da criação quanto no Player do Museu e fases do jogo.
+## Componente visual unificado e animado do avatar do jogador.
+## Integra AnimatedSprite2D com os novos spritesheets de Menino e Menina
+## e mantém compatibilidade com a personalização modular de roupas e acessórios.
 
+const FRAMES_MENINO: SpriteFrames = preload("res://assets/Personagens/menino_frames.tres")
+const FRAMES_MENINA: SpriteFrames = preload("res://assets/Personagens/menina_frames.tres")
+
+@onready var anim_corpo: AnimatedSprite2D = $AnimatedSpriteCorpo as AnimatedSprite2D
+@onready var spr_corpo: Sprite2D = get_node_or_null("Corpo") as Sprite2D
 @onready var spr_mochila: Sprite2D = $Mochila as Sprite2D
 @onready var spr_cabelo_tras: Sprite2D = $CabeloTras as Sprite2D
-@onready var spr_corpo: Sprite2D = $Corpo as Sprite2D
 @onready var spr_calca: Sprite2D = $Calca as Sprite2D
 @onready var spr_sapato: Sprite2D = $Sapato as Sprite2D
 @onready var spr_blusa: Sprite2D = $Blusa as Sprite2D
 @onready var spr_cabelo_frente: Sprite2D = $CabeloFrente as Sprite2D
-@onready var anim_player: AnimationPlayer = get_node_or_null("AnimationPlayer") as AnimationPlayer
 
+var _sexo: String = "masculino"
 var _olhando_esquerda: bool = false
-var _andando: bool = false
+var _animacao_atual: String = "idle"
 
 
 func _ready() -> void:
@@ -50,21 +55,28 @@ func carregar_do_global() -> void:
 
 
 func aplicar_configuracao(c: Dictionary) -> void:
+	_sexo = c.get("sexo", "masculino")
+	
+	# Configura AnimatedSpriteCorpo com os frames correspondentes
+	if is_instance_valid(anim_corpo):
+		anim_corpo.sprite_frames = FRAMES_MENINA if _sexo == "feminina" else FRAMES_MENINO
+		var cor_pele: Color = c.get("cor_pele", Color(0.92, 0.76, 0.62))
+		anim_corpo.modulate = cor_pele.lerp(Color.WHITE, 0.35)
+		anim_corpo.visible = true
+
 	# 1. Mochila (z=0, atrás de tudo)
 	_atualizar_camada(spr_mochila, c.get("textura_mochila", ""), Color.WHITE)
 	
-	# 2. Corpo Base / Pele (z=2)
-	# Se estiver de calça/bermuda comprida, usa a textura mascarada que elimina qualquer vazamento atrás das pernas
-	var tem_calca: bool = c.get("tem_calca", false)
-	var sexo: String = c.get("sexo", "masculino")
-	var tex_corpo: String = ""
-	if tem_calca:
-		tex_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino_calca.png" if sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino_calca.png"
-	else:
-		tex_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino.png" if sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino.png"
-	
-	var cor_pele: Color = c.get("cor_pele", Color(0.92, 0.76, 0.62))
-	_atualizar_camada(spr_corpo, tex_corpo, cor_pele.lerp(Color.WHITE, 0.35))
+	# 2. Corpo estático (se usado como fallback)
+	if is_instance_valid(spr_corpo):
+		var tem_calca: bool = c.get("tem_calca", false)
+		var tex_corpo: String = ""
+		if tem_calca:
+			tex_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino_calca.png" if _sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino_calca.png"
+		else:
+			tex_corpo = "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_feminino.png" if _sexo == "feminina" else "res://assets/Personagens/customizacao/CANVAS_180x360/corpos/corpo_masculino.png"
+		var cor_pele_val: Color = c.get("cor_pele", Color(0.92, 0.76, 0.62))
+		_atualizar_camada(spr_corpo, tex_corpo, cor_pele_val.lerp(Color.WHITE, 0.35))
 	
 	# 3. Calça / Short (z=3)
 	_atualizar_camada(spr_calca, c.get("textura_calca", ""), Color.WHITE)
@@ -97,21 +109,22 @@ func _atualizar_camada(sprite: Sprite2D, path: String, cor_modulate: Color) -> v
 
 
 func tocar_animacao(nome: String) -> void:
-	if is_instance_valid(anim_player) and anim_player.has_animation(nome):
-		if anim_player.current_animation != nome:
-			anim_player.play(nome)
+	_animacao_atual = nome
+	if is_instance_valid(anim_corpo) and anim_corpo.sprite_frames != null:
+		if anim_corpo.sprite_frames.has_animation(nome):
+			if anim_corpo.animation != nome or not anim_corpo.is_playing():
+				anim_corpo.play(nome)
 
 
 func definir_animacao_andando(andando: bool) -> void:
-	if _andando == andando:
-		return
-	_andando = andando
-	if _andando:
-		tocar_animacao("walk")
+	if andando:
+		tocar_animacao("walk_side")
 	else:
 		tocar_animacao("idle")
 
 
 func definir_espelhamento(olhando_esquerda: bool) -> void:
 	_olhando_esquerda = olhando_esquerda
+	if is_instance_valid(anim_corpo):
+		anim_corpo.flip_h = olhando_esquerda
 	scale.x = -abs(scale.x) if olhando_esquerda else abs(scale.x)
