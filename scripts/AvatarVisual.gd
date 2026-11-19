@@ -1,5 +1,4 @@
 extends Node2D
-class_name AvatarVisual
 ## Componente visual unificado e animado do avatar do jogador.
 ## Integra AnimatedSprite2D com os novos spritesheets de Menino e Menina
 ## e mantém compatibilidade com a personalização modular de roupas e acessórios.

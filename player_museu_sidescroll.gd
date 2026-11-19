@@ -12,7 +12,7 @@ var esta_escrevendo: bool = false
 
 @onready var animated_sprite: AnimatedSprite2D = get_node_or_null("AnimatedSprite2D") as AnimatedSprite2D
 @onready var poeira_passos: CPUParticles2D = get_node_or_null("PoeiraPassos") as CPUParticles2D
-var avatar_visual: AvatarVisual = null
+var avatar_visual: Node2D = null
 
 
 func _ready() -> void:
@@ -21,7 +21,7 @@ func _ready() -> void:
 	# Instancia o AvatarVisual modular e customizado
 	var cena_avatar: PackedScene = load("res://cenas/AvatarVisual.tscn")
 	if cena_avatar:
-		avatar_visual = cena_avatar.instantiate() as AvatarVisual
+		avatar_visual = cena_avatar.instantiate() as Node2D
 		# Escala proporcional para encaixar na colisão do Player (300x450 -> ~180px de altura)
 		avatar_visual.scale = Vector2(0.48, 0.48)
 		# Centraliza na cápsula de colisão
