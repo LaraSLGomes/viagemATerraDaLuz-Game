@@ -3,6 +3,8 @@
 [ext_resource type="FontFile" uid="uid://dhvxkpkoqfkpx" path="res://assets/fonts/RevMiniPixel.ttf" id="1_font"]
 [ext_resource type="Script" uid="uid://baxo7nxgt6tki" path="res://scripts/personagens.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://ccvw6c20np2xg" path="res://assets/Personagens/masculino_2d/idle/idle_00.png" id="4_char_base"]
+[ext_resource type="PackedScene" uid="uid://cavatarvisual123" path="res://cenas/AvatarVisual.tscn" id="5_avatar_scene"]
+
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card_bg"]
 content_margin_left = 12.0
@@ -224,27 +226,28 @@ theme_override_fonts/font = ExtResource("1_font")
 theme_override_font_sizes/font_size = 15
 text = "CABELO:"
 
-[node name="BtnCabeloCurto" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCabeloEstilo/HBox" unique_id=2117365226]
-custom_minimum_size = Vector2(120, 36)
+[node name="BtnPrevCabeloEstilo" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCabeloEstilo/HBox"]
+custom_minimum_size = Vector2(36, 36)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
 theme_override_fonts/font = ExtResource("1_font")
-theme_override_font_sizes/font_size = 14
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "CURTO"
+text = "<"
 
-[node name="BtnCabeloLongo" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCabeloEstilo/HBox" unique_id=1265058740]
-custom_minimum_size = Vector2(120, 36)
+[node name="LabelValorCabeloEstilo" type="Label" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCabeloEstilo/HBox"]
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.92, 0.7, 1)
+theme_override_colors/font_color = Color(1, 0.95, 0.8, 1)
 theme_override_fonts/font = ExtResource("1_font")
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 15
+text = "Curto"
+horizontal_alignment = 1
+
+[node name="BtnNextCabeloEstilo" type="Button" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao/CardCabeloEstilo/HBox"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_font")
 theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
-theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
-text = "LONGO"
+text = ">"
 
 [node name="CardCorPele" type="PanelContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaCustomizacao" unique_id=2035925445]
 layout_mode = 2
@@ -477,41 +480,20 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_card_bg")
 [node name="Center" type="CenterContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco" unique_id=649305870]
 layout_mode = 2
 
-[node name="SpritePreviewMochila" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158137]
-custom_minimum_size = Vector2(160, 260)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center"]
+custom_minimum_size = Vector2(250, 280)
 layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
+stretch = true
 
-[node name="SpritePreviewBase" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158138]
-custom_minimum_size = Vector2(160, 260)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
+[node name="SubViewport" type="SubViewport" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(250, 280)
+render_target_update_mode = 4
 
-[node name="SpritePreviewCalca" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158142]
-custom_minimum_size = Vector2(160, 260)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SpritePreviewSapato" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158139]
-custom_minimum_size = Vector2(160, 260)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SpritePreviewBlusa" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158140]
-custom_minimum_size = Vector2(160, 260)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SpritePreviewCabelo" type="TextureRect" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center" unique_id=474158141]
-custom_minimum_size = Vector2(160, 260)
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 5
+[node name="AvatarVisualPreview" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao/MolduraBoneco/Center/SubViewportContainer/SubViewport" instance=ExtResource("5_avatar_scene")]
+position = Vector2(125, 140)
+scale = Vector2(0.44, 0.44)
 
 [node name="LabelResumoPersonagem" type="Label" parent="FundoAzulEscuro/ConteudoMargem/VBoxPrincipal/HBoxColunas/ColunaVisualizacao" unique_id=1982194124]
 layout_mode = 2
