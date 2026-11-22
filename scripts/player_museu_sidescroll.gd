@@ -69,7 +69,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _atualizar_animacao() -> void:
-	var em_movimento: bool = abs(velocity.x) > 10.0 and is_on_floor()
+	# Não depende de is_on_floor() para andar caso haja pequenas variações de colisão
+	var em_movimento: bool = abs(velocity.x) > 10.0
 
 	if is_instance_valid(avatar_visual):
 		if avatar_visual.has_method("definir_animacao_andando"):
@@ -81,7 +82,7 @@ func _atualizar_animacao() -> void:
 				avatar_visual.tocar_animacao("idle_front")
 		
 		if is_instance_valid(poeira_passos):
-			poeira_passos.emitting = em_movimento
+			poeira_passos.emitting = em_movimento and is_on_floor()
 		return
 
 	if not is_instance_valid(animated_sprite):

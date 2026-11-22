@@ -91,12 +91,12 @@ const CHAVES_ESTILOS_CABELO: Array[String] = [
 
 var _idx_pele: int = 1
 var _idx_cabelo_cor: int = 1
-var _idx_cabelo_estilo: int = 0 # Inicia como Curto (padrão)
-var _idx_blusa: int = 0        # Inicia preenchido com valor padrão
-var _idx_calca: int = 0        # Inicia preenchido com valor padrão
-var _idx_sapato: int = 0       # Inicia preenchido com valor padrão
-var _idx_mochila: int = 0      # Inicia preenchido com valor padrão
-var _sexo: String = "masculino" # "masculino" ou "feminina"
+var _idx_cabelo_estilo: int = 0
+var _idx_blusa: int = 0
+var _idx_calca: int = 0
+var _idx_sapato: int = 0
+var _idx_mochila: int = 0
+var _sexo: String = "masculino"
 
 var _player_sfx: AudioStreamPlayer
 
@@ -136,6 +136,10 @@ func _ready() -> void:
 
 	_configurar_seletores()
 	_atualizar_interface()
+	
+	# Inicia caminhada lenta de frente no preview para dar vida ao personagem
+	if is_instance_valid(avatar_preview) and avatar_preview.has_method("tocar_animacao"):
+		avatar_preview.tocar_animacao("walk_front")
 
 
 func _tocar_sfx(stream: AudioStream) -> void:
@@ -159,7 +163,6 @@ func _configurar_seletores() -> void:
 			_atualizar_interface()
 		)
 
-	# Seletor de estilo de cabelo com 5 opções
 	if is_instance_valid(btn_prev_cabelo_estilo):
 		btn_prev_cabelo_estilo.pressed.connect(func() -> void:
 			_idx_cabelo_estilo = posmod(_idx_cabelo_estilo - 1, CHAVES_ESTILOS_CABELO.size())

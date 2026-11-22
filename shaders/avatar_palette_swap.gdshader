@@ -27,6 +27,7 @@ void fragment() {
 	vec3 rgb = tex_color.rgb;
 	float lum = dot(rgb, vec3(0.299, 0.587, 0.114));
 	
+	// Outlines and very dark tones (eyes, pupils, black borders)
 	if (lum < 0.12 && max(max(rgb.r, rgb.g), rgb.b) < 0.18) {
 		COLOR = tex_color;
 		return;
