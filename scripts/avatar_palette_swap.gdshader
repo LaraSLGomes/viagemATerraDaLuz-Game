@@ -19,69 +19,67 @@ vec3 rgb_to_hsv(vec3 c) {
 void fragment() {
 	vec4 tex_color = texture(TEXTURE, UV);
 	
-	if (tex_color.a < 0.05) {
-		COLOR = vec4(0.0);
-		return;
-	}
-	
-	vec3 rgb = tex_color.rgb;
-	float lum = dot(rgb, vec3(0.299, 0.587, 0.114));
-	
-	// Outlines and very dark tones (eyes, pupils, black borders)
-	if (lum < 0.12 && max(max(rgb.r, rgb.g), rgb.b) < 0.18) {
-		COLOR = tex_color;
-		return;
-	}
-	
-	vec3 hsv = rgb_to_hsv(rgb);
-	float h = hsv.x;
-	float s = hsv.y;
-	float v = hsv.z;
-	
-	vec4 target_color = tex_color;
-	bool matched = false;
-	
-	// 1. Cabelo: branco / cinza claro
-	if (s < 0.15 && v > 0.40) {
-		float shade = v;
-		target_color = vec4(hair_color.rgb * shade, tex_color.a);
-		matched = true;
-	}
-	// 2. Blusa: vermelho vivo
-	else if ((h < 0.04 || h > 0.94) && s > 0.45) {
-		float shade = lum / 0.50;
-		target_color = vec4(shirt_color.rgb * shade, tex_color.a);
-		matched = true;
-	}
-	// 3. Calça: azul vivo
-	else if (h >= 0.54 && h <= 0.70 && s > 0.35) {
-		float shade = lum / 0.42;
-		target_color = vec4(pants_color.rgb * shade, tex_color.a);
-		matched = true;
-	}
-	// 4. Sapato: amarelo vivo
-	else if (h >= 0.09 && h <= 0.20 && s > 0.40) {
-		float shade = lum / 0.70;
-		target_color = vec4(shoe_color.rgb * shade, tex_color.a);
-		matched = true;
-	}
-	// 5. Mochila: verde vivo
-	else if (h >= 0.22 && h <= 0.45 && s > 0.30) {
-		float shade = lum / 0.45;
-		target_color = vec4(backpack_color.rgb * shade, tex_color.a);
-		matched = true;
-	}
-	// 6. Pele: tom bege/alaranjado
-	else if (h >= 0.035 && h <= 0.115 && s >= 0.18 && s <= 0.75) {
-		float shade = lum / 0.65;
-		target_color = vec4(skin_color.rgb * shade, tex_color.a);
-		matched = true;
-	}
-	
-	if (matched) {
-		target_color.rgb = clamp(target_color.rgb, 0.0, 1.0);
-		COLOR = target_color;
+	if (tex_color.a >= 0.05) {
+		vec3 rgb = tex_color.rgb;
+		float lum = dot(rgb, vec3(0.299, 0.587, 0.114));
+		
+		// Linhas de contorno e tons escuros preservados
+		if (lum >= 0.12 || max(max(rgb.r, rgb.g), rgb.b) >= 0.18) {
+			vec3 hsv = rgb_to_hsv(rgb);
+			float h = hsv.x;
+			float s = hsv.y;
+			float v = hsv.z;
+			
+			vec4 target_color = tex_color;
+			bool matched = false;
+			
+			// 1. Cabelo: branco / cinza claro
+			if (s < 0.15 && v > 0.40) {
+				float shade = v;
+				target_color = vec4(hair_color.rgb * shade, tex_color.a);
+				matched = true;
+			}
+			// 2. Blusa: vermelho vivo
+			else if ((h < 0.04 || h > 0.94) && s > 0.45) {
+				float shade = lum / 0.50;
+				target_color = vec4(shirt_color.rgb * shade, tex_color.a);
+				matched = true;
+			}
+			// 3. Calça: azul vivo
+			else if (h >= 0.54 && h <= 0.70 && s > 0.35) {
+				float shade = lum / 0.42;
+				target_color = vec4(pants_color.rgb * shade, tex_color.a);
+				matched = true;
+			}
+			// 4. Sapato: amarelo vivo
+			else if (h >= 0.09 && h <= 0.20 && s > 0.40) {
+				float shade = lum / 0.70;
+				target_color = vec4(shoe_color.rgb * shade, tex_color.a);
+				matched = true;
+			}
+			// 5. Mochila: verde vivo
+			else if (h >= 0.22 && h <= 0.45 && s > 0.30) {
+				float shade = lum / 0.45;
+				target_color = vec4(backpack_color.rgb * shade, tex_color.a);
+				matched = true;
+			}
+			// 6. Pele: tom bege/alaranjado
+			else if (h >= 0.035 && h <= 0.115 && s >= 0.18 && s <= 0.75) {
+				float shade = lum / 0.65;
+				target_color = vec4(skin_color.rgb * shade, tex_color.a);
+				matched = true;
+			}
+			
+			if (matched) {
+				target_color.rgb = clamp(target_color.rgb, 0.0, 1.0);
+				COLOR = target_color;
+			} else {
+				COLOR = tex_color;
+			}
+		} else {
+			COLOR = tex_color;
+		}
 	} else {
-		COLOR = tex_color;
+		COLOR = vec4(0.0);
 	}
 }

@@ -137,9 +137,9 @@ func _ready() -> void:
 	_configurar_seletores()
 	_atualizar_interface()
 	
-	# Inicia caminhada lenta de frente no preview para dar vida ao personagem
+	# Garante que o preview fique estático de frente (idle_front, frame 0)
 	if is_instance_valid(avatar_preview) and avatar_preview.has_method("tocar_animacao"):
-		avatar_preview.tocar_animacao("walk_front")
+		avatar_preview.tocar_animacao("idle_front")
 
 
 func _tocar_sfx(stream: AudioStream) -> void:

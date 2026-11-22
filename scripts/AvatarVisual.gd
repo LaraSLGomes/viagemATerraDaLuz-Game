@@ -2,7 +2,6 @@ extends Node2D
 ## Componente visual unificado do avatar adolescente.
 ## Utiliza um único Sprite2D com hframes=4, vframes=3,
 ## catálogo de spritesheets CompositeSprites e Shader de Palette Swap.
-## Possui fallback de animação via código (_process) caso AnimationPlayer não esteja ativo.
 
 const SHADER_PALETTE: Shader = preload("res://shaders/avatar_palette_swap.gdshader")
 
@@ -21,34 +20,48 @@ const FRAME_DURATION: float = 0.15
 
 
 func _ready() -> void:
-	_garantir_shader_material()
+	_garantir_material()
 	carregar_do_global()
-	tocar_animacao("idle_front")
+	tocar_animacao(_animacao_atual)
 
 
-func _garantir_shader_material() -> void:
+func _garantir_material() -> ShaderMaterial:
 	if not is_instance_valid(sprite_visual):
-		return
+		sprite_visual = get_node_or_null("SpriteVisual") as Sprite2D
+	
+	if not is_instance_valid(sprite_visual):
+		return null
+		
 	var mat: ShaderMaterial = sprite_visual.material as ShaderMaterial
-	if mat == null or mat.shader == null:
-		var novo_mat: ShaderMaterial = ShaderMaterial.new()
-		novo_mat.shader = SHADER_PALETTE
-		novo_mat.resource_local_to_scene = true
-		sprite_visual.material = novo_mat
-	else:
-		# Duplica para não compartilhar parâmetros entre instâncias diferentes
-		sprite_visual.material = mat.duplicate()
+	if mat == null or mat.shader == null or mat.shader != SHADER_PALETTE:
+		mat = ShaderMaterial.new()
+		mat.shader = SHADER_PALETTE
+		mat.resource_local_to_scene = true
+		sprite_visual.material = mat
+	elif not mat.resource_local_to_scene:
+		mat = mat.duplicate()
+		mat.resource_local_to_scene = true
+		sprite_visual.material = mat
+		
+	return mat
 
 
 func _process(delta: float) -> void:
 	# Fallback de ciclo de passos por código se o AnimationPlayer não estiver tocando
 	if not is_instance_valid(sprite_visual):
+		sprite_visual = get_node_or_null("SpriteVisual") as Sprite2D
+	if not is_instance_valid(sprite_visual):
+		return
+	
+	# Se for animação de idle, força frame estático correspondente
+	if _animacao_atual.begins_with("idle"):
+		_atualizar_frame_manual()
 		return
 	
 	if is_instance_valid(anim_player) and anim_player.is_playing():
 		return # AnimationPlayer está cuidando dos frames
 		
-	# Atualiza frames via código
+	# Atualiza frames via código para caminhada
 	_frame_timer += delta
 	if _frame_timer >= FRAME_DURATION:
 		_frame_timer -= FRAME_DURATION
@@ -57,6 +70,8 @@ func _process(delta: float) -> void:
 
 
 func _atualizar_frame_manual() -> void:
+	if not is_instance_valid(sprite_visual):
+		sprite_visual = get_node_or_null("SpriteVisual") as Sprite2D
 	if not is_instance_valid(sprite_visual):
 		return
 	match _animacao_atual:
@@ -98,7 +113,10 @@ func carregar_do_global() -> void:
 
 
 func aplicar_configuracao(c: Dictionary) -> void:
-	_garantir_shader_material()
+	if not is_instance_valid(sprite_visual):
+		sprite_visual = get_node_or_null("SpriteVisual") as Sprite2D
+		
+	var mat: ShaderMaterial = _garantir_material()
 	_sexo = c.get("sexo", "masculino")
 	_estilo_cabelo = c.get("estilo_cabelo", "curto")
 	
@@ -107,25 +125,25 @@ func aplicar_configuracao(c: Dictionary) -> void:
 	if is_instance_valid(sprite_visual) and tex != null:
 		sprite_visual.texture = tex
 		
-		# 2. Aplica as cores no ShaderMaterial
-		var mat: ShaderMaterial = sprite_visual.material as ShaderMaterial
-		if mat:
-			if c.has("cor_pele"):
-				mat.set_shader_parameter("skin_color", c["cor_pele"])
-			if c.has("cor_cabelo"):
-				mat.set_shader_parameter("hair_color", c["cor_cabelo"])
-			if c.has("cor_blusa"):
-				mat.set_shader_parameter("shirt_color", c["cor_blusa"])
-			if c.has("cor_calca"):
-				mat.set_shader_parameter("pants_color", c["cor_calca"])
-			if c.has("cor_sapato"):
-				mat.set_shader_parameter("shoe_color", c["cor_sapato"])
-			if c.has("cor_mochila"):
-				mat.set_shader_parameter("backpack_color", c["cor_mochila"])
+	# 2. Aplica as cores no ShaderMaterial
+	if mat:
+		if c.has("cor_pele"):
+			mat.set_shader_parameter("skin_color", c["cor_pele"])
+		if c.has("cor_cabelo"):
+			mat.set_shader_parameter("hair_color", c["cor_cabelo"])
+		if c.has("cor_blusa"):
+			mat.set_shader_parameter("shirt_color", c["cor_blusa"])
+		if c.has("cor_calca"):
+			mat.set_shader_parameter("pants_color", c["cor_calca"])
+		if c.has("cor_sapato"):
+			mat.set_shader_parameter("shoe_color", c["cor_sapato"])
+		if c.has("cor_mochila"):
+			mat.set_shader_parameter("backpack_color", c["cor_mochila"])
 
 
 func tocar_animacao(nome: String) -> void:
 	_animacao_atual = nome
+	_frame_step = 0
 	if is_instance_valid(anim_player) and anim_player.has_animation(nome):
 		if anim_player.current_animation != nome or not anim_player.is_playing():
 			anim_player.play(nome)
@@ -161,5 +179,7 @@ func definir_animacao_andando(andando: bool) -> void:
 
 func definir_espelhamento(olhando_esquerda: bool) -> void:
 	_olhando_esquerda = olhando_esquerda
+	if not is_instance_valid(sprite_visual):
+		sprite_visual = get_node_or_null("SpriteVisual") as Sprite2D
 	if is_instance_valid(sprite_visual):
 		sprite_visual.flip_h = olhando_esquerda
